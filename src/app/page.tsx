@@ -1,7 +1,8 @@
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import SplashScreen from "@/components/SplashScreen";
-import HomeContent from "@/sections/home";
+import HomeContent from "@/sections/1_home";
+import AboutContent from "@/sections/2_about";
 
 export default function HomePage() {
   return (
@@ -10,6 +11,7 @@ export default function HomePage() {
       <NavBar />
       <main className="flex flex-col justify-center items-center px-14 mx-auto lg:px-44">
         <HomeContent />
+        <AboutContent />
         <div id="proj" className="min-h-screen flex justify-center items-center">
           <p className="text-3xl font-semibold">My Projects</p>
         </div>
