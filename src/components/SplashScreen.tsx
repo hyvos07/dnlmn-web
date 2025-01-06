@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
@@ -15,28 +16,30 @@ export default function SplashScreen() {
       },
     });
 
-    // Content appear!
-    tl.to(contentRef.current, { 
+    // Content appear
+    tl.to(contentRef.current, {
       opacity: 1,
-      duration: 1.4
+      duration: 1
     });
 
-    // Rectangle and content exit!
-    tl.to(".loading-rectangle", {
+    // Pause
+    tl.to(contentRef.current, {
+      duration: 0.5
+    });
+
+    // All Dissolve
+    tl.to(".splash-layer", {
       y: "-100%",
+      duration: 1
     });
-
-    tl.to(contentRef.current, { 
-      y: "-300%", 
-      opacity: 0, 
-      duration: 1.5
+    
+    tl.to(contentRef.current, {
+      y: "-400%",
+      opacity: 0,
+      duration: 1
     }, "<");
 
-    tl.set(document.documentElement, { 
-      cursor: "default" 
-    }, "<0.5");
-
-    // Cleanup
+    // Delete layer
     return () => {
       tl.kill();
     };
@@ -44,16 +47,16 @@ export default function SplashScreen() {
 
   return (
     <div ref={wrapperRef} className="fixed flex justify-center items-center top-0 left-0 right-0 w-full h-full z-[999]">
-      <div className="loading-rectangle w-full h-full bg-slate-900" />
+      <div className="splash-layer w-full h-full bg-[#091226] backdrop-blur-md" />
       <div ref={contentRef} className="absolute flex flex-col items-center gap-8 opacity-0 z-10">
-        <img 
+        <img
           src="/svgs/furina.svg"
           alt="Logo"
           className="w-32 h-32"
         />
-        <div className="text-2xl text-white font-semibold">
-          Presented by the Opera Epiclese
-        </div>
+        {/* <div className="text-xl md:text-2xl text-white font-semibold mx-10 text-center">
+          Welcome to the Opera Epiclese!
+        </div> */}
       </div>
     </div>
   );

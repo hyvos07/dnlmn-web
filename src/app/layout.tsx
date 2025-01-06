@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -9,8 +9,8 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "dnlmn",
-  description: "Portfolio website made by Daniel Liman.",
+  title: "Daniel Liman | dnlmn",
+  description: "Portfolio website made by Daniel Liman (aka dnlmn).",
   icons: {
     icon: "favicon.ico",
   },
