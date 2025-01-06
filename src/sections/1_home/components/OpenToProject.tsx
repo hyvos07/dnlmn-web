@@ -6,7 +6,7 @@ export default function OpenToProject() {
                 <div className="absolute w-full h-full rounded-full bg-green-400" />
             </div>
             <h3 className="font-medium text-sm">
-                Open for Collaborations
+                Available for projects
             </h3>
         </div>
     );
