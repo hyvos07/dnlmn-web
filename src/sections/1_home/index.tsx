@@ -1,10 +1,11 @@
+import Furina from "@/sections/1_home/components/Furina";
 import Greetings from "./components/Greetings";
 import OpenToProject from "./components/OpenToProject";
 import Social from "./components/Social";
 
 export default function HomeContent() {
     return (
-        <div id="home" className="min-h-screen max-lg:py-28 flex lg:flex-row flex-col-reverse gap-14 items-center justify-center lg:justify-between w-full">
+        <div id="home" className="min-h-screen max-lg:py-28 flex lg:flex-row flex-col-reverse gap-10 items-center justify-center lg:justify-between w-full">
             <div className="flex flex-col gap-6 lg:gap-7 justify-center items-start">
                 <Greetings />
                 <div className="flex flex-col gap-3 lg:gap-5">
@@ -20,12 +21,7 @@ export default function HomeContent() {
                 <Social />
             </div>
             <div className="items-center justify-center">
-                <img 
-                    src="images/daniel-liman.jpg"
-                    alt="Profile Picture"
-                    className="rounded-full lg:max-w-80 max-w-60"
-                    draggable="false"
-                />
+                <Furina />
             </div>
         </div>
     );
