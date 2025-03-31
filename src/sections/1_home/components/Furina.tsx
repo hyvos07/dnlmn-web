@@ -22,7 +22,7 @@ function Model({ isMobile }: { isMobile: boolean }) {
     }
   }, [isMobile]);
 
-  // Update mixer in animation frame and rotate model
+  // Update mixer in animation frame and make model move
   useFrame((state, delta) => {
     const t = state.clock.getElapsedTime();
     const y = isMobile ? -3.5 : -1.85;
@@ -93,7 +93,7 @@ export default function Furina() {
         camera={{ position: [0, 5, 5], fov: 70 }}
         gl={{toneMapping: THREE.LinearToneMapping}}
         onCreated={({ gl, scene }) => {
-          gl.toneMappingExposure = Math.pow(2, -0.25);
+          gl.toneMappingExposure = Math.pow(2, -0.75);
           scene.environment = null;
         }}
       >
