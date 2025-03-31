@@ -1,12 +1,12 @@
-import AboutBox from "./component/AboutBox";
-import InterestItem from "./component/Interests";
-import UnivButton from "./component/UnivButton";
-import ProjectButton from "./component/ProjectButton";
-import Spotify from "./component/Spotify";
+import AboutBox from "./components/AboutBox";
+import InterestItem from "./components/Interests";
+import UnivButton from "./components/UnivButton";
+import ProjectButton from "./components/ProjectButton";
+import Spotify from "./components/Spotify";
 import Image from 'next/image';
 
 import { Smartphone, PanelsTopLeft, HardDrive, GraduationCap, Telescope, Layers, Gamepad2, Joystick, Database } from 'lucide-react';
-import TechSlider from "./component/Slider";
+import TechSlider from "./components/Slider";
 import techStackData from '../../../public/tech.json';
 
 export default function AboutContent() {
