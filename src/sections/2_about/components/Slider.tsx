@@ -1,18 +1,6 @@
 'use client';
 import React, { useState } from 'react';
 
-interface SkillItems {
-    icon: string;
-    title: string;
-    link: string;
-}
-
-interface SliderProps {
-    items: SkillItems[];
-    speed?: number;
-    gap?: number;
-}
-
 export default function Slider({
     items,
     speed = 20,

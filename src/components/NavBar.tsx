@@ -3,11 +3,6 @@ import handleScroll from "@/utils/handleScroll";
 import { Home, Blocks, Sparkles, Mail, ArrowDown, UserRound } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-interface NavItem {
-    to: string;
-    label: string;
-}
-
 const navItems: NavItem[] = [
     { to: 'home', label: 'Home' },
     { to: 'about', label: 'About Me' },

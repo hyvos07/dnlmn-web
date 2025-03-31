@@ -3,14 +3,6 @@ import { useState, useEffect } from 'react';
 import AboutBox from './AboutBox';
 import Image from 'next/image';
 
-interface SpotifyTrack {
-    songUrl: string
-    title: string
-    albumImageUrl: string
-    artist: string
-    isPlaying: boolean
-}
-
 export default function Spotify() {
     const [isLoading, setIsLoading] = useState(true);
     const [track, setTrack] = useState<SpotifyTrack>({
