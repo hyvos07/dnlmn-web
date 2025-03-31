@@ -1,0 +1,92 @@
+[
+    {
+        "icon": "https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg",
+        "title": "C++",
+        "link": "https://isocpp.org/"
+    },
+    {
+        "icon": "https://www.svgrepo.com/show/452091/python.svg",
+        "title": "Python",
+        "link": "https://www.python.org/"
+    },
+    {
+        "icon": "https://www.svgrepo.com/show/184143/java.svg",
+        "title": "Java",
+        "link": "https://www.java.com/"
+    },
+    {
+        "icon": "https://user-images.githubusercontent.com/25181517/192158954-f88b5814-d510-4564-b285-dff7d6400dad.png",
+        "title": "HTML",
+        "link": "https://developer.mozilla.org/en-US/docs/Web/HTML"
+    },
+    {
+        "icon": "https://user-images.githubusercontent.com/25181517/183898674-75a4a1b1-f960-4ea9-abcb-637170a00a75.png",
+        "title": "CSS",
+        "link": "https://developer.mozilla.org/en-US/docs/Web/CSS"
+    },
+    {
+        "icon": "https://skillicons.dev/icons?i=js",
+        "title": "JavaScript",
+        "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    },
+    {
+        "icon": "https://skillicons.dev/icons?i=ts",
+        "title": "TypeScript",
+        "link": "https://www.typescriptlang.org/"
+    },
+    {
+        "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Dart_programming_language_logo_icon.svg",
+        "title": "Dart",
+        "link": "https://dart.dev/"
+    },
+    {
+        "icon": "https://skillicons.dev/icons?i=rust",
+        "title": "Rust",
+        "link": "https://www.rust-lang.org/"
+    },
+    {
+        "icon": "https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg",
+        "title": "PostgreSQL",
+        "link": "https://www.postgresql.org/"
+    },
+    {
+        "icon": "https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/react.png",
+        "title": "React",
+        "link": "https://reactjs.org/"
+    },
+    {
+        "icon": "https://user-images.githubusercontent.com/25181517/202896760-337261ed-ee92-4979-84c4-d4b829c7355d.png",
+        "title": "Tailwind CSS",
+        "link": "https://tailwindcss.com/"
+    },
+    {
+        "icon": "https://user-images.githubusercontent.com/25181517/189715289-df3ee512-6eca-463f-a0f4-c10d94a06b2f.png",
+        "title": "Figma",
+        "link": "https://www.figma.com/"
+    },
+    {
+        "icon": "https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg",
+        "title": "Flutter",
+        "link": "https://flutter.dev/"
+    },
+    {
+        "icon": "https://cdn.worldvectorlogo.com/logos/django.svg",
+        "title": "Django",
+        "link": "https://www.djangoproject.com/"
+    },
+    {
+        "icon": "https://skillicons.dev/icons?i=nextjs",
+        "title": "Next.js",
+        "link": "https://nextjs.org/"
+    },
+    {
+        "icon": "https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/spring_boot.png",
+        "title": "SpringBoot",
+        "link": "https://spring.io/projects/spring-boot"
+    },
+    {
+        "icon": "https://github.com/user-attachments/assets/e40fc76b-c8d8-47c3-bb53-c7795abaf596",
+        "title": "Supabase",
+        "link": "https://supabase.io/"
+    }
+]
