@@ -3,6 +3,7 @@ import NavBar from "@/components/NavBar";
 import SplashScreen from "@/components/SplashScreen";
 import HomeContent from "@/sections/1_home";
 import AboutContent from "@/sections/2_about";
+import ProjectContent from "@/sections/3_projects";
 
 export default function HomePage() {
   return (
@@ -12,9 +13,7 @@ export default function HomePage() {
       <main className="flex flex-col justify-center items-center px-12 mx-auto lg:px-44">
         <HomeContent />
         <AboutContent />
-        <div id="proj" className="min-h-screen flex justify-center items-center">
-          <p className="text-3xl font-semibold">My Projects</p>
-        </div>
+        <ProjectContent />
         <div id="exp" className="min-h-screen flex justify-center items-center">
           <p className="text-3xl font-semibold">My Experiences</p>
         </div>

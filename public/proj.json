@@ -1,0 +1,70 @@
+[
+    {
+        "id": 1,
+        "title": "Teman Kuliah",
+        "description": "A revamp project of UlasKelas, one of the RISTEK UI projects as a place for Universitas Indonesia students to review their taken classes (Coming Soon).",
+        "type": "Mobile App",
+        "technologies": [
+            {
+                "icon": "https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg",
+                "title": "Flutter",
+                "link": ""
+            },
+            {
+                "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Dart_programming_language_logo_icon.svg",
+                "title": "Dart",
+                "link": ""
+            }
+        ],
+        "imageUrl": "/images/projects/temankuliah.png"
+    },
+    {
+        "id": 2,
+        "title": "Todo List - Todos",
+        "description": "A simple todo list app built with Flutter and Dart. Made for RISTEK UI 2024's Reqruitment.",
+        "type": "Mobile App",
+        "technologies": [
+            {
+                "icon": "https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg",
+                "title": "Flutter",
+                "link": ""
+            },
+            {
+                "icon": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Dart_programming_language_logo_icon.svg",
+                "title": "Dart",
+                "link": ""
+            }
+        ],
+        "imageUrl": "/images/projects/todos.png",
+        "githubUrl": "https://github.com/hyvos07/todos"
+    },
+    {
+        "id": 3,
+        "title": "UI Eats - Eat at UI",
+        "description": "A personal project on UI canteen food review and rating. Coming soon!",
+        "type": "Project",
+        "technologies": [
+            {
+                "icon": "https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/react.png",
+                "title": "React",
+                "link": ""
+            },
+            {
+                "icon": "https://skillicons.dev/icons?i=django",
+                "title": "Django",
+                "link": ""
+            },
+            {
+                "icon": "https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg",
+                "title": "Flutter",
+                "link": ""
+            },
+            {
+                "icon": "https://skillicons.dev/icons?i=nextjs",
+                "title": "Next.js",
+                "link": ""
+            }
+        ],
+        "imageUrl": "/images/projects/uieat.png"
+    }
+]
