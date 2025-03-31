@@ -1,4 +1,5 @@
 'use client';
+import handleScroll from "@/utils/handleScroll";
 import { Home, Blocks, Sparkles, Mail, ArrowDown, UserRound } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
@@ -18,38 +19,30 @@ const navItems: NavItem[] = [
 export default function NavBar() {
     const [active, setActive] = useState<string>(navItems[0].to);
 
-    const handleScroll = (to: string) => {
-        const section = document.getElementById(to);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
+    const handleScrollEvent = () => {
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
+        for (const item of navItems) {
+            const section = document.getElementById(item.to);
+            if (section) {
+                const { offsetTop, offsetHeight } = section;
+                if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                    setActive(item.to);
+                    break;
+                }
+            }
         }
     };
 
     // Update current section
     useEffect(() => {
-        const handleScrollEvent = () => {
-            const scrollPosition = window.scrollY + window.innerHeight / 2;
-            for (const item of navItems) {
-                const section = document.getElementById(item.to);
-                if (section) {
-                    const { offsetTop, offsetHeight } = section;
-                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-                        setActive(item.to);
-                        break;
-                    }
-                }
-            }
-        };
-
+        handleScrollEvent();
         window.addEventListener('scroll', handleScrollEvent);
-        return () => {
-            window.removeEventListener('scroll', handleScrollEvent);
-        };
+        return () => window.removeEventListener('scroll', handleScrollEvent);
     }, []);
 
     return (
         <>
-            <nav className="fixed top-6 z-[900] w-full flex justify-center max-md:hidden">
+            <nav className="fixed top-6 z-[900] w-full flex justify-center max-sm:hidden">
                 <div className="mx-12 bg-slate-900/75 w-full max-w-[300px] backdrop-blur-md border border-slate-800 rounded-[24px]">
                     <div className="flex justify-between items-center px-8 min-h-[54px]">
                         {navItems.map((item, index) => (
@@ -69,7 +62,7 @@ export default function NavBar() {
             </nav>
 
             {active === 'home' && (
-                <div className="fixed bottom-10 z-[900] w-full flex justify-center">
+                <div className="fixed bottom-10 z-[900] w-full flex justify-center max-md:hidden">
                     <button
                         onClick={() => handleScroll('about')}
                         className={
