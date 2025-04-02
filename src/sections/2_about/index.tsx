@@ -3,7 +3,6 @@ import InterestItem from "./components/Interests";
 import UnivButton from "./components/UnivButton";
 import ProjectButton from "./components/ProjectButton";
 import Spotify from "./components/Spotify";
-import Image from 'next/image';
 
 import { Smartphone, PanelsTopLeft, HardDrive, GraduationCap, Telescope, Layers, Gamepad2, Joystick, Database } from 'lucide-react';
 import TechSlider from "./components/Slider";
@@ -26,16 +25,12 @@ export default function AboutContent() {
                     />
                     <div className="flex flex-col justify-between gap-4 w-full lg:w-[360px]">
                         <Spotify />
-                        <AboutBox
-                            icon={<GraduationCap size={20} />}
-                            title='Education'
-                            children={<UnivButton />}
-                        />
+                        <AboutBox icon={<GraduationCap size={20} />} title='Education'><UnivButton /></AboutBox>
                         <ProjectButton />
                     </div>
                 </div>
                 <div className="flex flex-col gap-4">
-                    <AboutBox icon={<Telescope size={20} />} title='Interest' children={
+                    <AboutBox icon={<Telescope size={20} />} title='Interest'>
                         <div className="grid grid-cols-2 max-lg:grid-cols-1 lg:gap-0 gap-8 px-3 pb-2 max-md:mt-2">
                             <div className="flex flex-col gap-8">
                                 <InterestItem
@@ -72,19 +67,17 @@ export default function AboutContent() {
                                 />
                             </div>
                         </div>
-                    } />
-                    <AboutBox icon={<Layers size={20} />} title='Tech Stack'
-                        children={
-                            <div className="flex flex-col gap-6 items-center justify-center mt-1 mb-3">
-                                <div className={"overflow-hidden py-2 px-5 relative " + nyerahTailwind}>
-                                    <TechSlider items={_sliderItems} />
-                                    <div className="absolute left-3 top-0 bottom-0 w-12 bg-gradient-to-r from-[#04060f] to-transparent z-10"></div>
-                                    <div className="absolute right-3 top-0 bottom-0 w-12 bg-gradient-to-l from-[#04060f] to-transparent z-10"></div>
-                                </div>
-                                <p className="text-sm text-center"> ... and many more! </p>
+                    </AboutBox>
+                    <AboutBox icon={<Layers size={20} />} title='Tech Stack'>
+                        <div className="flex flex-col gap-6 items-center justify-center mt-1 mb-3">
+                            <div className={"overflow-hidden py-2 px-5 relative " + nyerahTailwind}>
+                                <TechSlider items={_sliderItems} />
+                                <div className="absolute left-3 top-0 bottom-0 w-12 bg-gradient-to-r from-[#04060f] to-transparent z-10"></div>
+                                <div className="absolute right-3 top-0 bottom-0 w-12 bg-gradient-to-l from-[#04060f] to-transparent z-10"></div>
                             </div>
-                        }
-                    />
+                            <p className="text-sm text-center"> ... and many more! </p>
+                        </div>
+                    </AboutBox>
                 </div>
             </div>
         </div>

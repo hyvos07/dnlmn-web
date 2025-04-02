@@ -1,6 +1,5 @@
 import Furina from "@/sections/1_home/components/Furina";
 import Greetings from "./components/Greetings";
-import OpenToProject from "./components/OpenToProject";
 import Social from "./components/Social";
 
 export default function HomeContent() {
@@ -10,7 +9,7 @@ export default function HomeContent() {
                 <Greetings />
                 <div className="flex flex-col gap-3 lg:gap-5">
                     <p className="text-xl lg:text-4xl font-semibold">
-                        I'm Daniel Liman.
+                        {"I'm Daniel Liman."}
                     </p>
                     <p className="lg:text-lg leading-relaxed">
                         A <span className="font-bold"> Software Engineer </span>based in Jakarta, Indonesia. &nbsp;

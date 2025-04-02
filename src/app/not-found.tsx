@@ -9,7 +9,7 @@ export default function NotFound() {
                     draggable="false"
                 />
                 <p className="font-extrabold text-sm text-zinc-400 mb-2">
-                    There's nothing here.
+                    There is nothing here.
                 </p>
                 <p className="font-medium text-sm text-zinc-400">
                     Only you and this little creature.
