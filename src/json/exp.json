@@ -1,0 +1,46 @@
+[
+    {
+        "company": "RISTEK Fasilkom UI",
+        "logo": "https://media.licdn.com/dms/image/v2/C560BAQGjdH4xEp3Q9w/company-logo_200_200/company-logo_200_200/0/1630655637511?e=1749081600&v=beta&t=vUlvHnUSdhOcMbT_jqcwrRqgdqlKABnNN8THy4Q7nIQ",
+        "position": "Lead of Mobile Development SIG",
+        "period": "Feb 2025 - Present",
+        "website": "https://ristek.cs.ui.ac.id/",
+        "description": "Formerly a member, I now serve as the Lead of the Mobile Development SIG at RISTEK Fasilkom UI, Indonesia's largest and coolest IT student organization.",
+        "achievements": [
+            "Mastered advanced Flutter topics, including data persistence, API integration, state management, and clean architecture.",
+            "Collaborated with a team of developers to design and develop two mobile application projects.",
+            "Organized Pekan RISTEK's Open Class program to promote RISTEK Mobile Development SIG."
+        ]
+    },
+    {
+        "company": "Fasilkom UI",
+        "logo": "https://media.licdn.com/dms/image/v2/C510BAQGcyKSqZPHf1A/company-logo_200_200/company-logo_200_200/0/1630627336751/faculty_of_computer_science_universitas_indonesia_logo?e=1749081600&v=beta&t=pDzuidqlalojpKjIoq9FaV7JPKeS2AiffSgqtPtPHW0",
+        "position": "Teaching Assistant of Database",
+        "period": "Jan 2025 - Present",
+        "website": "https://cs.ui.ac.id/en/",
+        "description": "Teaching Assistant of Database (CSGE602070) Course at Fasilkom UI. Responsible for assisting the lecturer in teaching and grading assignments.",
+        "achievements": []
+    },
+    {
+        "company": "COMPFEST 17",
+        "logo": "/images/compfest17.png",
+        "position": "Expert Staff of Indie Game Ignite",
+        "period": "Jan 2025 - Present",
+        "website": "https://compfest.id/",
+        "description": "Technical Expert Staff of Indie Game Ignite. Responsible for guiding other staff in the technical aspects of the competition.",
+        "achievements": []
+    },
+    {
+        "company": "COMPFEST 16",
+        "logo": "https://media.licdn.com/dms/image/v2/D560BAQF62CFbQZSaow/company-logo_200_200/company-logo_200_200/0/1711978751131/compfest_logo?e=1749081600&v=beta&t=YTMUUl-1snudBF95Oosxtkg1iGmt6ovITAcy54JUVa0",
+        "position": "Technical Staff of Indie Game Ignite",
+        "period": "Apr 2024 - Oct 2024",
+        "website": "https://compfest.id/",
+        "description": "Responsible for providing technical support and assistance in the competition.",
+        "achievements": [
+            "Managed to provide technical needs and the workflow for Indie Game Ignite Competition and Indie Game Ignite Game Jam.",
+            "Taking a part in the selection process of 69 submission for Indie Game Ignite Competition and 53 submission from itch.io for Indie Game Ignite Game Jam.",
+            "Established and customized itch.io as the primary platform to held our Indie Game Ignite Game Jam, along with maintaining it while the game jam is running."
+        ]
+    }
+]

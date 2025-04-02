@@ -48,4 +48,14 @@ declare global {
     githubUrl?: string;
     demoUrl?: string;
   };
+
+  interface Experience {
+    company: string;
+    logo: string;
+    position: string;
+    period: string;
+    website: string;
+    description: string;
+    achievements: string[];
+  }
 }

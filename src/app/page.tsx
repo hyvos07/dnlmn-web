@@ -4,6 +4,7 @@ import SplashScreen from "@/components/SplashScreen";
 import HomeContent from "@/sections/1_home";
 import AboutContent from "@/sections/2_about";
 import ProjectContent from "@/sections/3_projects";
+import ExperienceContent from "@/sections/4_experiences";
 
 export default function HomePage() {
   return (
@@ -14,9 +15,7 @@ export default function HomePage() {
         <HomeContent />
         <AboutContent />
         <ProjectContent />
-        <div id="exp" className="min-h-screen flex justify-center items-center">
-          <p className="text-3xl font-semibold">My Experiences</p>
-        </div>
+        <ExperienceContent />
         <div id="cp" className="min-h-screen flex justify-center items-center">
           <p className="text-3xl font-semibold">Contact Me!</p>
         </div>
