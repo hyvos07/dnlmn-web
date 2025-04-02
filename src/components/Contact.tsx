@@ -30,15 +30,15 @@ export default function Contact() {
 
         try {
             await emailjs.send(
-                'dnlmn-web',
-                'template_dnlmn',
+                process.env.EMAILJS_SERVICE_ID || '',
+                process.env.EMAILJS_TEMPLATE_ID || '',
                 {
                     name: name,
                     time: new Date().toISOString().split('T')[0],
                     email: email,
                     message: message,
                 },
-                'xX-aKNlmvGrAnzVcr'
+                process.env.EMAILJS_PUBLIC_KEY || ''
             );
 
             setName('');
