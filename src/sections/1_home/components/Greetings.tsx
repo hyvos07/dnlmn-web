@@ -42,7 +42,7 @@ export default function Greetings() {
     // }, [charIndex, isDeleting, currentGreetingIndex]);
 
     return (
-        <p className="text-4xl lg:text-6xl font-bold min-h-[2.5rem] lg:min-h-[4rem]">
+        <p className="text-4xl lg:text-6xl font-bold max-md:mt-4 min-h-[2.5rem] lg:min-h-[4rem]">
             <Typewriter 
                 words={GREETINGS_LIST}
                 loop={true}
