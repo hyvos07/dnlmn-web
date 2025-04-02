@@ -3,6 +3,7 @@ import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { Copy } from 'lucide-react';
 import Toast from './Toast';
+import OpenToProject from '@/sections/1_home/components/OpenToProject';
 
 export default function Contact() {
     const [name, setName] = useState('');
@@ -68,9 +69,12 @@ export default function Contact() {
 
     return (
         <div id="cp" className="flex w-full justify-center items-center p-12 my-16">
-            <div className="flex max-lg:flex-col min-w-[325px] lg:min-w-[800px] gap-12 w-full p-10 rounded-xl bg-slate-900">
+            <div className="flex max-lg:flex-col min-w-[325px] lg:min-w-[850px] gap-12 w-full px-12 p-10 rounded-xl bg-slate-900">
                 <div className="flex flex-col lg:w-3/5 w-full">
-                    <h2 className="text-xl md:text-3xl font-semibold text-white mb-8">Contact Me!</h2>
+                    <div className="flex max-sm:flex-col max-sm:gap-5 w-full justify-between items-center mb-8">
+                        <h2 className="text-2xl md:text-3xl font-semibold text-white">Contact Me!</h2>
+                        <OpenToProject />
+                    </div>
                     <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                         <div>
                             <label htmlFor="name" className="block text-zinc-300 mb-2">Name</label>
