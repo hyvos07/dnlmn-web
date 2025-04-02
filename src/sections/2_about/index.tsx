@@ -7,16 +7,16 @@ import Image from 'next/image';
 
 import { Smartphone, PanelsTopLeft, HardDrive, GraduationCap, Telescope, Layers, Gamepad2, Joystick, Database } from 'lucide-react';
 import TechSlider from "./components/Slider";
-import techStackData from '../../../public/tech.json';
+import techStackData from '../../json/tech.json';
 
 export default function AboutContent() {
     const nyerahTailwind = "max-w-[275px] sm:max-w-sm md:max-w-md lg:max-w-2xl";
     const _sliderItems = techStackData;
 
     return (
-        <div id="about" className="min-h-screen py-12 flex flex-col gap-6">
+        <div id="about" className="mt-6 py-16 flex flex-col gap-6">
             <div className="flex flex-col text-center gap-4">
-                <p className="text-2xl lg:text-3xl font-semibold max-lg:mb-4 mb-8">About Me</p>
+                <h2 className="text-2xl lg:text-3xl font-semibold max-lg:mb-4 mb-8">About Me</h2>
                 <div className="flex justify-between lg:items-stretch md:items-center gap-8 max-lg:flex-col lg:mb-6">
                     <img
                         src="images/jakun.jpg"

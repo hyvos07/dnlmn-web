@@ -14,13 +14,13 @@ export default function ProjectShowcase(project: Project) {
                 />
             </div>
             <div className="py-6 px-8 flex flex-col flex-grow">
-                <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-xl font-semibold">{project.title}</h3>
+                <div className="flex gap-2 md:justify-between items-center mb-4">
+                    <h3 className="md:text-xl font-semibold">{project.title}</h3>
                     <div className="text-blue-500 bg-blue-900 bg-opacity-30 px-3 py-1.5 rounded-full">
                         <p className="text-blue-200 text-xs">{project.type}</p>
                     </div>
                 </div>
-                <p className="text-gray-400 text-sm flex-grow">
+                <p className="text-gray-400 text-sm flex-grow pr-4">
                     {project.description}
                 </p>
                 <div className="flex justify-between items-center mt-6">

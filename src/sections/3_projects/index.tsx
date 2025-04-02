@@ -1,16 +1,16 @@
 import ProjectShowcase from "./components/ProjectShowcase";
-import allProjects from "../../../public/proj.json";
+import allProjects from "../../json/proj.json";
 
 const projects: Project[] = allProjects;
 
 export default function ProjectContent() {
     return (
-        <section id="proj" className="min-h-screen py-20 px-4 md:px-8">
+        <div id="proj" className="mt-16 py-16 md:px-8">
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-2xl lg:text-3xl font-semibold mb-16 text-center">My Projects</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <ProjectShowcase
-                        id={0}
+                        key={0}
                         title="Portfolio Website"
                         description="My personal portfolio website showcasing my projects and skills. You are here!"
                         type="Website"
@@ -35,9 +35,9 @@ export default function ProjectContent() {
                         imageUrl="/images/projects/portofolio.png"
                         githubUrl="https://github.com/hyvos07/dnlmn-web/"
                     />
-                    {projects.map((project) => (<ProjectShowcase {...project} />))}
+                    {projects.map((project, idx) => (<ProjectShowcase key={idx} {...project} />))}
                 </div>
             </div>
-        </section>
+        </div>
     );
 }
