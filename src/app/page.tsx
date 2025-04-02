@@ -1,3 +1,4 @@
+import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import NavBar from "@/components/NavBar";
 import SplashScreen from "@/components/SplashScreen";
@@ -16,9 +17,7 @@ export default function HomePage() {
         <AboutContent />
         <ProjectContent />
         <ExperienceContent />
-        <div id="cp" className="min-h-screen flex justify-center items-center">
-          <p className="text-3xl font-semibold">Contact Me!</p>
-        </div>
+        <Contact />
       </main>
       <Footer />
     </div>
