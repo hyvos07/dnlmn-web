@@ -1,7 +1,7 @@
 'use client';
 import * as THREE from 'three';
-import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
-import { OrbitControls, useAnimations, useGLTF } from '@react-three/drei';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { OrbitControls, useAnimations } from '@react-three/drei';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { useEffect, useRef, useState } from 'react';
 
@@ -24,7 +24,7 @@ function Model({ isMobile }: { isMobile: boolean }) {
 
   // Update mixer in animation frame and make model move
   useFrame((state, delta) => {
-    const t = state.clock.getElapsedTime();
+    // const t = state.clock.getElapsedTime();
     const y = isMobile ? -3.5 : -1.85;
     if (modelRef.current) {
       // modelRef.current.rotation.y = 3 * Math.PI / 2 + t * (Math.PI / 10);
@@ -39,8 +39,8 @@ function Model({ isMobile }: { isMobile: boolean }) {
   useEffect(() => {
     gltf.scene.traverse((child) => {
       if (child instanceof THREE.Mesh && child.material) {
-        const originalColor = (child.material as any).color;
-        const textureMap = (child.material as any).map;
+        const originalColor = (child.material as THREE.MeshStandardMaterial).color;
+        const textureMap = (child.material as THREE.MeshStandardMaterial).map;
 
         child.material = new THREE.MeshBasicMaterial({
           color: originalColor,
