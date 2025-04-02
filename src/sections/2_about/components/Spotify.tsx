@@ -59,16 +59,16 @@ export default function Spotify() {
 
         return (
             <div className='flex gap-5 text-sm max-md:text-xs items-center px-1.5'>
-                <a className='flex gap-5 items-center' href={track.songUrl} target="_blank" rel="noopener noreferrer">
+                <a className="flex-shrink-0" href={track.songUrl} target="_blank" rel="noopener noreferrer">
                     <img
                         src={track.albumImageUrl}
                         alt="Cover"
                         className="lg:w-14 lg:h-14 w-12 h-12 rounded-lg opacity-80 hover:opacity-100 transition-opacity duration-300"
                     />
                 </a>
-                <div className="flex flex-col gap-1 text-left">
-                    <p className="font-semibold line-clamp-2">{track.title}</p>
-                    <p className="text-zinc-500 line-clamp-1">{track.artist}</p>
+                <div className="flex flex-col gap-1 text-left w-full overflow-hidden">
+                    <p className="font-semibold line-clamp-2 break-all overflow-hidden text-ellipsis">{track.title}</p>
+                    <p className="text-zinc-500 line-clamp-1 break-all overflow-hidden text-ellipsis">{track.artist}</p>
                 </div>
             </div>
         );
@@ -86,7 +86,8 @@ export default function Spotify() {
                 />
             }
             title={track.isPlaying ? 'Now Playing' : 'Recently Played'}
-            children={renderContent()}
-        />
+        >
+            {renderContent()}
+        </AboutBox>
     );
 }
