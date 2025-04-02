@@ -116,7 +116,7 @@ export default function Furina() {
           enablePan={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
-          onChange={() => setIsInteracting(true)}
+          onStart={() => setIsInteracting(true)}
         />
       </Canvas>
     </div>
