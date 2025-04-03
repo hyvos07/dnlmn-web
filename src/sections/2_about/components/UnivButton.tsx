@@ -13,7 +13,7 @@ export default function UnivButton() {
         >
             <a href="https://cs.ui.ac.id/en/" target="_blank" rel="noreferrer">
                 <Image
-                    src={isHovered ? "svgs/logo/MakaraPacil.svg" : "svgs/logo/MakaraUI.svg"}
+                    src={isHovered ? "/svgs/logo/MakaraPacil.svg" : "/svgs/logo/MakaraUI.svg"}
                     alt="Makara"
                     width={40}
                     height={40}

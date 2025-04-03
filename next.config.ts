@@ -13,8 +13,6 @@ const nextConfig: NextConfig = {
       'github.com',
     ],
   },
-  swcMinify: true,
-  legacyBrowsers: false,
 };
 
 export default nextConfig;
