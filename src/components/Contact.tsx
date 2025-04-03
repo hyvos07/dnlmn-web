@@ -129,6 +129,7 @@ export default function Contact() {
                         src="/images/furina.png"
                         alt="Furina"
                         className="md:w-40 md:h-40 w-32 h-32"
+                        draggable="false"
                     />
                     <p className="my-6 text-sm font-medium text-white">... or copy my email below!</p>
                     <div className="flex items-center mb-6 bg-slate-700 rounded-lg px-4 py-3 w-min">
