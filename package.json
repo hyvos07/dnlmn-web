@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
+    "@emailjs/nodejs": "^5.0.2",
     "@gsap/react": "^2.1.1",
     "@react-three/drei": "^10.0.0-rc.0",
     "@react-three/fiber": "^9.0.0-rc.4",

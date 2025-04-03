@@ -1,6 +1,5 @@
 'use client';
 import { useState, useRef } from 'react';
-import emailjs from '@emailjs/browser';
 import { Copy } from 'lucide-react';
 import Toast from './Toast';
 import OpenToProject from '@/sections/1_home/components/OpenToProject';
@@ -29,17 +28,17 @@ export default function Contact() {
         setIsSending(true);
 
         try {
-            await emailjs.send(
-                process.env.EMAILJS_SERVICE_ID || '',
-                process.env.EMAILJS_TEMPLATE_ID || '',
-                {
-                    name: name,
-                    time: new Date().toISOString().split('T')[0],
-                    email: email,
-                    message: message,
+            const response = await fetch('/api/emailjs', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                process.env.EMAILJS_PUBLIC_KEY || ''
-            );
+                body: JSON.stringify({ name, email, message })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to send email');
+            }
 
             setName('');
             setEmail('');
