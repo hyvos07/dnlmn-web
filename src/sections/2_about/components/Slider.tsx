@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 export default function Slider({
     items,
@@ -52,9 +53,11 @@ export default function Slider({
                     rel="noopener noreferrer"
                     className="w-14 h-14 p-1 icon-tilt transition-all duration-300 opacity-80 hover:opacity-100"
                 >
-                    <img
+                    <Image
                         src={item.icon}
                         alt={item.title}
+                        width={56}
+                        height={56}
                         className="w-full h-full"
                         draggable="false"
                         onContextMenu={(e) => e.preventDefault()}

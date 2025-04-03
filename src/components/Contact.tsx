@@ -2,6 +2,7 @@
 import { useState, useRef } from 'react';
 import { Copy } from 'lucide-react';
 import Toast from './Toast';
+import Image from "next/image";
 import OpenToProject from '@/sections/1_home/components/OpenToProject';
 
 export default function Contact() {
@@ -124,9 +125,11 @@ export default function Contact() {
                     </form>
                 </div>
                 <div className="flex flex-col lg:w-2/5 justify-center items-center max-lg:mt-10 max-lg:justify-center">
-                    <img
+                    <Image
                         src="/images/furina.png"
                         alt="Furina"
+                        width={128}
+                        height={128}
                         className="md:w-40 md:h-40 w-32 h-32"
                         draggable="false"
                     />

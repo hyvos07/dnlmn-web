@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function ExperienceItem({ exp, index }: { exp: Experience; index: number }) {
     return (
         <div key={index} className="group md:max-w-2xl rounded-lg p-6 md:p-8 bg-gray-900 hover:scale-105 transition-transform duration-200 z-[999]">
@@ -9,9 +11,11 @@ export default function ExperienceItem({ exp, index }: { exp: Experience; index:
                         rel="noopener noreferrer"
                     >
                         <div className="flex-shrink-0 md:w-12 md:h-12 w-11 h-11 bg-gray-200 rounded-xl flex items-center justify-center text-xl">
-                            <img
+                            <Image
                                 src={exp.logo}
                                 alt={exp.company}
+                                width={40}
+                                height={40}
                                 className="object-cover w-full h-full rounded-xl"
                                 draggable="false"
                             />

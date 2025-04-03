@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { OrbitControls, useAnimations, useGLTF } from '@react-three/drei';
 import { useEffect, useRef, useState } from 'react';
+import Image from "next/image";
 
 function Model({ isMobile }: { isMobile: boolean }) {
   const gltf = useGLTF('mmd/furina_chibi.glb');
@@ -90,9 +91,11 @@ export default function Furina() {
     <div className="w-96 lg:h-screen h-80 relative">
       {!isInteracting && (
         <div className="absolute -bottom-2 lg:bottom-40 left-1/2 -translate-x-1/2 z-[100] flex items-center space-x-2 bg-black/20 backdrop-blur-sm rounded-full px-3 py-2 text-white text-xs animate-pulse duration-200">
-          <img 
+          <Image 
             src="/svgs/rotation-horizontal.svg"
             alt="rotate-icon"
+            width={16}
+            height={16}
             className="w-4 h-4 filter invert"
           />
           <span>Drag to rotate</span>

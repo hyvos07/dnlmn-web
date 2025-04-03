@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Image from "next/image";
 
 export default function UnivButton() {
     const [isHovered, setIsHovered] = useState(false);
@@ -11,9 +12,11 @@ export default function UnivButton() {
             onMouseLeave={() => setIsHovered(false)}
         >
             <a href="https://cs.ui.ac.id/en/" target="_blank" rel="noreferrer">
-                <img
+                <Image
                     src={isHovered ? "svgs/logo/MakaraPacil.svg" : "svgs/logo/MakaraUI.svg"}
                     alt="Makara"
+                    width={40}
+                    height={40}
                     className="lg:w-10 lg:h-10 w-9 h-9"
                 />
             </a>

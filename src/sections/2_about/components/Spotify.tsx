@@ -60,9 +60,11 @@ export default function Spotify() {
         return (
             <div className='flex gap-5 text-sm max-md:text-xs items-center px-1.5'>
                 <a className="flex-shrink-0" href={track.songUrl} target="_blank" rel="noopener noreferrer">
-                    <img
+                    <Image
                         src={track.albumImageUrl}
                         alt="Cover"
+                        width={56}
+                        height={56}
                         className="lg:w-14 lg:h-14 w-12 h-12 rounded-lg opacity-80 hover:opacity-100 transition-opacity duration-300"
                     />
                 </a>

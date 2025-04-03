@@ -10,6 +10,7 @@ export default function ProjectShowcase(project: Project) {
                     src={project.imageUrl}
                     alt={project.title}
                     fill
+                    sizes="100%"
                     className="object-cover"
                 />
             </div>
@@ -27,7 +28,7 @@ export default function ProjectShowcase(project: Project) {
                     <div className="flex items-center">
                         {project.technologies.map((tech, index) => (
                             <div key={index} className="w-8 h-8 flex justify-center items-center relative group">
-                                <img
+                                <Image
                                     src={tech.icon}
                                     alt={tech.title}
                                     width={20}

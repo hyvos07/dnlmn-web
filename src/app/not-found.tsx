@@ -1,10 +1,14 @@
+import Image from "next/image";
+
 export default function NotFound() {
     return (
         <div className="flex items-center justify-center min-h-screen bg-slate-950 text-white font-[family-name:var(--font-plus-jakarta-sans)]">
             <div className="flex flex-col text-center items-center">
-                <img
+                <Image
                     src="/images/furina.gif"
                     alt="Furina"
+                    width={128}
+                    height={128}
                     className="w-32 h-32 mb-8 opacity-80"
                     draggable="false"
                 />

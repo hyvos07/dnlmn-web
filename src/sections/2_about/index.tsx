@@ -4,6 +4,7 @@ import UnivButton from "./components/UnivButton";
 import ProjectButton from "./components/ProjectButton";
 import Spotify from "./components/Spotify";
 
+import Image from "next/image";
 import { Smartphone, PanelsTopLeft, HardDrive, GraduationCap, Telescope, Layers, Gamepad2, Joystick, Database } from 'lucide-react';
 import TechSlider from "./components/Slider";
 import techStackData from '../../json/tech.json';
@@ -17,9 +18,11 @@ export default function AboutContent() {
             <div className="flex flex-col text-center gap-4">
                 <h2 className="text-2xl lg:text-3xl font-semibold max-lg:mb-4 mb-8">About Me</h2>
                 <div className="flex justify-between lg:items-stretch md:items-center gap-8 max-lg:flex-col lg:mb-6">
-                    <img
-                        src="images/jakun.jpg"
+                    <Image
+                        src="/images/jakun.jpg"
                         alt="Profile Picture"
+                        width={400}
+                        height={400}
                         className="rounded-xl w-80 max-lg:hidden"
                         draggable="false"
                     />
