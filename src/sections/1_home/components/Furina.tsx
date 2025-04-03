@@ -1,12 +1,11 @@
 'use client';
 import * as THREE from 'three';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
-import { OrbitControls, useAnimations } from '@react-three/drei';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { OrbitControls, useAnimations, useGLTF } from '@react-three/drei';
 import { useEffect, useRef, useState } from 'react';
 
 function Model({ isMobile }: { isMobile: boolean }) {
-  const gltf = useLoader(GLTFLoader, 'mmd/furina_chibi.glb');
+  const gltf = useGLTF('mmd/furina_chibi.glb');
   const { actions, mixer } = useAnimations(gltf.animations, gltf.scene);
   const modelRef = useRef<THREE.Group>(null);
 
