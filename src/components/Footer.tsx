@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="relative mt-auto w-full">
       <div className="h-[1px] w-full bg-gradient-to-r from-slate-800/75 via-slate-700/80 to-slate-800/75" />
       <div className="flex justify-center bg-slate-900/10 py-5">
-        <div className="flex justify-center items-center text-xs tracking-wide w-full px-20 max-sm:flex-col max-sm:gap-2">
+        <div className="flex justify-center items-center text-xs tracking-wide w-full px-4 md:px-20 max-sm:flex-col max-sm:gap-2">
           <p className="text-slate-400/75">
             © {new Date().getFullYear()} dnlmn - All rights reserved.
           </p>
