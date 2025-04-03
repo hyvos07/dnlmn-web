@@ -10,8 +10,28 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://dnlmn.vercel.app"),
   title: "Daniel Liman | dnlmn",
-  description: "Portfolio website made by Daniel Liman (aka dnlmn).",
+  description: "Portfolio website made by Daniel Liman (aka dnlmn), a passionate Software Engineer based in Indonesia.",
+  keywords: ["Daniel Liman", "dnlmn", "Software Engineer", "Portfolio", "Web Developer"],
+  authors: [{ name: "Daniel Liman" }],
+  creator: "Daniel Liman",
+  openGraph: {
+    title: "Daniel Liman | dnlmn",
+    description: "Portfolio website made by Daniel Liman (aka dnlmn), a passionate Software Engineer based in Indonesia.",
+    url: "https://dnlmn.vercel.app",
+    siteName: "Daniel Liman - dnlmn",
+    type: "website",
+    locale: "en-US",
+    images: [
+      {
+        url: "/images/banner-tall.png",
+        width: 1200,
+        height: 630,
+        alt: "Daniel Liman | dnlmn",
+      },
+    ],
+  },
   icons: {
     icon: "favicon.ico",
   },
