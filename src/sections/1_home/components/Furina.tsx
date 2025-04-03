@@ -24,7 +24,7 @@ function Model({ isMobile }: { isMobile: boolean }) {
   // Update mixer in animation frame and make model move
   useFrame((state, delta) => {
     // const t = state.clock.getElapsedTime();
-    const y = isMobile ? -3.5 : -1.85;
+    const y = isMobile ? -3.5 : -1.65;
     if (modelRef.current) {
       // modelRef.current.rotation.y = 3 * Math.PI / 2 + t * (Math.PI / 10);
       modelRef.current.position.y = Math.sin(state.clock.getElapsedTime()) * 0.15 + y;
@@ -89,7 +89,7 @@ export default function Furina() {
   return (
     <div className="w-96 lg:h-screen h-80 relative">
       {!isInteracting && (
-        <div className="absolute -bottom-2 lg:bottom-[155px] left-1/2 -translate-x-1/2 z-[100] flex items-center space-x-2 bg-black/20 backdrop-blur-sm rounded-full px-3 py-2 text-white text-xs animate-pulse duration-200">
+        <div className="absolute -bottom-2 lg:bottom-40 left-1/2 -translate-x-1/2 z-[100] flex items-center space-x-2 bg-black/20 backdrop-blur-sm rounded-full px-3 py-2 text-white text-xs animate-pulse duration-200">
           <img 
             src="/svgs/rotation-horizontal.svg"
             alt="rotate-icon"
