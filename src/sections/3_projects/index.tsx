@@ -24,11 +24,11 @@ export default function ProjectContent() {
                                 title: "Tailwind CSS", link: ""
                             },
                             { 
-                                icon: "/images/three.jpg", 
+                                icon: "/tech/three.jpg", 
                                 title: "Three.js", link: ""
                             },
                             { 
-                                icon: "https://skillicons.dev/icons?i=nextjs", 
+                                icon: "/tech/nextjs.svg", 
                                 title: "Next.js", link: ""
                             }
                         ]}

@@ -1,6 +1,6 @@
 [
     {
-        "icon": "https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg",
+        "icon": "https://www.svgrepo.com/show/373528/cpp3.svg",
         "title": "C++",
         "link": "https://isocpp.org/"
     },
@@ -15,22 +15,22 @@
         "link": "https://www.java.com/"
     },
     {
-        "icon": "https://user-images.githubusercontent.com/25181517/192158954-f88b5814-d510-4564-b285-dff7d6400dad.png",
+        "icon": "https://www.svgrepo.com/show/373669/html.svg",
         "title": "HTML",
         "link": "https://developer.mozilla.org/en-US/docs/Web/HTML"
     },
     {
-        "icon": "https://user-images.githubusercontent.com/25181517/183898674-75a4a1b1-f960-4ea9-abcb-637170a00a75.png",
+        "icon": "/tech/CSS.svg",
         "title": "CSS",
         "link": "https://developer.mozilla.org/en-US/docs/Web/CSS"
     },
     {
-        "icon": "https://skillicons.dev/icons?i=js",
+        "icon": "https://www.svgrepo.com/show/349419/javascript.svg",
         "title": "JavaScript",
         "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
     },
     {
-        "icon": "https://skillicons.dev/icons?i=ts",
+        "icon": "https://www.svgrepo.com/show/349540/typescript.svg",
         "title": "TypeScript",
         "link": "https://www.typescriptlang.org/"
     },
@@ -40,12 +40,12 @@
         "link": "https://dart.dev/"
     },
     {
-        "icon": "https://skillicons.dev/icons?i=rust",
+        "icon": "/tech/rust.svg",
         "title": "Rust",
         "link": "https://www.rust-lang.org/"
     },
     {
-        "icon": "https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg",
+        "icon": "https://www.svgrepo.com/show/303301/postgresql-logo.svg",
         "title": "PostgreSQL",
         "link": "https://www.postgresql.org/"
     },
@@ -75,7 +75,7 @@
         "link": "https://www.djangoproject.com/"
     },
     {
-        "icon": "https://skillicons.dev/icons?i=nextjs",
+        "icon": "/tech/nextjs.svg",
         "title": "Next.js",
         "link": "https://nextjs.org/"
     },

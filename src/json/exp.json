@@ -1,7 +1,7 @@
 [
     {
         "company": "RISTEK Fasilkom UI",
-        "logo": "https://media.licdn.com/dms/image/v2/C560BAQGjdH4xEp3Q9w/company-logo_200_200/company-logo_200_200/0/1630655637511?e=1749081600&v=beta&t=vUlvHnUSdhOcMbT_jqcwrRqgdqlKABnNN8THy4Q7nIQ",
+        "logo": "/images/ristek.png",
         "position": "Lead of Mobile Development SIG",
         "period": "Feb 2025 - Present",
         "website": "https://ristek.cs.ui.ac.id/",
@@ -14,7 +14,7 @@
     },
     {
         "company": "Fasilkom UI",
-        "logo": "https://media.licdn.com/dms/image/v2/C510BAQGcyKSqZPHf1A/company-logo_200_200/company-logo_200_200/0/1630627336751/faculty_of_computer_science_universitas_indonesia_logo?e=1749081600&v=beta&t=pDzuidqlalojpKjIoq9FaV7JPKeS2AiffSgqtPtPHW0",
+        "logo": "/images/csui.png",
         "position": "Teaching Assistant of Database",
         "period": "Jan 2025 - Present",
         "website": "https://cs.ui.ac.id/en/",
@@ -32,7 +32,7 @@
     },
     {
         "company": "COMPFEST 16",
-        "logo": "https://media.licdn.com/dms/image/v2/D560BAQF62CFbQZSaow/company-logo_200_200/company-logo_200_200/0/1711978751131/compfest_logo?e=1749081600&v=beta&t=YTMUUl-1snudBF95Oosxtkg1iGmt6ovITAcy54JUVa0",
+        "logo": "/images/compfest16.png",
         "position": "Technical Staff of Indie Game Ignite",
         "period": "Apr 2024 - Oct 2024",
         "website": "https://compfest.id/",

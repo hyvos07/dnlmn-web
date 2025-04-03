@@ -60,7 +60,7 @@
                 "link": ""
             },
             {
-                "icon": "https://skillicons.dev/icons?i=nextjs",
+                "icon": "/tech/nextjs.svg",
                 "title": "Next.js",
                 "link": ""
             }
