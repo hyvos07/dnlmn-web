@@ -15,10 +15,10 @@
     {
         "company": "Fasilkom UI",
         "logo": "/images/csui.png",
-        "position": "Teaching Assistant of Database",
-        "period": "Jan 2025 - Present",
+        "position": "Teaching Assistant of Data Structures and Algorithms",
+        "period": "Jul 2025 - Present",
         "website": "https://cs.ui.ac.id/en/",
-        "description": "Teaching Assistant of Database (CSGE602070) Course at Fasilkom UI. Responsible for assisting the lecturer in teaching and grading assignments.",
+        "description": "Teaching Assistant of Data Structures and Algorithms (CSGE602040) Course at Fasilkom UI. Responsible for assisting the lecturer in teaching data structures and various algorithms, while also creating coding assignments for students.    ",
         "achievements": []
     },
     {
@@ -27,7 +27,16 @@
         "position": "Expert Staff of Indie Game Ignite",
         "period": "Jan 2025 - Present",
         "website": "https://compfest.id/",
-        "description": "Technical Expert Staff of Indie Game Ignite. Responsible for guiding other staff in the technical aspects of the competition.",
+        "description": "Event Expert Staff of Indie Game Ignite. Responsible for guiding event division on maintaining the event's quality and consistency.",
+        "achievements": []
+    },
+    {
+        "company": "Fasilkom UI",
+        "logo": "/images/csui.png",
+        "position": "Teaching Assistant of Database",
+        "period": "Jan 2025 - Jun 2025",
+        "website": "https://cs.ui.ac.id/en/",
+        "description": "Teaching Assistant of Database (CSGE602070) Course at Fasilkom UI. Responsible for assisting the lecturer in teaching and grading assignments.",
         "achievements": []
     },
     {

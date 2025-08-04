@@ -32,7 +32,7 @@ export default function AboutContent() {
                         <ProjectButton />
                     </div>
                 </div>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-8">
                     <AboutBox icon={<Telescope size={20} />} title='Interest'>
                         <div className="grid grid-cols-2 max-lg:grid-cols-1 lg:gap-0 gap-8 px-3 pb-2 max-md:mt-2">
                             <div className="flex flex-col gap-8">
