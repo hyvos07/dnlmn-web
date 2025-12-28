@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #04060f;
+  --background: #0c0a09;
   --foreground: #F2F0E6;
-}
+} 
 
 /* For Firefox */
 html {
   scrollbar-width: thin;
-  scrollbar-color: #2a2f42 var(--background);
+  scrollbar-color: #2A2F42 var(--background);
 }
 
 body {
@@ -31,10 +31,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2a2f42;
+  background: #2A2F42;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a3f52;
+  background: #3A3F52;
 }

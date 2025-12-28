@@ -38,7 +38,7 @@ export default function NavBar() {
     return (
         <>
             <nav className="fixed top-6 z-[900] w-full flex justify-center max-sm:hidden">
-                <div className="mx-12 bg-slate-900/75 w-full max-w-[300px] backdrop-blur-md border border-slate-800 rounded-[24px]">
+                <div className="mx-12 bg-zinc-900/75 w-full max-w-[300px] backdrop-blur-sm border border-zinc-800 rounded-[24px]">
                     <div className="flex justify-between items-center px-8 min-h-[54px]">
                         {navItems.map((item, index) => (
                             <button
@@ -62,7 +62,7 @@ export default function NavBar() {
                         onClick={() => handleScroll('about')}
                         className={
                             `animate-bounce text-zinc-300 lg:block hidden p-3
-                            rounded-full bg-slate-900/75 border border-slate-800`
+                            rounded-full bg-zinc-900/75 border border-zinc-800`
                         }
                     >
                         <ArrowDown size={24} strokeWidth={2} />

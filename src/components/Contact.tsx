@@ -69,7 +69,7 @@ export default function Contact() {
 
     return (
         <div id="cp" className="flex w-full justify-center items-center p-12 my-16">
-            <div className="flex max-lg:flex-col min-w-[325px] lg:min-w-[850px] gap-12 w-full px-12 p-10 rounded-xl bg-slate-900">
+            <div className="flex max-lg:flex-col min-w-[325px] lg:min-w-[850px] gap-12 w-full px-12 p-10 pb-12 rounded-xl bg-neutral-900">
                 <div className="flex flex-col lg:w-3/5 w-full">
                     <div className="flex max-sm:flex-col max-sm:gap-5 w-full justify-between items-center mb-8">
                         <h2 className="text-2xl md:text-3xl font-semibold text-white">Contact Me!</h2>
@@ -83,7 +83,7 @@ export default function Contact() {
                                 id="name"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
-                                className="w-full px-4 py-2 bg-slate-800 text-white rounded border border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#54b4e2]"
+                                className="w-full px-4 py-2 bg-neutral-800 text-white rounded border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-[#54b4e2]"
                                 required
                             />
                         </div>
@@ -95,7 +95,7 @@ export default function Contact() {
                                 id="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="w-full px-4 py-2 bg-slate-800 text-white rounded border border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#54b4e2]"
+                                className="w-full px-4 py-2 bg-neutral-800 text-white rounded border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-[#54b4e2]"
                                 required
                             />
                         </div>
@@ -107,7 +107,7 @@ export default function Contact() {
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
                                 rows={4}
-                                className="mb-4 w-full px-4 py-2 bg-slate-800 text-white rounded border border-slate-700 focus:outline-none focus:ring-2 focus:ring-[#54b4e2] resize-none"
+                                className="mb-4 w-full px-4 py-2 bg-neutral-800 text-white rounded border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-[#54b4e2] resize-none"
                                 required
                             />
                         </div>
@@ -116,7 +116,7 @@ export default function Contact() {
                             type="submit"
                             disabled={isSending}
                             className={`w-full py-2 px-4 rounded font-medium transition-colors ${isSending
-                                ? 'bg-slate-700 text-slate-300 cursor-not-allowed'
+                                ? 'bg-neutral-700 text-neutral-300 cursor-not-allowed'
                                 : 'bg-[#3a9fd1] hover:bg-[#3593c3] text-white'
                                 }`}
                         >
@@ -134,7 +134,7 @@ export default function Contact() {
                         draggable="false"
                     />
                     <p className="my-6 text-sm font-medium text-white">... or copy my email below!</p>
-                    <div className="flex items-center mb-6 bg-slate-700 rounded-lg px-4 py-3 w-min">
+                    <div className="flex items-center mb-6 bg-neutral-800 rounded-lg px-4 py-3 w-min">
                         <p className="text-zinc-300 max-md:text-xs text-sm font-semibold">daniel@ristek.cs.ui.ac.id</p>
                         <div
                             className="flex justify-center items-center relative group ml-4"
@@ -150,7 +150,7 @@ export default function Contact() {
                             >
                                 <Copy className="md:w-[20px] md:h-[20px] w-4 h-4" />
                             </button>
-                            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 mr-4 bg-zinc-800 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                            <div className="absolute -bottom-6 left-1/2 -tranneutral-x-1/2 mr-4 bg-zinc-800 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                                 {copyMessage}
                             </div>
                         </div>

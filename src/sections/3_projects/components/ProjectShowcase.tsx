@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function ProjectShowcase(project: Project) {
     return (
-        <div className="flex flex-col h-full w-full rounded-xl overflow-hidden bg-black border border-zinc-800 hover:border-zinc-700 transition duration-200">
+        <div className="flex flex-col h-full w-full rounded-xl overflow-hidden bg-neutral-900 border border-zinc-800 hover:border-zinc-700 transition duration-200">
             <div className="w-full aspect-[16/9] relative">
                 <Image
                     src={project.imageUrl}

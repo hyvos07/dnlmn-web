@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function ExperienceItem({ exp, index }: { exp: Experience; index: number }) {
     return (
-        <div key={index} className="group md:max-w-2xl rounded-lg p-6 md:p-8 bg-gray-900 hover:scale-105 transition-transform duration-200 z-[999]">
+        <div key={index} className="group md:max-w-2xl rounded-lg p-6 md:p-8 bg-neutral-900 hover:scale-105 transition-transform duration-200 z-[999]">
             <div className="flex flex-col items-start">
                 <div className="flex items-center mb-4">
                     <a

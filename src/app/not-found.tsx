@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function NotFound() {
     return (
-        <div className="flex items-center justify-center min-h-screen bg-slate-950 text-white font-[family-name:var(--font-plus-jakarta-sans)]">
+        <div className="flex items-center justify-center min-h-screen bg-neutral-950 text-white font-[family-name:var(--font-plus-jakarta-sans)]">
             <div className="flex flex-col text-center items-center">
                 <Image
                     src="/images/furina.gif"
