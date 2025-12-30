@@ -9,43 +9,30 @@
         "achievements": [
             "Mastered advanced Flutter topics, including data persistence, API integration, state management, and clean architecture.",
             "Collaborated with a team of developers to design and develop two mobile application projects.",
-            "Organized Pekan RISTEK's Open Class program to promote RISTEK Mobile Development SIG."
+            "Organized Pekan RISTEK's Open Class program to promote RISTEK Mobile Development SIG.",
+            "Organized and led an Internal Class for new members on learning about Clean Architecture in Flutter"
         ]
     },
     {
         "company": "Fasilkom UI",
         "logo": "/images/csui.png",
-        "position": "Teaching Assistant of Data Structures and Algorithms",
-        "period": "Jul 2025 - Present",
-        "website": "https://cs.ui.ac.id/en/",
-        "description": "Teaching Assistant of Data Structures and Algorithms (CSGE602040) Course at Fasilkom UI. Responsible for assisting the lecturer in teaching data structures and various algorithms, while also creating coding assignments for students.    ",
-        "achievements": []
-    },
-    {
-        "company": "COMPFEST 17",
-        "logo": "/images/compfest17.png",
-        "position": "Expert Staff of Indie Game Ignite",
+        "position": "Teaching Assistant",
         "period": "Jan 2025 - Present",
-        "website": "https://compfest.id/",
-        "description": "Event Expert Staff of Indie Game Ignite. Responsible for guiding event division on maintaining the event's quality and consistency.",
-        "achievements": []
+        "website": "https://cs.ui.ac.id/",
+        "description": "Responsible for assisting the lecturer in teaching, grading assignments, and helping students through regular assistance sessions. Teaching Assistant for the following courses:",
+        "achievements": [
+            "Database (CSGE602070)",
+            "Data Structure and Algorithm (CSGE602040)",
+            "Design and Analysis of Algorithms (CSCM603142)"
+        ]
     },
     {
-        "company": "Fasilkom UI",
-        "logo": "/images/csui.png",
-        "position": "Teaching Assistant of Database",
-        "period": "Jan 2025 - Jun 2025",
-        "website": "https://cs.ui.ac.id/en/",
-        "description": "Teaching Assistant of Database (CSGE602070) Course at Fasilkom UI. Responsible for assisting the lecturer in teaching and grading assignments.",
-        "achievements": []
-    },
-    {
-        "company": "COMPFEST 16",
-        "logo": "/images/compfest16.png",
-        "position": "Technical Staff of Indie Game Ignite",
+        "company": "COMPFEST 16 & 17",
+        "logo": "/images/compfest17.png",
+        "position": "Indie Game Ignite",
         "period": "Apr 2024 - Oct 2024",
         "website": "https://compfest.id/",
-        "description": "Responsible for providing technical support and assistance in the competition.",
+        "description": "Responsible as a Technical Member in COMPFEST 16 (2024) and Expert Event Staff in COMPFEST 17 (2025) for Indie Game Ignite Competition.",
         "achievements": [
             "Managed to provide technical needs and the workflow for Indie Game Ignite Competition and Indie Game Ignite Game Jam.",
             "Taking a part in the selection process of 69 submission for Indie Game Ignite Competition and 53 submission from itch.io for Indie Game Ignite Game Jam.",

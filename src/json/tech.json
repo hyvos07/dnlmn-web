@@ -80,6 +80,11 @@
         "link": "https://nextjs.org/"
     },
     {
+        "icon": "/tech/astro.svg",
+        "title": "Astro",
+        "link": "https://astro.build/"
+    },
+    {
         "icon": "https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/spring_boot.png",
         "title": "SpringBoot",
         "link": "https://spring.io/projects/spring-boot"

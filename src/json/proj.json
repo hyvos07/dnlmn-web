@@ -45,6 +45,32 @@
     },
     {
         "id": 3,
+        "title": "Ngawasin",
+        "description": "Ngawasin is a lightweight web application that combines a real-time clock with persistent notes. It was originally created to help me display both time and notes conveniently during lab supervision or exam proctoring sessions.",
+        "type": "Website",
+        "technologies": [
+            {
+                "icon": "https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/react.png",
+                "title": "React",
+                "link": ""
+            },
+            {
+                "icon": "https://user-images.githubusercontent.com/25181517/202896760-337261ed-ee92-4979-84c4-d4b829c7355d.png",
+                "title": "Tailwind CSS",
+                "link": ""
+            },
+            {
+                "icon": "/tech/astro.svg",
+                "title": "Astro",
+                "link": ""
+            }
+        ],
+        "imageUrl": "/images/projects/ngawasin.png",
+        "demoUrl": "https://ngawasin.pages.dev/",
+        "githubUrl": "https://github.com/hyvos07/ngawasin"
+    },
+    {
+        "id": 4,
         "title": "UI Eats - Eat at UI",
         "description": "A personal project on UI canteen food review and rating. Coming soon!",
         "type": "Project",
