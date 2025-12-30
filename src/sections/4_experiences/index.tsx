@@ -10,7 +10,7 @@ export default function ExperienceContent() {
                 <h2 className="text-2xl lg:text-3xl font-semibold mb-12 md:mb-20 xl:mb-[90px] text-center">My Experiences</h2>
                 <div className="w-full">
                     <Timeline experiences={experiences} />
-                    <p className="font-semibold text-center max-md:text-sm text-lg mt-16 md:mt-28">
+                    <p className="font-semibold text-center max-md:text-sm text-lg mt-14 md:mt-24">
                         More informations can be found on my &nbsp;
                         <a
                             href="https://www.linkedin.com/in/danielliman/"
