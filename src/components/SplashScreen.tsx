@@ -42,7 +42,7 @@ export default function SplashScreen() {
 
   return (
     <div ref={wrapperRef} className="fixed flex justify-center items-center top-0 left-0 right-0 w-full h-full z-[999]">
-      <div className="splash-layer w-full h-full bg-black/95 backdrop-blur-md" />
+      <div className="splash-layer w-full h-full bg-[#0a0a0a]/95 backdrop-blur-md" />
       <div ref={contentRef} className="absolute flex flex-col items-center gap-8 z-10">
         <Image
           src="/svgs/furina.svg"
