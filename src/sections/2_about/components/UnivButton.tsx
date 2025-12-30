@@ -11,7 +11,7 @@ export default function UnivButton() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <a href="https://cs.ui.ac.id/en/" target="_blank" rel="noreferrer">
+      <a href="https://cs.ui.ac.id/" target="_blank" rel="noreferrer">
         <Image
           src={isHovered ? "/svgs/logo/MakaraPacil.svg" : "/svgs/logo/MakaraUI.svg"}
           alt="Makara"

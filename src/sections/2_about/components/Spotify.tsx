@@ -49,7 +49,7 @@ export default function Spotify() {
     if (isLoading) {
       return (
         <div className='flex gap-5 text-sm max-md:text-xs items-center px-1.5'>
-          <iframe src="https://giphy.com/embed/17mNCcKU1mJlrbXodo" className="lg:w-14 lg:h-14 w-12 h-12 rounded-lg" />
+          <iframe src="https://giphy.com/embed/17mNCcKU1mJlrbXodo" className="lg:w-12 lg:h-12 w-10 h-10 rounded-lg" />
           <div className="flex flex-col gap-1 text-left">
             <p className="font-semibold line-clamp-2">Loading...</p>
           </div>
