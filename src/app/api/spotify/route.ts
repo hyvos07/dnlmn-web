@@ -26,7 +26,7 @@ async function getAccessToken(): Promise<string> {
 
 export async function GET() {
   const accessToken = await getAccessToken()
-  
+
   // Get currently playing
   const nowPlayingResponse = await fetch(
     `${BASE_URL}/currently-playing`,
@@ -39,10 +39,10 @@ export async function GET() {
       `${BASE_URL}/recently-played?limit=1`,
       { headers: { Authorization: `Bearer ${accessToken}` } }
     )
-    
+
     const { items } = await recentResponse.json()
     const track = items[0].track
-    
+
     return NextResponse.json({
       isPlaying: false,
       songUrl: track.external_urls.spotify,
@@ -54,7 +54,7 @@ export async function GET() {
 
   // Return data
   const { item: track } = await nowPlayingResponse.json()
-  
+
   return NextResponse.json({
     isPlaying: true,
     songUrl: track.external_urls.spotify,
