@@ -1,4 +1,4 @@
-import Furina from "@/sections/1_home/components/Furina";
+import Image from "next/image";
 import Greetings from "./components/Greetings";
 import Social from "./components/Social";
 
@@ -20,7 +20,14 @@ export default function HomeContent() {
         <Social />
       </div>
       <div className="items-center justify-center">
-        <Furina />
+        <Image
+          src="/images/furina.gif"
+          alt="Furina"
+          width={256}
+          height={256}
+          className="mb-8 opacity-80"
+          draggable="false"
+        />
       </div>
     </div>
   );
