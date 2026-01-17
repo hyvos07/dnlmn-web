@@ -12,8 +12,8 @@ export default function HomePage() {
     <div className="justify-items-center font-[family-name:var(--font-plus-jakarta-sans)]">
       <SplashScreen />
       <NavBar />
+      <HomeContent />
       <main className="flex flex-col justify-center items-center px-12 mx-auto lg:px-44">
-        <HomeContent />
         <AboutContent />
         <ProjectContent />
         <ExperienceContent />
