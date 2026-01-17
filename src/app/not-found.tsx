@@ -1,5 +1,4 @@
 import Furina from "@/sections/1_home/components/Furina";
-import Image from "next/image";
 
 export default function NotFound() {
   return (
