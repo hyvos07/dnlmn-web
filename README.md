@@ -9,6 +9,11 @@ Special credits to some assets I used in this website:
 - Genshin Wiki [(Link)](https://genshin-impact.fandom.com/wiki/Furina/Gallery/)
 - Lucide [(Link)](https://lucide.dev/)
 - Furina MMD Model from 好想吃番茄味肥牛饭 [(Link)](https://www.aplaybox.com/details/model/e19BJnS8sZxH)
+- Furina Looping Wallpaper from Darrisha [(Link)](https://youtu.be/04H14c1QERU)
+
+### Recent Change
+
+- (2026/01/18) Moved 3D Model from home page to 404 page and replace it with a video instead
 
 <br>
 
