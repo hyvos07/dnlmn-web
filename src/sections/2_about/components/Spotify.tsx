@@ -31,10 +31,10 @@ export default function Spotify() {
       } catch (error) {
         console.error('Error fetching Spotify data:', error);
         setTrack({
-          songUrl: '',
+          songUrl: '#',
           title: 'Error fetching data',
-          albumImageUrl: '',
-          artist: '',
+          albumImageUrl: '/images/404Spotify.jpg',
+          artist: 'Please reload.',
           isPlaying: false
         });
       } finally {
@@ -59,7 +59,7 @@ export default function Spotify() {
 
     return (
       <div className='flex gap-5 text-sm max-md:text-xs items-center px-1.5'>
-        <a className="flex-shrink-0" href={track.songUrl} target="_blank" rel="noopener noreferrer">
+        <a className="flex-shrink-0" href={track.songUrl} target={track.songUrl == '#' ? undefined : "_blank"} rel="noopener noreferrer">
           <Image
             src={track.albumImageUrl}
             alt="Cover"
