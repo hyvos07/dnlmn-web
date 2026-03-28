@@ -13,7 +13,7 @@ export default function Timeline({ experiences }: { experiences: Experience[] })
         <div key={index} className="relative">
           {/* Line for sm and below screens */}
           {index > 0 && index < experiences.length && (
-            <div className="md:hidden mx-auto w-[2px] h-12 bg-[#54b4e2]/75 -z-10 relative" />
+            <div className="md:hidden mx-auto w-[4px] h-8 bg-[#54b4e2]/75 -z-10 relative" />
           )}
 
           <div className={`xl:grid xl:grid-cols-2 md:flex md:flex-row flex items-center
