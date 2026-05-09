@@ -2,15 +2,15 @@
     {
         "company": "RISTEK Fasilkom UI",
         "logo": "/images/ristek.png",
-        "position": "Lead of Mobile Development SIG",
+        "position": "Vice Dir of Mobile Development SIG",
         "period": "Feb 2025 - Present",
         "website": "https://ristek.cs.ui.ac.id/",
-        "description": "Formerly a member, I now serve as the Lead of the Mobile Development SIG at RISTEK Fasilkom UI, Indonesia's largest and coolest IT student organization.",
+        "description": "Formerly a member and a lead of the Mobile Development SIG, I now serve as the Vice Director of the Mobile Development SIG at RISTEK Fasilkom UI, Indonesia's largest and coolest IT student organization.",
         "achievements": [
             "Mastered advanced Flutter topics, including data persistence, API integration, state management, and clean architecture.",
-            "Collaborated with a team of developers to design and develop two mobile application projects.",
+            "Collaborated with a team of 5-7 developers to design and deliver multiple mobile applications.",
             "Organized Pekan RISTEK's Open Class program to promote RISTEK Mobile Development SIG.",
-            "Organized and led an Internal Class for new members on learning about Clean Architecture in Flutter"
+            "Organized and led Internal Classes for new members on learning about Flutter"
         ]
     },
     {
@@ -23,7 +23,8 @@
         "achievements": [
             "Database (CSGE602070)",
             "Data Structure and Algorithm (CSGE602040)",
-            "Design and Analysis of Algorithms (CSCM603142)"
+            "Design and Analysis of Algorithms (CSCM603142)",
+            "Advanced Programming (CSCM602223)"
         ]
     },
     {
