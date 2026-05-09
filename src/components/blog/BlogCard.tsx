@@ -75,14 +75,21 @@ export default function BlogCard({ post, variant }: BlogCardProps) {
             </span>
 
             <div className="flex items-center gap-2 max-sm:hidden">
-              {post.frontmatter.tags.map((tag) => (
+              {post.frontmatter.tags.map((tag, index) => (
                 <span
                   key={tag}
-                  className="text-xs px-2.5 py-1 rounded-full border border-zinc-700 text-zinc-400"
+                  className={`text-xs px-2.5 py-1 rounded-full border border-zinc-700 text-zinc-400 ${
+                    index >= 2 ? 'md:hidden xl:block' : ''
+                  }`}
                 >
                   {tag}
                 </span>
               ))}
+              {post.frontmatter.tags.length > 2 && (
+                <span className="hidden md:block xl:hidden text-xs px-2.5 py-1 rounded-full border border-zinc-700 text-zinc-400">
+                  +{post.frontmatter.tags.length - 2}
+                </span>
+              )}
             </div>
           </div>
         </div>
