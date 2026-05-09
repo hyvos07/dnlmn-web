@@ -5,7 +5,7 @@ import ProjectButton from "./components/ProjectButton";
 import Spotify from "./components/Spotify";
 
 import Image from "next/image";
-import { Smartphone, PanelsTopLeft, HardDrive, GraduationCap, Telescope, Layers, Gamepad2, Joystick, Database } from 'lucide-react';
+import { User, Smartphone, PanelsTopLeft, HardDrive, GraduationCap, Telescope, Layers, Gamepad2, Joystick, Database, Search, FileQuestion, MessageCircleQuestion } from 'lucide-react';
 import TechSlider from "./components/Slider";
 import techStackData from '../../json/tech.json';
 
@@ -17,16 +17,21 @@ export default function AboutContent() {
     <div id="about" className="mt-6 py-16 flex flex-col gap-6">
       <div className="flex flex-col text-center gap-4">
         <h2 className="text-2xl lg:text-3xl font-semibold max-lg:mb-4 mb-8">About Me</h2>
-        <div className="flex justify-between lg:items-stretch md:items-center gap-8 max-lg:flex-col lg:mb-6">
+        <div className="flex justify-center lg:items-stretch md:items-center gap-8 max-lg:flex-col lg:mb-6">
           <Image
             src="/images/self.jpg"
             alt="Profile Picture"
             width={400}
             height={400}
-            className="rounded-xl w-80 max-lg:hidden"
+            className="rounded-xl w-80 lg:w-[360px] max-lg:hidden object-cover"
             draggable="false"
           />
           <div className="flex flex-col justify-between gap-4 w-full lg:w-[360px]">
+            <AboutBox icon={<MessageCircleQuestion size={20} />} title="Who's Daniel?">
+              <p className="text-sm text-zinc-300 text-left leading-relaxed">
+                Software engineer with a curiosity for Data Science, AI, and DevOps. I like building things that make systems smarter and work easier.
+              </p>
+            </AboutBox>
             <Spotify />
             <AboutBox icon={<GraduationCap size={20} />} title='Education'><UnivButton /></AboutBox>
             <ProjectButton />
