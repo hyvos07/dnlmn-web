@@ -19,7 +19,7 @@ export default function AboutContent() {
         <h2 className="text-2xl lg:text-3xl font-semibold max-lg:mb-4 mb-8">About Me</h2>
         <div className="flex justify-between lg:items-stretch md:items-center gap-8 max-lg:flex-col lg:mb-6">
           <Image
-            src="/images/jakun.jpg"
+            src="/images/self.jpg"
             alt="Profile Picture"
             width={400}
             height={400}
