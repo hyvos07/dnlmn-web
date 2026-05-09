@@ -40,6 +40,14 @@ export default function Social() {
         </a>
       </li>
       <li className="p-1">
+        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href="https://instagram.com/daniel.liman07" target="_blank" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram sm:w-7 sm:h-7"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37m1.5-4.87h.01" /></svg>
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+            Instagram
+          </div>
+        </a>
+      </li>
+      <li className="p-1">
         <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href="https://docs.google.com/document/d/10mnUjUjKWp9L2lqlMg3ukI3YosSuUOoIwBpSsa4VICA" target="_blank" aria-label="Resume">
           <FileText size={26} className="sm:w-7 sm:h-7" />
           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
@@ -48,7 +56,7 @@ export default function Social() {
         </a>
       </li>
       <li className="p-1">
-        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href="mailto:daniel.liman07@gmail.com" target="_blank" aria-label="Email">
+        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href="mailto:daniel@ristek.cs.ui.ac.id" target="_blank" aria-label="Email">
           <Mail size={26} className="sm:w-7 sm:h-7" />
           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             Email
