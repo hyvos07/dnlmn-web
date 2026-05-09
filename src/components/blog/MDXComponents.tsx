@@ -15,7 +15,7 @@ function extractTextContent(node: React.ReactNode): string {
   return '';
 }
 
-export function useMDXComponents(): MDXComponentsType {
+export function getMDXComponents(): MDXComponentsType {
   return {
     h1: ({ id, children, ...rest }) => (
       <h1
@@ -127,7 +127,7 @@ export function useMDXComponents(): MDXComponentsType {
         {...props}
       />
     ),
-    code: ({ className, ...props }: any) => {
+    code: ({ className, ...props }: React.ComponentPropsWithoutRef<'code'> & { 'data-theme'?: string }) => {
       const isInline = !props['data-theme'];
 
       if (isInline) {
@@ -141,7 +141,7 @@ export function useMDXComponents(): MDXComponentsType {
 
       return <code className={className} {...props} />;
     },
-    pre: ({ className, ...props }: any) => {
+    pre: ({ className, ...props }: React.ComponentPropsWithoutRef<'pre'> & { 'data-language'?: string }) => {
       const codeContent = extractTextContent(props.children);
       const language = props['data-language'] || '';
       return (
@@ -200,7 +200,7 @@ export function useMDXComponents(): MDXComponentsType {
     li: (props) => (
       <li className="pl-0.5" {...props} />
     ),
-    figure: ({ children, ...props }: any) => {
+    figure: ({ children, ...props }: React.ComponentPropsWithoutRef<'figure'> & { 'data-rehype-pretty-code-figure'?: boolean }) => {
       if ('data-rehype-pretty-code-figure' in props) {
         return <figure className="my-6 border border-[#27272a] rounded-lg overflow-hidden" {...props}>{children}</figure>;
       }

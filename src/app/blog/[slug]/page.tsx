@@ -8,7 +8,7 @@ import rehypeSlug from 'rehype-slug';
 import remarkGfm from 'remark-gfm';
 import { getAllPosts, getPostBySlug } from '@/lib/blog';
 import BlogPostLayout from '@/components/blog/BlogPostLayout';
-import { useMDXComponents } from '@/components/blog/MDXComponents';
+import { getMDXComponents } from '@/components/blog/MDXComponents';
 import MediumBadge from '@/components/blog/MediumBadge';
 import Footer from '@/components/Footer';
 
@@ -65,7 +65,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     notFound();
   }
 
-  const components = useMDXComponents();
+  const components = getMDXComponents();
 
   return (
     <>

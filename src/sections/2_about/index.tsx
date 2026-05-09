@@ -5,7 +5,7 @@ import ProjectButton from "./components/ProjectButton";
 import Spotify from "./components/Spotify";
 
 import Image from "next/image";
-import { User, Smartphone, PanelsTopLeft, HardDrive, GraduationCap, Telescope, Layers, Gamepad2, Joystick, Database, Search, FileQuestion, MessageCircleQuestion } from 'lucide-react';
+import { Smartphone, PanelsTopLeft, HardDrive, GraduationCap, Telescope, Layers, Gamepad2, Joystick, Database, MessageCircleQuestion } from 'lucide-react';
 import TechSlider from "./components/Slider";
 import techStackData from '../../json/tech.json';
 

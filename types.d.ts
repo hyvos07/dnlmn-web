@@ -10,8 +10,7 @@ declare module '*.mdx' {
 declare global {
   namespace React {
     namespace JSX {
-      interface IntrinsicElements extends ThreeElements {
-      }
+      type IntrinsicElements = ThreeElements;
     }
   }
 
