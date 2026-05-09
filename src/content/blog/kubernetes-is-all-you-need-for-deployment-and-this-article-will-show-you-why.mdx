@@ -1,0 +1,342 @@
+---
+title: "Kubernetes is all you need for deployment and this article will show you why"
+description: "From a single Docker container to a fully automated, auto-scaling, self-healing production system — all on one platform."
+date: "2026-05-09"
+tags: ["DevOps", "Kubernetes", "Software Engineering", "Docker"]
+coverImage: "https://miro.medium.com/v2/resize:fit:4800/format:webp/0*Ae232zMuwZBgKgyH"
+published: true
+mediumUrl: "https://medium.com/@dnlmn/kubernetes-is-all-you-need-for-deployment-and-this-article-will-show-you-why-d455077a25b6"
+---
+
+I recently saw a thread in [r/kubernetes](https://www.reddit.com/r/kubernetes/comments/1rzyhip/kubernetes_is_beautiful/) titled, simply, **_Kubernetes is beautiful_**_._ The poster described it as a fantastic progression through Kubernetes concepts. From running a pod, making it resilient, holding project secrets, accepting incoming traffic, and autoscaling. That thread stuck with me, because what it’s really describing isn’t a list of features. It’s a **maturity ladder** on a DevOps environment.
+
+Most teams start deployment the same way: get the damn thing running. Then slowly, painfully, they discover every other thing they should have thought about from the start. Kubernetes doesn’t just solve those problems one by one, it gives you a _single platform_ where each layer of concern has a name, a primitive, and a clean interface. This article walks you through that exact progression in four phases.
+
+### Phase 1: Just Make It Run
+
+Every deployment story begins the same way where you write a Dockerfile, build an image, and run it. You share the image name with a teammate, they pull it, and it just works. Works on your machine, and works on their machine. Packaged neatly.
+
+The container image itself is the fundamental unit of your deployment. A Dockerfile describes a reproducible artifact: your code, its runtime, and its dependencies that runnable anywhere. In this phase, your pod in Kubernetes is just this artifact given a home in a cluster.
+
+So basically, this phase is all about constructing the package and make it works on other machine. You can build the image, you can run it, and it does what it’s supposed to do. What you can’t do yet is reproduce this **automatically**, guarantee it happens the same way every time, or point a domain at it reliably. That’s what the next three phases are for.
+
+### Phase 2: Build the Infrastructure Yourself
+
+The moment when the team has more than one person committing code, manual deployments become a liability. Someone will forget to build. Someone will push to production without testing. This phase is about removing humans from the critical path of packaging and deployment.
+
+However, in my case, we use a _tag-based release_ that built on **GitLab CI**. The core orchestrator is a modular `.gitlab-ci.yml` that delegates to individual job files, keeping complexity organized across build, test, static analysis, and deploy stages.
+
+```yaml
+include:  
+  - local: '.gitlab-ci/build.yml'  
+  - local: '.gitlab-ci/test.yml'  
+  - local: '.gitlab-ci/sonarqube.yml'  
+  - local: '.gitlab-ci/staging-build.yml'  
+  - local: '.gitlab-ci/staging-deploy.yml'  
+  - local: '.gitlab-ci/prod-build.yml'  
+  - local: '.gitlab-ci/prod-deploy.yml'  
+  
+stages:  
+  - merging      # Build & test validation on MRs  
+  - staging      # Staging build + deploy  
+  - production   # Production build + deploy  
+  - sonar        # SonarQube analysis  
+  
+default:  
+  interruptible: true  
+  retry:  
+    max: 2  
+    when:  
+      - runner\_system\_failure  
+      - stuck\_or\_timeout\_failurey
+```
+
+On every Merge Request, a `build_validation` job runs, which spinning up Docker-in-Docker to verify the image builds successfully. If the build breaks, the MR can't merge. I won’t explain it to you about the detail _for now_, since it would fit better when we talk about how our CI/CD pipeline works.
+
+Well, that’s the guard of the gate. But the one that actually gets your code running on the cluster is the build-to-deploy chain that fires on a tag push. In my team case, we use a tag-based deployment that differs staging deployment to production deployment based on the tag structure.
+
+#### Step 1 — Pushing tags
+
+A developer runs `git tag vX.Y.Z && git push origin vX.Y.Z`. GitLab evaluates the CI rules and the corresponding job fires based on what the regex see about the tag.
+
+#### Step 2— Building Image and Push to Registry
+
+This is where we are introduced to **Image Repository**. Instead of building it anywhere from Dockerfile configuration, we just need to build once and push the image in a repository. In my case, I use a private registry from Fasilkom UI called [registry.cs.ui.ac.id](http://registry.cs.ui.ac.id).
+
+When building the image, I also use a help from **Kaniko** executor container to builds the image from the Dockerfile layer by layer, authenticates to the registry using base64-encoded credentials, and pushes the finished tagged image. At this point the image only exists in the private registry, and the Kubernetes cluster knows nothing about it yet.
+
+This is an example on how the staging build process works.
+
+```yaml
+staging_build:
+  stage: staging
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - export IMAGE_NAME="$REGISTRY_HOSTNAME/$REGISTRY_CSUI_USERNAME/gallery-exhibition-be"
+    - export IMAGE_TAG="$CI_COMMIT_TAG"  # e.g. v1.2.0
+    - /kaniko/executor
+        --context "${CI_PROJECT_DIR}"
+        --dockerfile "${CI_PROJECT_DIR}/Dockerfile"
+        --destination "${IMAGE_NAME}:${IMAGE_TAG}"
+  rules:
+    # staging tags: vX.Y.Z, excluding vX.0.0 (those go to production)
+    - if: '$CI_COMMIT_TAG =~ /^v\d+\.(?:0\.[1-9]\d*|[1-9]\d*\.\d+)$/'
+```
+
+#### Step 3 — Deployment Trigger  
+
+Since we have the image live on the registry now, it’s time to trigger the deployment to the Kubernetes pods. The workflow itself starts with running `init_deployment.sh`, which installs `kubectl` and `gettext`, then decodes the base64-encoded `$KUBECONFIG` CI secret into a local `./kubeconfig` file with strict `600` permissions.
+
+```bash
+#!/bin/sh
+set -e
+
+apk update && \
+    apk add \
+        kubectl \
+        gettext
+
+echo "$KUBECONFIG" | tr -d '\n' | base64 -d > ./kubeconfig
+chmod 600 ./kubeconfig
+
+echo "Init deployment done"
+```
+
+After running this bash script, we can ensure that the runner can now talk to the cluster. In the next step, we will need to run `kubectl rollout restart <resource_name>`to trigger the deployment to pull a new image. Kubernetes will be triggered to compares the desired state (new image tag) against the actual state (old image tag), detects the diff, and schedules a basic rolling update. Only then the cluster reach out to the registry and pull the image to create a new pod.
+
+### Phase 3: Do It Right — Best Practices
+
+In phase 2, we can be sure enough that the deployment process is now neatly automated. So in phase 3, we will talk more about how do you get to make it _correct_. This is where we make the workload resilient, giving it secrets, and putting it on a private network before exposing it to the world.
+
+#### Build with Kaniko  
+
+Earlier approach with Kaniko is actually preferred in production stage because Kaniko builds OCI-compliant images without a Docker daemon, executing each layer without root privileges. Smaller attack surface, faster layer caching, and more production-safe.
+
+#### Versioning the Image Tag  
+
+Earlier approach also use [**Semantic Versioning**](https://semver.org/) for deployment in different stages (staging, prod, and other else). Tags that matches `vX.0.0` trigger production deployments, while `vX.Y.Z` tags (excluding major releases) go to staging.
+
+#### Using Custom Deployment Configuration (YAML file)  
+
+The best practices on settings up the Kubernetes deployment is by configuring the `deployment.yaml` by yourself. This file is actually created automatically for a new deployment in Kubernetes, but make a custom configuration of our own is actually have a better advantage on controlling the pods in Kubernetes. In our case, this is the configuration we make for the deployment:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: ${APP_NAME}
+  namespace: ${NAMESPACE}
+spec:
+  ports:
+    - port: 40001
+      targetPort: ${PORT}
+  selector:
+    app: ${APP_NAME}
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${APP_NAME}
+  namespace: ${NAMESPACE}
+spec:
+  replicas: ${REPLICAS}
+  selector:
+    matchLabels:
+      app: ${APP_NAME}
+  template:
+    metadata:
+      labels:
+        app: ${APP_NAME}
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/worker
+                    operator: Exists
+      containers:
+        - name: ${APP_NAME}
+          image: ${IMAGE_NAME}:${IMAGE_TAG}
+          envFrom:
+            - secretRef:
+                name: ${APP_NAME}-secret
+          ports:
+            - containerPort: ${PORT}
+          resources:
+            limits:
+              cpu: ${LIM_CPU}
+              memory: ${LIM_MEM}
+            requests:
+              cpu: ${REQ_CPU}
+              memory: ${REQ_MEM}
+      imagePullSecrets:
+        - name: itf-registry
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ${APP_NAME}
+  namespace: ${NAMESPACE}
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 100m
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: ${DOMAIN}
+      http:
+        paths:
+          - backend:
+              service:
+                name: ${APP_NAME}
+                port:
+                  number: 40001
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - ${DOMAIN}
+      secretName: cs12-tls
+```
+
+Later on, the configuration file is applied to the deployment within the `deploy.sh` bash script. This will replace the need of `kubectl rollout` command for re-deploying the pod.
+
+```bash
+#!/bin/sh
+set -e
+
+echo "=== Deploying ${APP_NAME} ==="
+echo "Image:       ${IMAGE_NAME}:${IMAGE_TAG}"
+echo "Namespace:   ${NAMESPACE}"
+echo "Environment: ${ENVIRONMENT}"
+
+# Substitute env vars into the deployment template
+envsubst < "./deployment.yaml" > rendered-deployment.yaml
+
+echo "--- Rendered manifest ---"
+cat rendered-deployment.yaml
+echo "--- End manifest ---"
+
+# Apply the rendered manifest
+kubectl apply -f rendered-deployment.yaml --kubeconfig ./kubeconfig
+
+echo "=== Deployment complete ==="
+```
+
+#### Set Kubernetes Secrets  
+
+Environmental secrets must have to never live in the image. Our pipeline builds a Kubernetes Secret object from environment variables at deploy time, attaches it to the pod via `secretRef`, and then immediately deletes the local file. The image itself contains no credentials. This happens on the deploy jobs process.
+
+```yaml
+staging_deploy:
+  stage: staging
+  image: alpine:latest
+  needs:
+    - job: staging_build
+
+  script:
+    # ... (process for init_deployment.sh)
+
+    - |
+      set +x
+      {
+        env | grep '^PODS_'   | sed 's/^PODS_//'
+        env | grep '^GOOGLE_'
+        env | grep '^ALLOWED_'
+        env | grep '^STG_DB_' | sed 's/^STG_DB_/DB_/' | sed 's/^DB_USER=/DB_USERNAME=/'
+        echo "DB_PORT=6543"
+      } > .secret-env
+      chmod 600 .secret-env
+      set -x
+    - |
+      kubectl create secret generic "${APP_NAME}-secret" \
+        --kubeconfig ./kubeconfig \
+        --from-env-file=.secret-env \
+        --namespace="${NAMESPACE}" \
+        --dry-run=client -o yaml \
+        | kubectl apply --kubeconfig ./kubeconfig -f -
+      rm -f .secret-env
+
+    # ... (process for deploy.sh and jobs config)
+```
+
+### Phase 4: Advanced Deployment
+
+This is where Kubernetes stops being a “better Docker Compose” and becomes something qualitatively different. Phase 4 is about answering a harder set of questions:
+
+_What happens when traffic spikes? What happens when the new release is broken? How do I know before users tell me?_
+
+This phase is actually not mandatory to be configured in your Kubernetes cluster, but it is **very recommended** to be used in your deployment for a better infrastructure and reliability in your service.
+
+#### Autoscaling with HPA (Horizontal Pod Autoscaler)  
+
+The Horizontal Pod Autoscaler monitors a Deployment’s real-time CPU and memory utilization and automatically adjusts the replica count to stay within a target threshold. It’s the difference between paying for idle capacity 24/7 and running exactly what the load demands. It can be configured via a YAML file like this:
+
+```yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: gallery-exhibition-be-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: gallery-exhibition-be
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70  # scale out above 70% CPU
+```
+
+In out team's configuration setup, we use`minReplicas: 2` for the availability floor. Running two replicas means a single pod failure will never causes a complete outage. This is what they mean with “making it resilient." Resource `requests` and `limits` (which actually already set in the Phase 3 anyway) are also prerequisites for HPA to function correctly. Without them, the autoscaler has nothing to measure against.
+
+#### Blue/Green Deployments  
+
+A Blue/Green strategy maintains two identical environments: Blue is currently live, Green is the new release. When Green is validated, traffic is switched at the Ingress or Service selector level. There’s no rolling restart race, no half-old half-new state because it’s just an atomic switch. If Green is broken, you flip back to Blue in seconds. You can configure it like this:
+
+```bash
+# Patch the Service selector to route traffic to the green deployment
+kubectl patch service SERVICE_NAME \
+  -p '{"spec":{"selector":{"version":"green"}}}'
+
+# If something is wrong — revert instantly
+kubectl patch service SERVICE_NAME \
+  -p '{"spec":{"selector":{"version":"blue"}}}'
+```
+
+#### Rollback  
+
+Kubernetes actually tracks your Deployment’s rollout history. Either when a new image is broken with your pods face a crash-looping or when the health checks is failing, you don’t need a manual re-deploy. You can rollback to a known-good version:
+
+```bash
+# View rollout history
+kubectl rollout history deployment/your-project
+
+# Roll back to the previous revision
+kubectl rollout undo deployment/your-project
+
+# Or to a specific revision
+kubectl rollout undo deployment/your-project --to-revision=3
+```
+
+FYI: The pipeline’s tag-based versioning will actually makes this even more traceable. Every rollback maps to a specific `vX.Y.Z` tag in Git, so you always know exactly what you rolled back to and why.
+
+---
+
+### Conclusion
+
+Kubernetes isn’t just a deployment tool. It’s a _vocabulary_. Every concept in this progression, starts from Pod, Secret, Service, Ingress, Deployment, and HPA is a named, first-class citizen of the same platform. They don’t just coexist. They compose. Each primitive you learn makes the next one make more sense, until the whole thing clicks and you realize the platform was designed for exactly this journey all along.
+
+Other solutions give you escape hatches at each phase. A managed PaaS handles Phase 1 and 2 for you, until you need something it doesn’t support. A custom shell script can automate a deploy, until it can’t autoscale. A third-party blue/green tool works great, until it doesn’t integrate with your rollback strategy. Kubernetes makes none of those trade-offs because it never forces you to leave the platform to solve the next problem.
+
+You start with Phase 1 because you have to. You reach Phase 4 because your users deserve it. And somewhere along the way, probably around the time you ran your first `kubectl rollout undo` and watched a broken production deploy silently reverse itself in 30 seconds, you'll understand why so many engineers who work with it daily describe it the same way: **_beautiful_**.
+
+Happy DevOps! 🚀

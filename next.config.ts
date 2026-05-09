@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  pageExtensions: ['ts', 'tsx', 'mdx'],
   images: {
     domains: [
       'i.scdn.co',
@@ -11,6 +12,7 @@ const nextConfig: NextConfig = {
       'user-images.githubusercontent.com',
       'cdn.worldvectorlogo.com',
       'github.com',
+      'miro.medium.com',
     ],
   },
 };
