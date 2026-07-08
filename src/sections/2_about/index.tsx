@@ -42,36 +42,36 @@ export default function AboutContent() {
             <div className="grid grid-cols-2 max-lg:grid-cols-1 lg:gap-0 gap-8 px-3 pb-2 max-md:mt-2">
               <div className="flex flex-col gap-8">
                 <InterestItem
+                  icon={<HardDrive size={28} />}
+                  title="Backend Development"
+                  desc={"Django, SpringBoot, Node.js"}
+                />
+                <InterestItem
                   icon={<Smartphone size={28} />}
                   title="Mobile Development"
                   desc={"Flutter, Dart, Android Studio"}
                 />
                 <InterestItem
-                  icon={<HardDrive size={28} />}
-                  title="Backend System"
-                  desc={"Django, SpringBoot, Firebase"}
-                />
-                <InterestItem
                   icon={<PanelsTopLeft size={28} />}
                   title={"Web Development"}
-                  desc={"Next.js, TailwindCSS, TypeScript"}
+                  desc={"Next.js, Astro, React"}
                 />
               </div>
               <div className="flex flex-col gap-8">
                 <InterestItem
-                  icon={<Joystick size={28} />}
-                  title={"Game Development"}
-                  desc={"Unity Engine, C#"}
-                />
-                <InterestItem
                   icon={<Database size={28} />}
                   title="Database"
-                  desc={"PostgreSQL"}
+                  desc={"PostgreSQL, OracleDB, MongoDB"}
+                />
+                <InterestItem
+                  icon={<Joystick size={28} />}
+                  title={"Game Development"}
+                  desc={"Unity Engine, Godot"}
                 />
                 <InterestItem
                   icon={<Gamepad2 size={28} />}
                   title="Gaming"
-                  desc={"Genshin Impact, Minecraft, eFootball"}
+                  desc={"Genshin Impact, Rhythm Game, CS2"}
                 />
               </div>
             </div>
