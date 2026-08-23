@@ -45,6 +45,31 @@
     },
     {
         "id": 3,
+        "title": "Gallery Exhibition CSUI",
+        "description": "A web-based platform that helps Fasilkom UI students showcasing their course projects through online galleries, exhibition pages, and a voting mechanism as a form of appraisal for those projects.",
+        "type": "Website",
+        "technologies": [
+            {
+                "icon": "https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/react.png",
+                "title": "React",
+                "link": ""
+            },
+            {
+                "icon": "/tech/nextjs.svg",
+                "title": "Next.js",
+                "link": ""
+            },
+            {
+                "icon": "/tech/django.svg",
+                "title": "Django",
+                "link": ""
+            }
+        ],
+        "imageUrl": "/images/projects/gallerycsui.png",
+        "demoUrl": "https://gallery.ppl.cs.ui.ac.id/"
+    },
+    {
+        "id": 4,
         "title": "Ngawasin",
         "description": "Ngawasin is a lightweight web application that combines a real-time clock with persistent notes. It was originally created to help me display both time and notes conveniently during lab supervision or exam proctoring sessions.",
         "type": "Website",
@@ -70,32 +95,27 @@
         "githubUrl": "https://github.com/hyvos07/ngawasin"
     },
     {
-        "id": 4,
-        "title": "UI Eats - Eat at UI",
-        "description": "A personal project on UI canteen food review and rating. Coming soon!",
+        "id": 5,
+        "title": "Debt Circle",
+        "description": "A personal project for splitting bill with friends, while keeping your debt on track. Coming soon!",
         "type": "Project",
         "technologies": [
-            {
-                "icon": "https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/react.png",
-                "title": "React",
-                "link": ""
-            },
-            {
-                "icon": "/tech/django.svg",
-                "title": "Django",
-                "link": ""
-            },
             {
                 "icon": "https://www.vectorlogo.zone/logos/flutterio/flutterio-icon.svg",
                 "title": "Flutter",
                 "link": ""
             },
             {
-                "icon": "/tech/nextjs.svg",
-                "title": "Next.js",
+                "icon": "/tech/golang.svg",
+                "title": "Golang",
+                "link": ""
+            },
+            {
+                "icon": "/tech/django.svg",
+                "title": "Django",
                 "link": ""
             }
         ],
-        "imageUrl": "/images/projects/uieat.png"
+        "imageUrl": "/images/projects/debtcircle.png"
     }
 ]
