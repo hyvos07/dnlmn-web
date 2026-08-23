@@ -3,11 +3,15 @@ import InterestItem from "./components/Interests";
 import UnivButton from "./components/UnivButton";
 import ProjectButton from "./components/ProjectButton";
 import Spotify from "./components/Spotify";
-
-import Image from "next/image";
+import ProfileImageCarousel from "./components/ProfileImageCarousel";
 import { Smartphone, PanelsTopLeft, HardDrive, GraduationCap, Telescope, Layers, Gamepad2, Joystick, Database, MessageCircleQuestion } from 'lucide-react';
 import TechSlider from "./components/Slider";
 import techStackData from '../../json/tech.json';
+
+const profileImages = [
+  "/images/self/1.jpg",
+  "/images/self/2.jpeg"
+];
 
 export default function AboutContent() {
   const nyerahTailwind = "max-w-[275px] sm:max-w-sm md:max-w-md lg:max-w-2xl";
@@ -18,14 +22,7 @@ export default function AboutContent() {
       <div className="flex flex-col text-center gap-4">
         <h2 className="text-2xl lg:text-3xl font-semibold max-lg:mb-4 mb-8">About Me</h2>
         <div className="flex justify-center lg:items-stretch md:items-center gap-8 max-lg:flex-col lg:mb-6">
-          <Image
-            src="/images/self.jpg"
-            alt="Profile Picture"
-            width={400}
-            height={400}
-            className="rounded-xl w-80 lg:w-[360px] max-lg:hidden object-cover"
-            draggable="false"
-          />
+          <ProfileImageCarousel images={profileImages} alt="self images" />
           <div className="flex flex-col justify-between gap-4 w-full lg:w-[360px]">
             <AboutBox icon={<MessageCircleQuestion size={20} />} title="Who's Daniel?">
               <p className="text-sm text-zinc-300 text-left leading-relaxed">
