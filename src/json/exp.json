@@ -1,5 +1,16 @@
 [
     {
+        "company": "PT Bank Central Asia Tbk",
+        "logo": "/images/bca.png",
+        "position": "Application Developer Intern",
+        "period": "Jun 2026 - Present",
+        "website": "https://bca.co.id/",
+        "description": "Joined as an Application Developer Intern under the Group Strategic Information Technology, specifically in the Payment & API Integration (PAI) birocracy.",
+        "achievements": [
+            "Developing internal systems that connect front-facing banking services with legacy banking systems."
+        ]
+    },
+    {
         "company": "RISTEK Fasilkom UI",
         "logo": "/images/ristek.png",
         "position": "Vice Dir of Mobile Development SIG",
@@ -25,19 +36,6 @@
             "Data Structure and Algorithm (CSGE602040)",
             "Design and Analysis of Algorithms (CSCM603142)",
             "Advanced Programming (CSCM602223)"
-        ]
-    },
-    {
-        "company": "COMPFEST 16 & 17",
-        "logo": "/images/compfest17.png",
-        "position": "Indie Game Ignite",
-        "period": "Apr 2024 - Oct 2024",
-        "website": "https://compfest.id/",
-        "description": "Responsible as a Technical Member in COMPFEST 16 (2024) and Expert Event Staff in COMPFEST 17 (2025) for Indie Game Ignite Competition.",
-        "achievements": [
-            "Managed to provide technical needs and the workflow for Indie Game Ignite Competition and Indie Game Ignite Game Jam.",
-            "Taking a part in the selection process of 69 submission for Indie Game Ignite Competition and 53 submission from itch.io for Indie Game Ignite Game Jam.",
-            "Established and customized itch.io as the primary platform to held our Indie Game Ignite Game Jam, along with maintaining it while the game jam is running."
         ]
     }
 ]
