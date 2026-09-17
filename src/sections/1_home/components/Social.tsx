@@ -56,7 +56,7 @@ export default function Social() {
         </a>
       </li>
       <li className="p-1">
-        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href="mailto:daniel@ristek.cs.ui.ac.id" target="_blank" aria-label="Email">
+        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href="mailto:hey@dnlmn.dev" target="_blank" aria-label="Email">
           <Mail size={26} className="sm:w-7 sm:h-7" />
           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             Email
