@@ -63,7 +63,7 @@ export default function Contact() {
   };
 
   const copyEmailToClipboard = () => {
-    navigator.clipboard.writeText('daniel@ristek.cs.ui.ac.id');
+    navigator.clipboard.writeText('hey@dnlmn.dev');
     setCopyMessage('Copied!');
   };
 
@@ -135,7 +135,7 @@ export default function Contact() {
           />
           <p className="my-6 text-sm font-medium text-white">... or copy my email below!</p>
           <div className="flex items-center mb-6 bg-neutral-800 rounded-lg px-4 py-3 w-min">
-            <p className="text-zinc-300 max-md:text-xs text-sm font-semibold">daniel@ristek.cs.ui.ac.id</p>
+            <p className="text-zinc-300 max-md:text-xs text-sm font-semibold">hey@dnlmn.dev</p>
             <div
               className="flex justify-center items-center relative group ml-4"
               onMouseLeave={() => {
