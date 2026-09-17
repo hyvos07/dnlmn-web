@@ -41,7 +41,8 @@
                 "link": ""
             }
         ],
-        "imageUrl": "/images/projects/temankuliah.png"
+        "imageUrl": "/images/projects/temankuliah.png",
+        "demoUrl": "https://play.google.com/store/apps/details?id=com.ristek.ulaskelas"
     },
     {
         "id": 3,
@@ -91,7 +92,7 @@
             }
         ],
         "imageUrl": "/images/projects/ngawasin.png",
-        "demoUrl": "https://ngawasin.pages.dev/",
+        "demoUrl": "https://ngawasin.dnlmn.dev/",
         "githubUrl": "https://github.com/hyvos07/ngawasin"
     },
     {
