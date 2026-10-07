@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import MotionProvider from "@/components/motion/MotionProvider";
+import { profile, seo } from "@/data/profile";
 import "@/styles/globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -16,25 +17,25 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dnlmn.vercel.app"),
-  title: "Daniel Liman | dnlmn",
-  description: "Portfolio website made by Daniel Liman (aka dnlmn), a passionate Software Engineer based in Indonesia.",
-  keywords: ["Daniel Liman", "dnlmn", "Software Engineer", "Portfolio", "Web Developer"],
-  authors: [{ name: "Daniel Liman" }],
-  creator: "Daniel Liman",
+  metadataBase: new URL(profile.siteUrl),
+  title: seo.title,
+  description: seo.description,
+  keywords: ["Daniel Liman", "dnlmn", "Software Engineer", "Portfolio", "Web Developer", "Mobile Developer"],
+  authors: [{ name: profile.name }],
+  creator: profile.name,
   verification: {
     google: "H-7ItUmiU6Th7u8XxuTg8x8hDk1ugZOrPcMdOVpRKQo",
   },
   openGraph: {
-    title: "Daniel Liman | dnlmn",
-    description: "Portfolio website made by Daniel Liman (aka dnlmn), a passionate Software Engineer based in Indonesia.",
-    url: "https://dnlmn.vercel.app",
+    title: seo.title,
+    description: seo.description,
+    url: profile.siteUrl,
     siteName: "Daniel Liman - dnlmn",
     type: "website",
     locale: "en-US",
     images: [
       {
-        url: "/images/banner-tall.png",
+        url: seo.ogImage,
         width: 1200,
         height: 630,
         alt: "Daniel Liman | dnlmn",
