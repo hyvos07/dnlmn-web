@@ -69,8 +69,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <>
-      <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-[family-name:var(--font-plus-jakarta-sans)]">
-        <div className="max-w-3xl mx-auto px-6 md:px-12 py-12 md:py-20">
+      <div className="min-h-screen bg-bg text-fg">
+        <div className="max-w-3xl mx-auto px-6 md:px-12 pb-12 pt-28 md:pb-20 md:pt-32">
           {/* Cover image — full width at top */}
           {post.frontmatter.coverImage && (
             <div className="mb-8 rounded-lg overflow-hidden">
@@ -88,7 +88,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )}
 
           {/* Date + reading time */}
-          <div className="flex items-center gap-3 text-sm text-zinc-500 mb-3 md:mb-4">
+          <div className="flex items-center gap-3 text-sm text-fg-muted mb-3 md:mb-4">
             <span>{formatDate(post.frontmatter.date)}</span>
             <span aria-hidden="true">•</span>
             <span>{post.readingTime}</span>
@@ -100,7 +100,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </h1>
 
           {/* Description */}
-          <p className="text-zinc-400 text-md mb-6 leading-relaxed">
+          <p className="text-fg-muted text-md mb-6 leading-relaxed">
             {post.frontmatter.description}
           </p>
 
@@ -109,7 +109,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             {post.frontmatter.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs px-2.5 py-1 rounded-full border border-zinc-700 text-zinc-400"
+                className="text-xs px-2.5 py-1 rounded-full border border-line text-fg-muted"
               >
                 {tag}
               </span>
@@ -117,7 +117,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
 
           {/* Divider */}
-          <hr className="border-zinc-800 mb-8 md:mb-10" />
+          <hr className="border-line mb-8 md:mb-10" />
 
           {/* Article body */}
           <BlogPostLayout>
@@ -149,7 +149,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <MediumBadge mediumUrl={post.frontmatter.mediumUrl} />
             <Link
               href="/blog"
-              className="inline-flex mt-6 items-center gap-1 text-sm text-zinc-500 hover:text-zinc-300 transition-colors duration-200"
+              className="inline-flex mt-6 items-center gap-1 text-sm text-fg-muted hover:text-fg transition-colors duration-200"
             >
               <span aria-hidden="true">←</span> Back to all posts
             </Link>

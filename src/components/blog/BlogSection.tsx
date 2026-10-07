@@ -19,14 +19,14 @@ export default function BlogSection({ posts }: BlogSectionProps) {
             ))}
           </div>
         ) : (
-          <p className="text-center text-zinc-400">No posts yet. Stay tuned!</p>
+          <p className="text-center text-fg-muted">No posts yet. Stay tuned!</p>
         )}
 
         <div className="flex justify-center mt-12">
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full
-                       border border-zinc-600 text-zinc-200 text-sm font-medium
+                       border border-line text-fg text-sm font-medium
                        hover:bg-white hover:text-black hover:border-white transition-all duration-200"
           >
             View all articles <span aria-hidden="true">→</span>

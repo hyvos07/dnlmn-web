@@ -14,12 +14,12 @@ export default function BlogPage() {
 
   return (
     <>
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-[family-name:var(--font-plus-jakarta-sans)]">
-      <div className="max-w-4xl mx-auto px-6 md:px-12 py-12 md:py-20">
+    <div className="min-h-screen bg-bg text-fg">
+      <div className="max-w-4xl mx-auto px-6 md:px-12 pb-12 pt-28 md:pb-20 md:pt-32">
         {/* Back link */}
         <Link
           href="/"
-          className="inline-flex items-center gap-1 text-sm text-zinc-500 hover:text-zinc-300 transition-colors duration-200 mb-12"
+          className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-fg transition-colors duration-200 mb-12"
         >
           <span aria-hidden="true">←</span> Back
         </Link>
@@ -29,7 +29,7 @@ export default function BlogPage() {
           <h1 className="text-2xl md:text-3xl font-bold mb-6">
             My Blog
           </h1>
-          <p className="text-zinc-400 text-md">
+          <p className="text-fg-muted text-md">
             This is the place where I dump my stories as a developer (or as a compsci student, idk).
           </p>
         </div>
@@ -43,8 +43,8 @@ export default function BlogPage() {
           </div>
         ) : (
           <div className="text-center py-20">
-            <p className="text-zinc-400 text-lg mb-2">No posts yet.</p>
-            <p className="text-zinc-500 text-sm">
+            <p className="text-fg-muted text-lg mb-2">No posts yet.</p>
+            <p className="text-fg-muted text-sm">
               Check back soon — I&apos;m working on something!
             </p>
           </div>

@@ -25,7 +25,7 @@ export default function BlogCard({ post, variant }: BlogCardProps) {
     // The whole card is wrapped in a `group` div so all children can respond to hover
     <Link
       href={`/blog/${post.slug}`}
-      className="group border-b border-zinc-800 py-8 first:pt-0 last:border-b-0 block"
+      className="group border-b border-line py-8 first:pt-0 last:border-b-0 block"
       aria-label={`Read blog post: ${post.frontmatter.title}`}
     >
       <div className="flex gap-5 md:gap-8">
@@ -45,21 +45,21 @@ export default function BlogCard({ post, variant }: BlogCardProps) {
         {/* Right: content */}
         <div className="flex flex-col flex-grow min-w-0 justify-between">
           {/* Date + reading time */}
-          <div className="flex items-center gap-2 text-xs md:text-sm text-zinc-500 mb-1.5">
+          <div className="flex items-center gap-2 text-xs md:text-sm text-fg-muted mb-1.5">
             <span>{formatDate(post.frontmatter.date)}</span>
             <span>•</span>
             <span>{post.readingTime}</span>
           </div>
 
           {/* Title */}
-          <h3 className={`font-bold text-[var(--foreground)] leading-snug mb-1.5 ${
+          <h3 className={`font-bold text-fg leading-snug mb-1.5 ${
             isPreview ? 'text-base md:text-lg' : 'text-lg md:text-xl'
           }`}>
             {post.frontmatter.title}
           </h3>
 
           {/* Description */}
-          <p className={`text-zinc-400 leading-relaxed mb-3 max-sm:hidden ${
+          <p className={`text-fg-muted leading-relaxed mb-3 max-sm:hidden ${
             isPreview ? 'text-sm line-clamp-1' : 'text-sm line-clamp-2'
           }`}>
             {post.frontmatter.description || post.excerpt}
@@ -68,17 +68,17 @@ export default function BlogCard({ post, variant }: BlogCardProps) {
           {/* Bottom row: Read more + tags */}
           <div className="flex items-center justify-between">
             {/* "Read more" underline also animates on group hover */}
-            <span className="inline-flex items-center gap-1 text-sm font-medium text-[#54b4e2] relative w-fit">
+            <span className="inline-flex items-center gap-1 text-sm font-medium text-accent-hydro relative w-fit">
               Read more
               <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-              <span className="absolute left-0 bottom-0 h-[1px] bg-[#54b4e2] w-0 group-hover:w-[calc(100%-1.25rem)] transition-all duration-300" />
+              <span className="absolute left-0 bottom-0 h-[1px] bg-accent-hydro w-0 group-hover:w-[calc(100%-1.25rem)] transition-all duration-300" />
             </span>
 
             <div className="flex items-center gap-2 max-sm:hidden">
               {post.frontmatter.tags.map((tag, index) => (
                 <span
                   key={tag}
-                  className={`text-xs px-2.5 py-1 rounded-full border border-zinc-700 text-zinc-400 ${
+                  className={`text-xs px-2.5 py-1 rounded-full border border-line text-fg-muted ${
                     index >= 2 ? 'md:hidden xl:block' : ''
                   }`}
                 >
@@ -86,7 +86,7 @@ export default function BlogCard({ post, variant }: BlogCardProps) {
                 </span>
               ))}
               {post.frontmatter.tags.length > 2 && (
-                <span className="hidden md:block xl:hidden text-xs px-2.5 py-1 rounded-full border border-zinc-700 text-zinc-400">
+                <span className="hidden md:block xl:hidden text-xs px-2.5 py-1 rounded-full border border-line text-fg-muted">
                   +{post.frontmatter.tags.length - 2}
                 </span>
               )}

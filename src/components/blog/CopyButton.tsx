@@ -16,8 +16,8 @@ export default function CopyButton({ code }: { code: string }) {
     <button
       onClick={handleCopy}
       aria-label="Copy code to clipboard"
-      className="p-1.5 rounded-md text-zinc-400
-                 hover:bg-zinc-700/50 hover:text-zinc-200
+      className="p-1.5 rounded-md text-fg-muted
+                 hover:bg-line hover:text-fg
                  transition-all duration-200"
     >
       {copied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
