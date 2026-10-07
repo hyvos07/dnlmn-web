@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { whenIdle } from '@/components/motion/idle';
 import { motionConditions, type MotionConditionFlags } from '@/components/motion/media';
 import { dur, ease } from '@/components/motion/tokens';
 
@@ -10,17 +11,26 @@ export default function RoleTrack({ steps }: { steps: string[] }) {
   const ref = useRef<HTMLOListElement>(null);
 
   useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-      mm.add(motionConditions, (ctx) => {
-        const { reduce } = ctx.conditions as MotionConditionFlags;
-        if (reduce) return;
-        const tl = gsap.timeline({ scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true } });
-        tl.from('[data-track-line]', { scaleX: 0, transformOrigin: 'left center', duration: 1.2, ease: ease.inOut }, 0);
-        tl.from('[data-track-step]', { opacity: 0, y: 12, duration: dur.reveal, ease: ease.out, stagger: 0.25 }, 0.1);
-        tl.from('[data-track-dot]', { scale: 0, duration: 0.4, ease: 'back.out(2)', stagger: 0.25 }, 0.15);
-      });
-      return () => mm.revert();
+    (_, contextSafe) => {
+      let mm: gsap.MatchMedia | undefined;
+      // Set up after hydration, off the critical path
+      const cancel = whenIdle(
+        contextSafe!(() => {
+          mm = gsap.matchMedia();
+          mm.add(motionConditions, (ctx) => {
+            const { reduce } = ctx.conditions as MotionConditionFlags;
+            if (reduce) return;
+            const tl = gsap.timeline({ scrollTrigger: { trigger: ref.current, start: 'top 80%', once: true } });
+            tl.from('[data-track-line]', { scaleX: 0, transformOrigin: 'left center', duration: 1.2, ease: ease.inOut }, 0);
+            tl.from('[data-track-step]', { opacity: 0, y: 12, duration: dur.reveal, ease: ease.out, stagger: 0.25 }, 0.1);
+            tl.from('[data-track-dot]', { scale: 0, duration: 0.4, ease: 'back.out(2)', stagger: 0.25 }, 0.15);
+          });
+        }),
+      );
+      return () => {
+        cancel();
+        mm?.revert();
+      };
     },
     { scope: ref },
   );

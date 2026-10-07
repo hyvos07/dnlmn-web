@@ -3,6 +3,7 @@ import { useRef, type ReactNode } from 'react';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { useGSAP } from '@gsap/react';
+import { whenIdle } from '@/components/motion/idle';
 import { motionConditions, type MotionConditionFlags } from './media';
 import { dur, ease, stagger } from './tokens';
 
@@ -30,42 +31,50 @@ export default function SplitReveal({
   const Tag = as as 'div';
 
   useGSAP(
-    () => {
+    (_, contextSafe) => {
       const el = ref.current;
       if (!el) return;
 
-      const mm = gsap.matchMedia();
-      mm.add(motionConditions, (ctx) => {
-        const { reduce } = ctx.conditions as MotionConditionFlags;
-        const scrollTrigger = immediate ? undefined : { trigger: el, start: 'top 85%', once: true };
+      let mm: gsap.MatchMedia | undefined;
+      // Set up after hydration, off the critical path
+      const cancel = whenIdle(
+        contextSafe!(() => {
+          mm = gsap.matchMedia();
+          mm.add(motionConditions, (ctx) => {
+            const { reduce } = ctx.conditions as MotionConditionFlags;
+            const scrollTrigger = immediate ? undefined : { trigger: el, start: 'top 85%', once: true };
 
-        if (reduce) {
-          gsap.from(el, { opacity: 0, duration: dur.reduced, delay, scrollTrigger });
-          return;
-        }
+            if (reduce) {
+              gsap.from(el, { opacity: 0, duration: dur.reduced, delay, scrollTrigger });
+              return;
+            }
 
-        SplitText.create(el, {
-          type: 'lines',
-          mask: 'lines',
-          // spans keep the markup valid inside headings
-          tag: 'span',
-          // Line splits keep the text intact for screen readers; 'auto' would add aria-label to a role-less element
-          aria: 'none',
-          autoSplit: true,
-          // Returning the tween lets SplitText carry its progress over when it re-splits on resize
-          onSplit: (self) =>
-            gsap.from(self.lines, {
-              yPercent: 100,
-              duration: dur.reveal,
-              ease: ease.out,
-              stagger,
-              delay,
-              scrollTrigger,
-            }),
-        });
-      });
-
-      return () => mm.revert();
+            SplitText.create(el, {
+              type: 'lines',
+              mask: 'lines',
+              // spans keep the markup valid inside headings
+              tag: 'span',
+              // Line splits keep the text intact for screen readers; 'auto' would add aria-label to a role-less element
+              aria: 'none',
+              autoSplit: true,
+              // Returning the tween lets SplitText carry its progress over when it re-splits on resize
+              onSplit: (self) =>
+                gsap.from(self.lines, {
+                  yPercent: 100,
+                  duration: dur.reveal,
+                  ease: ease.out,
+                  stagger,
+                  delay,
+                  scrollTrigger,
+                }),
+            });
+          });
+        }),
+      );
+      return () => {
+        cancel();
+        mm?.revert();
+      };
     },
     { scope: ref },
   );

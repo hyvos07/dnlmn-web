@@ -3,6 +3,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { whenIdle } from '@/components/motion/idle';
 import type { FeaturedProject } from '@/data/projects';
 import { motionConditions, type MotionConditionFlags } from '@/components/motion/media';
 import { useScrollTo } from '@/components/motion/useReducedMotion';
@@ -63,45 +64,54 @@ export default function ProjectStack({ projects }: { projects: FeaturedProject[]
   }, []);
 
   useGSAP(
-    () => {
-      const root = ref.current;
-      if (!root) return;
-      const panels = gsap.utils.toArray<HTMLElement>('[data-panel]', root);
-      const markers = gsap.utils.toArray<HTMLElement>('[data-marker]', root);
+    (_, contextSafe) => {
+      let mm: gsap.MatchMedia | undefined;
+      // Triggers and scrubs are set up after hydration, off the critical path
+      const cancel = whenIdle(
+        contextSafe!(() => {
+          const root = ref.current;
+          if (!root) return;
+          const panels = gsap.utils.toArray<HTMLElement>('[data-panel]', root);
+          const markers = gsap.utils.toArray<HTMLElement>('[data-marker]', root);
 
-      // The sticky index would otherwise hang below the stack onto the next content
-      ScrollTrigger.create({
-        trigger: root,
-        start: 'top 55%',
-        end: () => `bottom ${window.innerHeight * 0.5 + 120}px`,
-        onToggle: (self) => setInStack(self.isActive),
-      });
+          // The sticky index would otherwise hang below the stack onto the next content
+          ScrollTrigger.create({
+            trigger: root,
+            start: 'top 55%',
+            end: () => `bottom ${window.innerHeight * 0.5 + 120}px`,
+            onToggle: (self) => setInStack(self.isActive),
+          });
 
-      markers.forEach((marker, i) => {
-        ScrollTrigger.create({
-          trigger: marker,
-          start: 'top center',
-          end: 'bottom center',
-          onToggle: (self) => self.isActive && setActive(i),
-        });
-      });
+          markers.forEach((marker, i) => {
+            ScrollTrigger.create({
+              trigger: marker,
+              start: 'top center',
+              end: 'bottom center',
+              onToggle: (self) => self.isActive && setActive(i),
+            });
+          });
 
-      const mm = gsap.matchMedia();
-      mm.add(motionConditions, (ctx) => {
-        const { desktop } = ctx.conditions as MotionConditionFlags;
-        if (!desktop) return;
-        markers.slice(1).forEach((marker, i) => {
-          const outgoing = panels[i];
-          const scrub = { trigger: marker, start: 'top bottom', end: 'top top', scrub: true };
-          gsap.fromTo(
-            outgoing.querySelector('[data-panel-inner]'),
-            { scale: 1 },
-            { scale: 0.94, transformOrigin: '50% 0%', ease: 'none', scrollTrigger: scrub },
-          );
-          gsap.fromTo(outgoing.querySelector('[data-panel-dim]'), { opacity: 0 }, { opacity: 0.7, ease: 'none', scrollTrigger: scrub });
-        });
-      });
-      return () => mm.revert();
+          mm = gsap.matchMedia();
+          mm.add(motionConditions, (ctx) => {
+            const { desktop } = ctx.conditions as MotionConditionFlags;
+            if (!desktop) return;
+            markers.slice(1).forEach((marker, i) => {
+              const outgoing = panels[i];
+              const scrub = { trigger: marker, start: 'top bottom', end: 'top top', scrub: true };
+              gsap.fromTo(
+                outgoing.querySelector('[data-panel-inner]'),
+                { scale: 1 },
+                { scale: 0.94, transformOrigin: '50% 0%', ease: 'none', scrollTrigger: scrub },
+              );
+              gsap.fromTo(outgoing.querySelector('[data-panel-dim]'), { opacity: 0 }, { opacity: 0.7, ease: 'none', scrollTrigger: scrub });
+            });
+          });
+        }),
+      );
+      return () => {
+        cancel();
+        mm?.revert();
+      };
     },
     { scope: ref },
   );

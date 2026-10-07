@@ -4,6 +4,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { whenIdle } from '@/components/motion/idle';
 import { ArrowUpRight } from 'lucide-react';
 import { compfestHref, experience } from '@/data/experience';
 import Chip from '@/components/ui/Chip';
@@ -27,49 +28,58 @@ export default function Timeline() {
   const ref = useRef<HTMLOListElement>(null);
 
   useGSAP(
-    () => {
+    (_, contextSafe) => {
       const list = ref.current;
       if (!list) return;
-      const mm = gsap.matchMedia();
-      mm.add(motionConditions, (ctx) => {
-        const { reduce } = ctx.conditions as MotionConditionFlags;
+      let mm: gsap.MatchMedia | undefined;
+      // Set up after hydration, off the critical path
+      const cancel = whenIdle(
+        contextSafe!(() => {
+          mm = gsap.matchMedia();
+          mm.add(motionConditions, (ctx) => {
+            const { reduce } = ctx.conditions as MotionConditionFlags;
 
-        if (reduce) {
-          gsap.set('[data-timeline-fill]', { scaleY: 1 });
-          gsap.set('[data-timeline-dot]', { backgroundColor: 'var(--accent)' });
-          gsap.utils.toArray<HTMLElement>('[data-entry]').forEach((entry) => {
-            gsap.from(entry, { opacity: 0, duration: dur.reduced, scrollTrigger: { trigger: entry, start: 'top 85%', once: true } });
+            if (reduce) {
+              gsap.set('[data-timeline-fill]', { scaleY: 1 });
+              gsap.set('[data-timeline-dot]', { backgroundColor: 'var(--accent)' });
+              gsap.utils.toArray<HTMLElement>('[data-entry]').forEach((entry) => {
+                gsap.from(entry, { opacity: 0, duration: dur.reduced, scrollTrigger: { trigger: entry, start: 'top 85%', once: true } });
+              });
+              return;
+            }
+
+            gsap.fromTo(
+              '[data-timeline-fill]',
+              { scaleY: 0 },
+              { scaleY: 1, ease: 'none', scrollTrigger: { trigger: list, start: 'top 60%', end: 'bottom 60%', scrub: true } },
+            );
+
+            gsap.utils.toArray<HTMLElement>('[data-entry]').forEach((entry) => {
+              const dot = entry.querySelector('[data-timeline-dot]');
+              const head = entry.querySelector('[data-entry-head]');
+              const body = entry.querySelector('[data-entry-body]');
+              // Dot fills when the scrubbed line reaches it
+              gsap.to(dot, {
+                backgroundColor: 'var(--accent)',
+                scale: 1.25,
+                duration: dur.micro,
+                scrollTrigger: { trigger: entry, start: 'top 60%', toggleActions: 'play none none reverse' },
+              });
+              const tl = gsap.timeline({ scrollTrigger: { trigger: entry, start: 'top 80%', once: true } });
+              tl.fromTo(
+                head,
+                { clipPath: 'inset(100% 0% 0% 0%)', y: 24 },
+                { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 0.9, ease: ease.inOut, clearProps: 'clipPath' },
+              );
+              tl.from(body, { opacity: 0, y: 16, duration: dur.reveal, ease: ease.out }, 0.3);
+            });
           });
-          return;
-        }
-
-        gsap.fromTo(
-          '[data-timeline-fill]',
-          { scaleY: 0 },
-          { scaleY: 1, ease: 'none', scrollTrigger: { trigger: list, start: 'top 60%', end: 'bottom 60%', scrub: true } },
-        );
-
-        gsap.utils.toArray<HTMLElement>('[data-entry]').forEach((entry) => {
-          const dot = entry.querySelector('[data-timeline-dot]');
-          const head = entry.querySelector('[data-entry-head]');
-          const body = entry.querySelector('[data-entry-body]');
-          // Dot fills when the scrubbed line reaches it
-          gsap.to(dot, {
-            backgroundColor: 'var(--accent)',
-            scale: 1.25,
-            duration: dur.micro,
-            scrollTrigger: { trigger: entry, start: 'top 60%', toggleActions: 'play none none reverse' },
-          });
-          const tl = gsap.timeline({ scrollTrigger: { trigger: entry, start: 'top 80%', once: true } });
-          tl.fromTo(
-            head,
-            { clipPath: 'inset(100% 0% 0% 0%)', y: 24 },
-            { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 0.9, ease: ease.inOut, clearProps: 'clipPath' },
-          );
-          tl.from(body, { opacity: 0, y: 16, duration: dur.reveal, ease: ease.out }, 0.3);
-        });
-      });
-      return () => mm.revert();
+        }),
+      );
+      return () => {
+        cancel();
+        mm?.revert();
+      };
     },
     { scope: ref },
   );

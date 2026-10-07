@@ -2,6 +2,7 @@
 import { useRef, type ReactNode } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { whenIdle } from '@/components/motion/idle';
 import type { AccentKey } from '@/data/types';
 import { formatIndex } from '@/data/sections';
 import { motionConditions, type MotionConditionFlags } from './media';
@@ -43,7 +44,7 @@ export default function SectionShell({
   const nn = formatIndex(index);
 
   useGSAP(
-    () => {
+    (_, contextSafe) => {
       const section = ref.current;
       if (!section) return;
       const header = section.querySelector<HTMLElement>('[data-shell-heading]');
@@ -51,51 +52,59 @@ export default function SectionShell({
       const body = section.querySelector<HTMLElement>('[data-shell-body]');
       const tail = body?.lastElementChild ?? null;
 
-      const mm = gsap.matchMedia();
-      mm.add(motionConditions, (ctx) => {
-        const { desktop, mobile, reduce } = ctx.conditions as MotionConditionFlags;
-        const reveal = { trigger: header, start: 'top 80%', once: true };
+      let mm: gsap.MatchMedia | undefined;
+      // Set up after hydration, off the critical path
+      const cancel = whenIdle(
+        contextSafe!(() => {
+          mm = gsap.matchMedia();
+          mm.add(motionConditions, (ctx) => {
+            const { desktop, mobile, reduce } = ctx.conditions as MotionConditionFlags;
+            const reveal = { trigger: header, start: 'top 80%', once: true };
 
-        if (header && headingReveal === 'wipe') {
-          if (reduce) {
-            gsap.from(header, { opacity: 0, duration: dur.reduced, scrollTrigger: reveal });
-          } else if (desktop) {
-            // Same direction everywhere: revealed from the bottom edge up
-            gsap.fromTo(
-              header,
-              { clipPath: 'inset(100% 0% 0% 0%)', y: 40 },
-              { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 1, ease: ease.inOut, scrollTrigger: reveal, clearProps: 'clipPath' },
-            );
-          } else if (mobile) {
-            gsap.from(header, { opacity: 0, y: 24, duration: dur.reveal, ease: ease.out, scrollTrigger: reveal });
-          }
-        }
+            if (header && headingReveal === 'wipe') {
+              if (reduce) {
+                gsap.from(header, { opacity: 0, duration: dur.reduced, scrollTrigger: reveal });
+              } else if (desktop) {
+                // Same direction everywhere: revealed from the bottom edge up
+                gsap.fromTo(
+                  header,
+                  { clipPath: 'inset(100% 0% 0% 0%)', y: 40 },
+                  { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 1, ease: ease.inOut, scrollTrigger: reveal, clearProps: 'clipPath' },
+                );
+              } else if (mobile) {
+                gsap.from(header, { opacity: 0, y: 24, duration: dur.reveal, ease: ease.out, scrollTrigger: reveal });
+              }
+            }
 
-        if (!desktop) return;
+            if (!desktop) return;
 
-        if (numeral) {
-          gsap.fromTo(
-            numeral,
-            { yPercent: -15 },
-            {
-              yPercent: 35,
-              ease: 'none',
-              scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: true },
-            },
-          );
-        }
+            if (numeral) {
+              gsap.fromTo(
+                numeral,
+                { yPercent: -15 },
+                {
+                  yPercent: 35,
+                  ease: 'none',
+                  scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: true },
+                },
+              );
+            }
 
-        if (fadeTail && tail) {
-          gsap.to(tail, {
-            y: -40,
-            opacity: 0,
-            ease: 'none',
-            scrollTrigger: { trigger: section, start: 'bottom 45%', end: 'bottom 5%', scrub: true },
+            if (fadeTail && tail) {
+              gsap.to(tail, {
+                y: -40,
+                opacity: 0,
+                ease: 'none',
+                scrollTrigger: { trigger: section, start: 'bottom 45%', end: 'bottom 5%', scrub: true },
+              });
+            }
           });
-        }
-      });
-
-      return () => mm.revert();
+        }),
+      );
+      return () => {
+        cancel();
+        mm?.revert();
+      };
     },
     { scope: ref },
   );

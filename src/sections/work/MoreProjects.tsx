@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { whenIdle } from '@/components/motion/idle';
 import { ArrowUpRight, Github } from 'lucide-react';
 import { moreOnGithub, moreProjects } from '@/data/projects';
 import Chip from '@/components/ui/Chip';
@@ -28,20 +29,29 @@ export default function MoreProjects() {
   const [ngawasin, dissonance] = moreProjects;
 
   useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-      mm.add(motionConditions, (ctx) => {
-        const { reduce } = ctx.conditions as MotionConditionFlags;
-        gsap.from('[data-more-card]', {
-          opacity: 0,
-          y: reduce ? 0 : 24,
-          duration: reduce ? dur.reduced : dur.reveal,
-          ease: ease.out,
-          stagger: reduce ? 0 : stagger * 1.5,
-          scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true },
-        });
-      });
-      return () => mm.revert();
+    (_, contextSafe) => {
+      let mm: gsap.MatchMedia | undefined;
+      // Set up after hydration, off the critical path
+      const cancel = whenIdle(
+        contextSafe!(() => {
+          mm = gsap.matchMedia();
+          mm.add(motionConditions, (ctx) => {
+            const { reduce } = ctx.conditions as MotionConditionFlags;
+            gsap.from('[data-more-card]', {
+              opacity: 0,
+              y: reduce ? 0 : 24,
+              duration: reduce ? dur.reduced : dur.reveal,
+              ease: ease.out,
+              stagger: reduce ? 0 : stagger * 1.5,
+              scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true },
+            });
+          });
+        }),
+      );
+      return () => {
+        cancel();
+        mm?.revert();
+      };
     },
     { scope: ref },
   );
