@@ -142,3 +142,14 @@ pre[data-theme] code span {
     100% { opacity: 0; visibility: hidden; }
   }
 }
+
+/* Spotify equalizer (paused for reduced motion via motion-reduce:animate-none) */
+.eq-bar {
+  height: 100%;
+  animation: eq 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes eq {
+  0% { transform: scaleY(0.25); }
+  100% { transform: scaleY(1); }
+}
