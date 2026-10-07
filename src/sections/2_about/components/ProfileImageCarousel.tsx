@@ -21,6 +21,8 @@ export default function ProfileImageCarousel({
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { align: "start", loop: false },
+    // Legacy carousel, removed in the redesign (Phase 6).
+    // eslint-disable-next-line react-hooks/refs
     [autoplay.current]
   );
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -33,6 +35,7 @@ export default function ProfileImageCarousel({
 
   useEffect(() => {
     if (!emblaApi) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     updateSelectedIndex();
     emblaApi.on("select", updateSelectedIndex);
     emblaApi.on("reInit", updateSelectedIndex);

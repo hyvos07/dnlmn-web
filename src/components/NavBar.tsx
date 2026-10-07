@@ -48,6 +48,8 @@ export default function NavBar() {
   // Update current section
   useEffect(() => {
     if (isBlogRoute) {
+      // Legacy nav, replaced by components/nav/NavBar and removed in Phase 6.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setActive('blog');
     } else if (isHomePage) {
       handleScrollEvent();
