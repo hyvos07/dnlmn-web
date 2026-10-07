@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import MotionProvider from "@/components/motion/MotionProvider";
+import NavBar from "@/components/nav/NavBar";
 import { profile, seo } from "@/data/profile";
 import "@/styles/globals.css";
 
@@ -59,7 +60,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${plusJakartaSans.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased">
-        <MotionProvider>{children}</MotionProvider>
+        <MotionProvider>
+          <NavBar />
+          {children}
+        </MotionProvider>
       </body>
     </html>
   );

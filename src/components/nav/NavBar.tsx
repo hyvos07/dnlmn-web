@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -23,12 +25,22 @@ export default function NavBar() {
   const scrollToId = useScrollTo();
   const setScrollLocked = useScrollLock();
 
-  const current = sections.find((s) => s.id === active) ?? sections[0];
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+  // Off the home page the indicator names the route (blog → Writing) and the bar shows reading progress
+  const currentId = isHome ? active : pathname.startsWith('/blog') ? 'writing' : 'home';
+  const current = sections.find((s) => s.id === currentId) ?? sections[0];
 
   // Active section + in-section progress. Progress is written straight to the bar's transform.
-  useGSAP(() => {
+  useGSAP(
+    () => {
     const setProgress = gsap.quickSetter(barRef.current, 'scaleX');
     setProgress(0);
+
+    if (!isHome) {
+      ScrollTrigger.create({ start: 0, end: 'max', onUpdate: (self) => setProgress(self.progress) });
+      return;
+    }
 
     for (const el of gsap.utils.toArray<HTMLElement>('[data-section]')) {
       ScrollTrigger.create({
@@ -43,7 +55,9 @@ export default function NavBar() {
         },
       });
     }
-  });
+    },
+    { dependencies: [isHome, pathname], revertOnUpdate: true },
+  );
 
   // Mobile menu: lock scroll, focus the first link, close on Escape and restore focus
   useEffect(() => {
@@ -64,12 +78,14 @@ export default function NavBar() {
     };
   }, [menuOpen, setScrollLocked]);
 
+  // On the home page links scroll (through Lenis); elsewhere they navigate to /#id
   const goTo = (id: string) => (e: React.MouseEvent) => {
-    e.preventDefault();
     if (menuOpen) {
       setMenuOpen(false);
       setScrollLocked(false);
     }
+    if (!isHome) return;
+    e.preventDefault();
     scrollToId(id);
   };
 
@@ -85,9 +101,9 @@ export default function NavBar() {
       >
         <div className="mx-auto flex h-14 max-w-content items-center justify-between gap-6 px-6 md:px-12 xl:px-20">
           <div className="flex min-w-0 items-center gap-4">
-            <a href="#home" onClick={goTo('home')} aria-label="Daniel Liman — back to top" className="shrink-0 rounded-sm">
+            <Link href="/#home" onClick={goTo('home')} aria-label="Daniel Liman — home" className="shrink-0 rounded-sm">
               <Image src="/svgs/furina.svg" alt="" width={28} height={28} className="h-7 w-7" />
-            </a>
+            </Link>
 
             {/* Section indicator. Screen readers get the same info from aria-current on the links. */}
             <div aria-hidden="true" className="relative h-4 overflow-hidden font-mono text-label uppercase">
@@ -107,14 +123,14 @@ export default function NavBar() {
           <ul className="hidden items-center gap-7 text-sm lg:flex">
             {links.map((s) => (
               <li key={s.id}>
-                <a
-                  href={`#${s.id}`}
+                <Link
+                  href={`/#${s.id}`}
                   onClick={goTo(s.id)}
                   aria-current={active === s.id ? 'location' : undefined}
                   className="rounded-sm text-fg-muted transition-colors duration-micro hover:text-fg aria-[current=location]:text-fg"
                 >
                   {s.label}
-                </a>
+                </Link>
               </li>
             ))}
             <li>
@@ -163,15 +179,15 @@ export default function NavBar() {
             <ul className="flex flex-col gap-6">
               {links.map((s) => (
                 <li key={s.id}>
-                  <a
-                    href={`#${s.id}`}
+                  <Link
+                    href={`/#${s.id}`}
                     onClick={goTo(s.id)}
                     aria-current={active === s.id ? 'location' : undefined}
                     className="flex items-baseline gap-4 rounded-sm text-h3"
                   >
                     <span className="font-mono text-label text-fg-muted">{formatIndex(s.index)}</span>
                     {s.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li className="mt-4">
