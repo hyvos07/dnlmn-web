@@ -71,7 +71,7 @@ export default function ProjectPanel({ project: p, index, total }: ProjectPanelP
           <p className="max-w-prose text-fg-muted lg:text-lg">{p.summary}</p>
           <p className="border-l-2 pl-4 font-semibold leading-relaxed" style={{ borderColor: `var(--accent-${p.accent})` }}>
             <span className="mb-1 block font-mono text-label font-normal uppercase text-fg-muted">
-              {p.competition ? 'Finalist · ITFEST IPB' : 'Impact'}
+              {p.competition ? 'Finalist · ITFEST IPB' : p.process ? 'Process' : 'Impact'}
             </span>
             {p.impact}
           </p>
@@ -108,6 +108,13 @@ export default function ProjectPanel({ project: p, index, total }: ProjectPanelP
           <p className="max-w-prose text-sm leading-relaxed text-fg-muted">
             <span className="font-semibold text-fg">{p.contribution.label}.</span> {p.contribution.text}
           </p>
+
+          {(p.features ?? p.process) && (
+            <p className="max-w-prose text-sm leading-relaxed text-fg-muted">
+              <span className="font-semibold text-fg">{p.features ? 'Key features.' : 'Steps.'}</span>{' '}
+              {(p.features ?? p.process)!.join(p.features ? ' · ' : ' → ')}
+            </p>
+          )}
 
           <ul className="flex flex-wrap gap-1.5" aria-label="Stack">
             {p.stack.map((s) => (

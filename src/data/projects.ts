@@ -115,7 +115,7 @@ export const featuredProjects: FeaturedProject[] = [
       alt: "Pitching MoodTune on stage at ITFEST IPB",
       width: 532,
       height: 928,
-      caption: "Pitching at the ITFEST IPB final",
+      caption: "Pitching MoodTune at ITFEST IPB",
     },
   },
   {
