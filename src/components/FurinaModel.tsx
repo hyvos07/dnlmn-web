@@ -5,7 +5,7 @@ import { OrbitControls, useAnimations, useGLTF } from '@react-three/drei';
 import { useEffect, useRef, useState } from 'react';
 
 function Model({ isMobile }: { isMobile: boolean }) {
-  const gltf = useGLTF('mmd/furina_chibi.glb');
+  const gltf = useGLTF('/mmd/furina_chibi.glb');
   const { actions, mixer } = useAnimations(gltf.animations, gltf.scene);
   const modelRef = useRef<THREE.Group>(null);
 
