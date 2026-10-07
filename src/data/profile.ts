@@ -54,7 +54,7 @@ export const writing = {
 } as const;
 
 export const contact = {
-  heading: "Let's build something.",
+  heading: "Let’s build something.",
   sub: "Open to internships, collaborations and interesting projects.",
 } as const;
 
