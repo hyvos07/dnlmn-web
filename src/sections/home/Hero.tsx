@@ -48,7 +48,8 @@ export default function Hero() {
             tl.from(self.lines, { yPercent: 105, duration: 1, ease: ease.out, stagger: 0.12 }, 0);
           },
         });
-        tl.from(rest, { opacity: 0, y: 24, duration: dur.reveal, ease: ease.out, stagger }, 0.35);
+        // Transform only: the copy stays painted, so it counts for LCP at first paint even if JS runs first
+        tl.from(rest, { y: 32, duration: dur.reveal, ease: ease.out, stagger }, 0.35);
         // Particles fade in while the copy settles
         tl.call(() => setParticlesOn(true), [], 0.6);
 
