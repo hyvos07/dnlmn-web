@@ -64,7 +64,7 @@ export default function SectionShell({
             gsap.fromTo(
               header,
               { clipPath: 'inset(100% 0% 0% 0%)', y: 40 },
-              { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 1, ease: ease.inOut, scrollTrigger: reveal },
+              { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 1, ease: ease.inOut, scrollTrigger: reveal, clearProps: 'clipPath' },
             );
           } else if (mobile) {
             gsap.from(header, { opacity: 0, y: 24, duration: dur.reveal, ease: ease.out, scrollTrigger: reveal });
