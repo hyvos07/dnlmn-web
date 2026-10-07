@@ -24,12 +24,12 @@ export default function Toolbox() {
           </li>
         ))}
       </ul>
-      <p className="mt-4 text-sm text-fg-muted">
-        <span className="font-mono text-label uppercase">Languages</span>{' '}
+      <p className="mt-4 text-sm text-fg">
+        <span className="font-mono text-label uppercase text-fg-muted">Languages</span>{' '}
         {languages.map((l, i) => (
           <span key={l.name}>
             {i > 0 && ' · '}
-            {l.name} <span className="opacity-70">({l.level})</span>
+            {l.name} <span className="text-fg-muted">({l.level})</span>
           </span>
         ))}
       </p>

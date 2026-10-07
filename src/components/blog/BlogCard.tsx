@@ -26,7 +26,6 @@ export default function BlogCard({ post, variant }: BlogCardProps) {
     <Link
       href={`/blog/${post.slug}`}
       className="group border-b border-line py-8 first:pt-0 last:border-b-0 block"
-      aria-label={`Read blog post: ${post.frontmatter.title}`}
     >
       <div className="flex gap-5 md:gap-8">
         {post.frontmatter.coverImage && (
