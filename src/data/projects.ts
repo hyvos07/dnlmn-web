@@ -19,6 +19,8 @@ export interface FeaturedProject {
   competition?: LinkItem;
   links: LinkItem[];
   accent: AccentKey;
+  /** Crop from docs/redesign/assets shown beside the demo */
+  media?: { src: string; alt: string; width: number; height: number; caption: string };
 }
 
 export const featuredProjects: FeaturedProject[] = [
@@ -45,6 +47,13 @@ export const featuredProjects: FeaturedProject[] = [
       { label: "Post", href: "https://www.instagram.com/p/DZIRUEcj9BE" },
     ],
     accent: "gallery",
+    media: {
+      src: "/images/projects/gallery-csui/showcase.webp",
+      alt: "The Gallery Exhibition team at the CSUI Game Playtesting Showcase",
+      width: 952,
+      height: 721,
+      caption: "CSUI Game Playtesting Showcase · June 6, 2026",
+    },
   },
   {
     slug: "temankuliah",
@@ -66,6 +75,13 @@ export const featuredProjects: FeaturedProject[] = [
       { label: "App Store", href: "https://apps.apple.com/id/app/temankuliah/id1603376343" },
     ],
     accent: "temankuliah",
+    media: {
+      src: "/images/projects/temankuliah/app.webp",
+      alt: "TemanKuliah onboarding screen on a phone, with its feature list",
+      width: 896,
+      height: 967,
+      caption: "TemanKuliah by RISTEK Fasilkom UI",
+    },
   },
   {
     slug: "moodtune",
@@ -94,6 +110,13 @@ export const featuredProjects: FeaturedProject[] = [
       { label: "Pitch deck", href: "https://drive.google.com/file/d/1JIzUCu5G5J3u342U2GJXg2GW_etRo0B5/view" },
     ],
     accent: "moodtune",
+    media: {
+      src: "/images/projects/moodtune/pitch.webp",
+      alt: "Pitching MoodTune on stage at ITFEST IPB",
+      width: 532,
+      height: 928,
+      caption: "Pitching at the ITFEST IPB final",
+    },
   },
   {
     slug: "rakyat-bisa",
