@@ -14,7 +14,6 @@ const profileImages = [
 ];
 
 export default function AboutContent() {
-  const nyerahTailwind = "max-w-[275px] sm:max-w-sm md:max-w-md lg:max-w-2xl";
   const _sliderItems = techStackData;
 
   return (
@@ -75,10 +74,10 @@ export default function AboutContent() {
           </AboutBox>
           <AboutBox icon={<Layers size={20} />} title='Tech Stack'>
             <div className="flex flex-col gap-6 items-center justify-center mt-1 mb-3">
-              <div className={"overflow-hidden py-2 px-5 relative " + nyerahTailwind}>
+              <div className="relative w-full min-w-0 overflow-hidden py-2 px-6 sm:px-8">
                 <TechSlider items={_sliderItems} />
-                <div className="absolute left-3 top-0 bottom-0 w-12 bg-gradient-to-r from-[#04060f] to-transparent z-10"></div>
-                <div className="absolute right-3 top-0 bottom-0 w-12 bg-gradient-to-l from-[#04060f] to-transparent z-10"></div>
+                <div className="absolute left-4 sm:left-6 top-0 bottom-0 w-12 bg-gradient-to-r from-[#04060f] to-transparent z-10"></div>
+                <div className="absolute right-4 sm:right-6 top-0 bottom-0 w-12 bg-gradient-to-l from-[#04060f] to-transparent z-10"></div>
               </div>
               <p className="text-sm text-center"> ... and many more! </p>
             </div>

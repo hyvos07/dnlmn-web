@@ -197,7 +197,7 @@ export default function Slider({
   );
 
   return (
-    <div className="w-full overflow-hidden select-none touch-pan-y">
+    <div className="w-full min-w-0 overflow-hidden select-none touch-pan-y [contain:inline-size]">
       <style>{`
         .hide-scroll::-webkit-scrollbar {
           display: none;
