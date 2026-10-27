@@ -1,0 +1,44 @@
+.track {
+  background: #242a2e;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.progress {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #54b4e2;
+  transform: scaleY(var(--progress, 0));
+  transform-origin: top;
+}
+
+.marker {
+  background: #242a2e;
+  transition: background-color 200ms ease;
+}
+
+[data-reached='true'] > .marker {
+  background: #54b4e2;
+}
+
+.card {
+  transition: opacity 600ms ease, transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.timeline[data-animated='true'] [data-experience-row]:not([data-visible='true']):not(:focus-within) > .card {
+  opacity: 0;
+  transform: translateY(32px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .marker {
+    transition: none;
+  }
+
+  .timeline[data-animated='true'] [data-experience-row]:not([data-visible='true']):not(:focus-within) > .card {
+    opacity: 1;
+    transform: none;
+  }
+}
