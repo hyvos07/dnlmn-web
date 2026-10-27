@@ -86,6 +86,12 @@ duration. Regenerate with an FFmpeg build containing `libaom-av1`:
 FFMPEG_PATH=/path/to/ffmpeg node artifacts/hero-optimization/optimize.mjs
 ```
 
+`HeroBackground` keeps a separate poster layer visible until a decoded video
+frame is ready to display. Loading, buffering, paused playback, and playback
+errors show the poster again; playback recovery reveals the video. Both video
+sources failing leaves the poster visible. The native `poster` attribute is
+also retained.
+
 Conversion settings, size and quality measurements, and visual comparisons are
 in `artifacts/hero-optimization/`. Compression is lossy; the originals are kept
 for future exports.
