@@ -105,7 +105,7 @@ export function getMDXComponents(): MDXComponentsType {
       }
       return (
         <p
-          className="text-sm/8 md:text-base/8 leading-[1.8] line-height text-zinc-300/75 mb-5 font-[family-name:var(--font-plus-jakarta-sans)]"
+          className="text-sm/8 md:text-base/8 leading-[1.8] line-height text-zinc-300/90 mb-5 font-[family-name:var(--font-plus-jakarta-sans)]"
           {...props}
         >
           {children}

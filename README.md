@@ -17,6 +17,78 @@ Special credits to some assets I used in this website:
 
 <br>
 
+## Adding blog posts
+
+Posts live in `src/content/blog/*.mdx`. The filename becomes the URL:
+`my-post.mdx` is served at `/blog/my-post`. Published posts automatically appear
+on `/blog`, in the homepage's latest posts, and in `/sitemap.xml`.
+
+To import a public Medium article, run this from the project root:
+
+```bash
+npm run blog:import -- "https://medium.com/@username/article-title-id"
+# Or: node scripts/import-post.mjs "https://medium.com/@username/article-title-id"
+```
+
+Enter a short description and comma-separated tags when prompted. The importer
+creates an MDX draft with `published: false` and the original `mediumUrl`.
+It uses today's UTC date, so replace `date` with the original publication date
+when cross-posting. Existing drafts are protected against accidental overwrites.
+
+Review the generated file before publishing:
+
+1. Check the title, description, date, and tags in the YAML frontmatter.
+2. Remove imported author/profile UI and any repeated title. Review headings,
+   links, image captions, and code indentation. Add code fence languages such
+   as `python`, `ini`, or `bash` for syntax highlighting.
+3. Optionally add `coverImage`. Put local images under `public/blog/<slug>/`
+   and reference them as `/blog/<slug>/image.webp`. Remote images from
+   `miro.medium.com` are already allowed in `next.config.ts`; other hosts
+   need to be allowed there or the images must be saved locally.
+4. Set `published: true`, run `npm run dev`, and open `/blog/<slug>` to preview.
+   **Drafts return 404 even in development**, so keep the change local until
+   you finish reviewing. Restore `false` if the article should remain a draft.
+5. Run `npm run build`, then commit and deploy through your usual workflow.
+
+For this article, a complete draft is prepared at
+`src/content/blog/beyond-code-coverage-using-mutation-testing-with-mutmut-in-a-django-project.mdx`.
+It includes the original June 2, 2026 date, suggested description and tags,
+cover image, article images, and code blocks. It remains `published: false`.
+Its eventual URL is
+`/blog/beyond-code-coverage-using-mutation-testing-with-mutmut-in-a-django-project`.
+The body was imported from the public `https://medium.com/feed/@dnlmn` RSS feed
+because Medium blocked direct access to the article page.
+
+If Medium blocks a future import, the script stops when no content is returned.
+Copy your article into an MDX file manually, or check your public RSS feed
+(`https://medium.com/feed/@username`) for the article's `content:encoded` HTML
+and publication date. An exported Medium article is another source to convert.
+Review HTML-to-Markdown conversions before using them as MDX: literal `<` or
+`{` in prose may need escaping, while code belongs inside fenced code blocks.
+
+To write a new post without Medium, create `src/content/blog/my-post.mdx`:
+
+````mdx
+---
+title: "My post"
+description: "A short summary for cards and search metadata."
+date: "2026-10-27"
+tags: ["Python", "Testing"]
+published: false
+---
+
+Your article body goes here.
+
+## A section
+
+```python
+print("Hello, blog!")
+```
+````
+
+`coverImage` and `mediumUrl` are optional. Add `mediumUrl` for the existing
+"Read on Medium" link when cross-posting; it does not change the site's canonical URL.
+
 ## Project previews
 
 All project cards, including Portfolio Website, are configured in `src/json/proj.json`.

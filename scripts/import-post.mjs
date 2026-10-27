@@ -53,6 +53,12 @@ async function main() {
     process.exit(1);
   }
 
+  if (typeof markdown !== 'string' || !markdown.trim()) {
+    console.error('❌ Medium returned no article content. No draft was created.');
+    console.error('   Medium may be blocking automated requests. Copy the article manually or use its public RSS feed.');
+    process.exit(1);
+  }
+
   // Extract title from the first heading in the markdown
   const titleMatch = markdown.match(/^#\s+(.+)$/m);
   let title = titleMatch ? titleMatch[1].trim() : '';
@@ -64,6 +70,18 @@ async function main() {
   }
 
   const slug = slugify(title);
+  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
+
+  if (!slug) {
+    console.error('❌ Could not determine a filename from the article title.');
+    process.exit(1);
+  }
+
+  if (fs.existsSync(filePath)) {
+    console.error(`❌ Draft already exists: src/content/blog/${slug}.mdx`);
+    console.error('   Edit the existing file or move it before importing again.');
+    process.exit(1);
+  }
 
   console.log(`📝 Title: ${title}`);
   console.log(`🔗 Slug: ${slug}\n`);
@@ -84,12 +102,12 @@ async function main() {
 
   const frontmatter = [
     '---',
-    `title: "${title.replace(/"/g, '\\"')}"`,
-    `description: "${description.replace(/"/g, '\\"')}"`,
+    `title: ${JSON.stringify(title)}`,
+    `description: ${JSON.stringify(description)}`,
     `date: "${getTodayISO()}"`,
-    `tags: [${tags.map((t) => `"${t}"`).join(', ')}]`,
+    `tags: ${JSON.stringify(tags)}`,
     `published: false`,
-    `mediumUrl: "${mediumUrl}"`,
+    `mediumUrl: ${JSON.stringify(mediumUrl)}`,
     '---',
     '',
   ].join('\n');
@@ -101,14 +119,13 @@ async function main() {
   }
 
   const fileContent = frontmatter + content;
-  const filePath = path.join(BLOG_DIR, `${slug}.mdx`);
 
   // Ensure directory exists
   if (!fs.existsSync(BLOG_DIR)) {
     fs.mkdirSync(BLOG_DIR, { recursive: true });
   }
 
-  fs.writeFileSync(filePath, fileContent, 'utf-8');
+  fs.writeFileSync(filePath, fileContent, { encoding: 'utf-8', flag: 'wx' });
 
   console.log(`\n✅ Post saved to src/content/blog/${slug}.mdx — review and set published: true when ready.`);
 }

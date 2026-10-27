@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "blog:import": "node scripts/import-post.mjs",
     "lint": "eslint ."
   },
   "dependencies": {
