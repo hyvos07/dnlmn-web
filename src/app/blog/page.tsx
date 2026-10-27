@@ -3,10 +3,19 @@ import Link from 'next/link';
 import { getAllPosts } from '@/lib/blog';
 import BlogCard from '@/components/blog/BlogCard';
 import Footer from '@/components/Footer';
+import { SITE_URL } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Blog | dnlmn',
   description: 'Thoughts on tech, building, and life — by Daniel Liman.',
+  alternates: { canonical: '/blog' },
+  openGraph: {
+    title: 'Blog | dnlmn',
+    description: 'Thoughts on tech, building, and life — by Daniel Liman.',
+    url: `${SITE_URL}/blog`,
+    type: 'website',
+    images: [{ url: '/images/banner-tall.png', width: 1200, height: 630, alt: 'Daniel Liman | dnlmn' }],
+  },
 };
 
 export default function BlogPage() {

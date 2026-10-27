@@ -3,16 +3,41 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function ProjectShowcase(project: Project) {
+	const isVideo = /\.(webm|mp4|ogv)(?:[?#]|$)/i.test(project.imageUrl);
+
 	return (
 		<div className="flex flex-col h-full w-full rounded-xl overflow-hidden bg-[#101010] border border-zinc-800 hover:scale-105 transition-transform duration-200">
 			<div className="w-full aspect-[16/9] relative">
-				<Image
-					src={project.imageUrl}
-					alt={project.title}
-					fill
-					sizes="100%"
-					className="object-cover"
-				/>
+				{isVideo ? (
+					<video
+						key={project.imageUrl}
+						autoPlay
+						muted
+						loop
+						playsInline
+						preload="metadata"
+						aria-label={`${project.title} project preview`}
+						className="absolute inset-0 h-full w-full object-cover"
+					>
+						{project.videoSources?.length ? (
+							project.videoSources.map(source => (
+								<source key={source.src} src={source.src} type={source.type} />
+							))
+						) : (
+							<source src={project.imageUrl} />
+						)}
+					</video>
+				) : (
+					<Image
+						src={project.imageUrl}
+						alt={project.title}
+						fill
+						sizes="100%"
+						// Serve WebP previews directly to preserve their animation.
+						unoptimized={/\.webp(?:[?#]|$)/i.test(project.imageUrl)}
+						className="object-cover"
+					/>
+				)}
 			</div>
 			<div className="py-6 px-8 flex flex-col flex-grow">
 				<div className="flex gap-2 md:justify-between items-center mb-4">

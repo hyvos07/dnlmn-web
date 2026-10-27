@@ -1,5 +1,45 @@
 [
     {
+        "id": 0,
+        "title": "Portfolio Website",
+        "description": "My personal portfolio website showcasing my projects and skills. You are here!",
+        "type": "Website",
+        "technologies": [
+            {
+                "icon": "https://raw.githubusercontent.com/marwin1991/profile-technology-icons/refs/heads/main/icons/react.png",
+                "title": "React",
+                "link": ""
+            },
+            {
+                "icon": "https://user-images.githubusercontent.com/25181517/202896760-337261ed-ee92-4979-84c4-d4b829c7355d.png",
+                "title": "Tailwind CSS",
+                "link": ""
+            },
+            {
+                "icon": "/tech/three.jpg",
+                "title": "Three.js",
+                "link": ""
+            },
+            {
+                "icon": "/tech/nextjs.svg",
+                "title": "Next.js",
+                "link": ""
+            }
+        ],
+        "imageUrl": "/videos/projects/portfolio.h264.mp4",
+        "videoSources": [
+            {
+                "src": "/videos/projects/portfolio.av1.mp4",
+                "type": "video/mp4; codecs=\"av01.0.08M.08\""
+            },
+            {
+                "src": "/videos/projects/portfolio.h264.mp4",
+                "type": "video/mp4; codecs=\"avc1\""
+            }
+        ],
+        "githubUrl": "https://github.com/hyvos07/dnlmn-web/"
+    },
+    {
         "id": 1,
         "title": "MoodTune",
         "description": "A daily journal app that combines mood tracking, mood analytics, and personalized daily music recommendations powered by Spotify. Developed collaboratively with a team of 3 developers for ITFest IPB 2025 submission.",
@@ -21,7 +61,17 @@
                 "link": ""
             }
         ],
-        "imageUrl": "/images/projects/moodtune.png",
+        "imageUrl": "/videos/projects/moodtune.h264.mp4",
+        "videoSources": [
+            {
+                "src": "/videos/projects/moodtune.av1.mp4",
+                "type": "video/mp4; codecs=\"av01.0.05M.08\""
+            },
+            {
+                "src": "/videos/projects/moodtune.h264.mp4",
+                "type": "video/mp4; codecs=\"avc1\""
+            }
+        ],
         "githubUrl": "https://github.com/mobilekenatilang/moodtune"
     },
     {
@@ -41,7 +91,17 @@
                 "link": ""
             }
         ],
-        "imageUrl": "/images/projects/temankuliah.png",
+        "imageUrl": "/videos/projects/temankuliah.h264.mp4",
+        "videoSources": [
+            {
+                "src": "/videos/projects/temankuliah.av1.mp4",
+                "type": "video/mp4; codecs=\"av01.0.08M.08\""
+            },
+            {
+                "src": "/videos/projects/temankuliah.h264.mp4",
+                "type": "video/mp4; codecs=\"avc1\""
+            }
+        ],
         "demoUrl": "https://play.google.com/store/apps/details?id=com.ristek.ulaskelas"
     },
     {
@@ -66,7 +126,17 @@
                 "link": ""
             }
         ],
-        "imageUrl": "/images/projects/gallerycsui.png",
+        "imageUrl": "/videos/projects/gallerycsui.h264.mp4",
+        "videoSources": [
+            {
+                "src": "/videos/projects/gallerycsui.av1.mp4",
+                "type": "video/mp4; codecs=\"av01.0.08M.08\""
+            },
+            {
+                "src": "/videos/projects/gallerycsui.h264.mp4",
+                "type": "video/mp4; codecs=\"avc1\""
+            }
+        ],
         "demoUrl": "https://gallery.ppl.cs.ui.ac.id/"
     },
     {
@@ -91,12 +161,49 @@
                 "link": ""
             }
         ],
-        "imageUrl": "/images/projects/ngawasin.png",
+        "imageUrl": "/videos/projects/ngawasin.av1.mp4",
+        "videoSources": [
+            {
+                "src": "/videos/projects/ngawasin.av1.mp4",
+                "type": "video/mp4; codecs=\"av01.0.04M.08\""
+            }
+        ],
         "demoUrl": "https://ngawasin.dnlmn.dev/",
         "githubUrl": "https://github.com/hyvos07/ngawasin"
     },
     {
         "id": 5,
+        "title": "dnlmn-games",
+        "description": "dnlmn-games is my personal project on creating classic arcade or other original browser games. It's free to play with no installs, accounts, or tracking.",
+        "type": "Website",
+        "technologies": [
+            {
+                "icon": "/tech/astro.svg",
+                "title": "Astro",
+                "link": ""
+            },
+            {
+                "icon": "/tech/animejs.svg",
+                "title": "anime.js",
+                "link": ""
+            }
+        ],
+        "imageUrl": "/videos/projects/dnlmn-games.h264.mp4",
+        "videoSources": [
+            {
+                "src": "/videos/projects/dnlmn-games.av1.mp4",
+                "type": "video/mp4; codecs=\"av01.0.04M.08\""
+            },
+            {
+                "src": "/videos/projects/dnlmn-games.h264.mp4",
+                "type": "video/mp4; codecs=\"avc1\""
+            }
+        ],
+        "demoUrl": "https://games.dnlmn.dev/",
+        "githubUrl": "https://github.com/hyvos07/dnlmn-games"
+    },
+    {
+        "id": 6,
         "title": "Debt Circle",
         "description": "A personal project for splitting bill with friends, while keeping your debt on track. Coming soon!",
         "type": "Project",

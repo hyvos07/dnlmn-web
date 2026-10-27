@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { SITE_URL } from "@/lib/site";
 import "@/styles/globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -9,11 +10,11 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dnlmn.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: "Daniel Liman | dnlmn",
   description: "Portfolio website made by Daniel Liman (aka dnlmn), a passionate Software Engineer based in Indonesia.",
   keywords: ["Daniel Liman", "dnlmn", "Software Engineer", "Portfolio", "Web Developer"],
-  authors: [{ name: "Daniel Liman" }],
+  authors: [{ name: "Daniel Liman", url: SITE_URL }],
   creator: "Daniel Liman",
   verification: {
     google: "H-7ItUmiU6Th7u8XxuTg8x8hDk1ugZOrPcMdOVpRKQo",
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Daniel Liman | dnlmn",
     description: "Portfolio website made by Daniel Liman (aka dnlmn), a passionate Software Engineer based in Indonesia.",
-    url: "https://dnlmn.vercel.app",
+    url: SITE_URL,
     siteName: "Daniel Liman - dnlmn",
     type: "website",
     locale: "en-US",
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     ],
   },
   icons: {
-    icon: "favicon.ico",
+    icon: "/favicon.ico",
   },
 };
 

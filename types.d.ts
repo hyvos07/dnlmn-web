@@ -46,11 +46,13 @@ declare global {
   }
 
   interface Project {
+    id: number;
     title: string;
     description: string;
     type: string;
     technologies: Tech[];
     imageUrl: string;
+    videoSources?: { src: string; type: string }[];
     githubUrl?: string;
     demoUrl?: string;
   };

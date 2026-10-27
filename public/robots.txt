@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Disallow: /api/
+
+Sitemap: https://www.dnlmn.dev/sitemap.xml

@@ -11,6 +11,7 @@ import BlogPostLayout from '@/components/blog/BlogPostLayout';
 import { getMDXComponents } from '@/components/blog/MDXComponents';
 import MediumBadge from '@/components/blog/MediumBadge';
 import Footer from '@/components/Footer';
+import { SITE_URL } from '@/lib/site';
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -45,10 +46,12 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   return {
     title: `${post.frontmatter.title} | dnlmn`,
     description: post.frontmatter.description,
+    alternates: { canonical: `/blog/${encodeURIComponent(slug)}` },
     openGraph: {
       title: post.frontmatter.title,
       description: post.frontmatter.description,
       type: 'article',
+      url: `${SITE_URL}/blog/${encodeURIComponent(slug)}`,
       publishedTime: post.frontmatter.date,
       ...(post.frontmatter.coverImage && {
         images: [{ url: post.frontmatter.coverImage }],

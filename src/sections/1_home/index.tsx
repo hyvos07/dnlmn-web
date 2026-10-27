@@ -10,20 +10,21 @@ export default function HomeContent() {
           muted
           loop
           playsInline
-          preload="auto"
-          poster="/bg_stop.png"
+          preload="metadata"
+          poster="/bg_stop.webp"
           className="size-full object-cover object-top"
         >
-          <source src="/bg.mp4" type="video/mp4" />
+          <source src="/bg.av1.mp4" type={'video/mp4; codecs="av01.0.12M.08"'} />
+          <source src="/bg.mp4" type={'video/mp4; codecs="avc1"'} />
         </video>
         <div className="absolute inset-0 bg-gradient-to-r from-[#070707]/80 to-[#070707]/30" />
       </div>
       <div className="relative z-10 flex w-full min-w-0 flex-col gap-5 lg:gap-7 justify-center items-start px-12 sm:px-16 md:px-24 lg:px-44 -mt-[60px]">
         <Greetings />
         <div className="flex min-w-0 flex-col gap-3 lg:gap-5">
-          <p className="text-lg sm:text-xl lg:text-4xl font-semibold">
+          <h1 className="text-lg sm:text-xl lg:text-4xl font-semibold">
             {"I'm Daniel Liman."}
-          </p>
+          </h1>
           <p className="text-sm sm:text-base lg:text-lg leading-relaxed max-w-[34rem] break-words">
             A <span className="font-bold"> Software Engineer </span>based in Jakarta, Indonesia. &nbsp;
             <br className="md:block hidden" />
