@@ -1,0 +1,30 @@
+.item {
+  display: flow-root;
+  min-width: 0;
+}
+
+.content {
+  min-width: 0;
+  transition: opacity 600ms ease, transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.container[data-animated='true'] [data-reveal-item]:not([data-visible='true']):not(:focus-within) > .content {
+  opacity: 0;
+  transform: translateY(32px);
+}
+
+.item:focus-within > .content {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content {
+    transition: none;
+  }
+
+  .container[data-animated='true'] [data-reveal-item]:not([data-visible='true']):not(:focus-within) > .content {
+    opacity: 1;
+    transform: none;
+  }
+}

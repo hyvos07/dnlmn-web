@@ -4,6 +4,7 @@ import { Copy } from 'lucide-react';
 import Toast from './Toast';
 import Image from "next/image";
 import OpenToProject from '@/sections/1_home/components/OpenToProject';
+import ScrollReveal, { RevealItem } from './ScrollReveal';
 
 export default function Contact() {
   const [name, setName] = useState('');
@@ -68,95 +69,97 @@ export default function Contact() {
   };
 
   return (
-    <div id="cp" className="flex w-full max-w-[1440px] mx-auto justify-center items-center p-12 my-16">
-      <div className="flex max-lg:flex-col min-w-[325px] lg:min-w-[850px] gap-12 w-full px-12 p-10 pb-12 rounded-xl bg-[#131313]">
-        <div className="flex flex-col lg:w-3/5 w-full">
-          <div className="flex max-sm:flex-col max-sm:gap-5 w-full justify-between items-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-semibold text-white">Contact Me!</h2>
-            <OpenToProject />
-          </div>
-          <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-zinc-300 mb-2">Name</label>
-              <input
-                type="text"
-                id="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-2 bg-neutral-800 text-white rounded border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-[#54b4e2]"
-                required
-              />
+    <ScrollReveal id="cp" className="flex flex-col w-full max-w-[1440px] mx-auto justify-center items-center p-12 my-16">
+      <RevealItem className="w-full">
+        <div className="flex max-lg:flex-col min-w-[325px] lg:min-w-[850px] gap-12 w-full px-12 p-10 pb-12 rounded-xl bg-[#131313]">
+          <div className="flex flex-col lg:w-3/5 w-full">
+            <div className="flex max-sm:flex-col max-sm:gap-5 w-full justify-between items-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-semibold text-white">Contact Me!</h2>
+              <OpenToProject />
             </div>
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-zinc-300 mb-2">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-4 py-2 bg-neutral-800 text-white rounded border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-[#54b4e2]"
+                  required
+                />
+              </div>
 
-            <div>
-              <label htmlFor="email" className="block text-zinc-300 mb-2">Email</label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-2 bg-neutral-800 text-white rounded border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-[#54b4e2]"
-                required
-              />
-            </div>
+              <div>
+                <label htmlFor="email" className="block text-zinc-300 mb-2">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-2 bg-neutral-800 text-white rounded border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-[#54b4e2]"
+                  required
+                />
+              </div>
 
-            <div>
-              <label htmlFor="message" className="block text-zinc-300 mb-2">Message</label>
-              <textarea
-                id="message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                rows={4}
-                className="mb-4 w-full px-4 py-2 bg-neutral-800 text-white rounded border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-[#54b4e2] resize-none"
-                required
-              />
-            </div>
+              <div>
+                <label htmlFor="message" className="block text-zinc-300 mb-2">Message</label>
+                <textarea
+                  id="message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows={4}
+                  className="mb-4 w-full px-4 py-2 bg-neutral-800 text-white rounded border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-[#54b4e2] resize-none"
+                  required
+                />
+              </div>
 
-            <button
-              type="submit"
-              disabled={isSending}
-              className={`w-full py-2 px-4 rounded font-medium transition-colors ${isSending
-                ? 'bg-neutral-700 text-neutral-300 cursor-not-allowed'
-                : 'bg-[#3a9fd1] hover:bg-[#3593c3] text-white'
-                }`}
-            >
-              {isSending ? 'Sending...' : 'Send Message'}
-            </button>
-          </form>
-        </div>
-        <div className="flex flex-col lg:w-2/5 justify-center items-center max-lg:mt-10 max-lg:justify-center">
-          <Image
-            src="/images/furina.png"
-            alt="Furina"
-            width={128}
-            height={128}
-            className="md:w-40 md:h-40 w-32 h-32"
-            draggable="false"
-          />
-          <p className="my-6 text-sm font-medium text-white">... or copy my email below!</p>
-          <div className="flex items-center mb-6 bg-neutral-800 rounded-lg px-4 py-3 w-min">
-            <p className="text-zinc-300 max-md:text-xs text-sm font-semibold">hey@dnlmn.dev</p>
-            <div
-              className="flex justify-center items-center relative group ml-4"
-              onMouseLeave={() => {
-                setTimeout(() => {
-                  setCopyMessage('Copy Email');
-                }, 100)
-              }}
-            >
               <button
-                onClick={copyEmailToClipboard}
-                className="text-[#54b4e2] hover:text-white transition-colors"
+                type="submit"
+                disabled={isSending}
+                className={`w-full py-2 px-4 rounded font-medium transition-colors ${isSending
+                  ? 'bg-neutral-700 text-neutral-300 cursor-not-allowed'
+                  : 'bg-[#3a9fd1] hover:bg-[#3593c3] text-white'
+                  }`}
               >
-                <Copy className="md:w-[20px] md:h-[20px] w-4 h-4" />
+                {isSending ? 'Sending...' : 'Send Message'}
               </button>
-              <div className="absolute -bottom-6 left-1/2 -tranneutral-x-1/2 mr-4 bg-zinc-800 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                {copyMessage}
+            </form>
+          </div>
+          <div className="flex flex-col lg:w-2/5 justify-center items-center max-lg:mt-10 max-lg:justify-center">
+            <Image
+              src="/images/furina.png"
+              alt="Furina"
+              width={128}
+              height={128}
+              className="md:w-40 md:h-40 w-32 h-32"
+              draggable="false"
+            />
+            <p className="my-6 text-sm font-medium text-white">... or copy my email below!</p>
+            <div className="flex items-center mb-6 bg-neutral-800 rounded-lg px-4 py-3 w-min">
+              <p className="text-zinc-300 max-md:text-xs text-sm font-semibold">hey@dnlmn.dev</p>
+              <div
+                className="flex justify-center items-center relative group ml-4"
+                onMouseLeave={() => {
+                  setTimeout(() => {
+                    setCopyMessage('Copy Email');
+                  }, 100)
+                }}
+              >
+                <button
+                  onClick={copyEmailToClipboard}
+                  className="text-[#54b4e2] hover:text-white transition-colors"
+                >
+                  <Copy className="md:w-[20px] md:h-[20px] w-4 h-4" />
+                </button>
+                <div className="absolute -bottom-6 left-1/2 -tranneutral-x-1/2 mr-4 bg-zinc-800 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  {copyMessage}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </RevealItem>
       {toast?.show && (
         <Toast
           message={toast.message}
@@ -164,6 +167,6 @@ export default function Contact() {
           onClose={() => setToast(null)}
         />
       )}
-    </div>
+    </ScrollReveal>
   );
 }

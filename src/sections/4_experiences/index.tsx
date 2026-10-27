@@ -1,16 +1,19 @@
 import exps from "../../json/exp.json";
 import Timeline from "./components/Timeline";
+import ScrollReveal, { RevealItem } from '@/components/ScrollReveal';
 
 export default function ExperienceContent() {
   const experiences: Experience[] = exps;
 
   return (
-    <div id="exp" className="mt-16 py-16 md:px-8">
+    <ScrollReveal id="exp" className="mt-16 py-16 md:px-8">
       <div className="max-w-6xl mx-auto flex flex-col justify-center items-center">
-        <h2 className="text-2xl lg:text-3xl font-semibold mb-12 md:mb-20 xl:mb-[90px] text-center">My Experiences</h2>
+        <RevealItem delay={0}>
+          <h2 className="text-2xl lg:text-3xl font-semibold mb-12 md:mb-20 xl:mb-[90px] text-center">My Experiences</h2>
+        </RevealItem>
         <div className="w-full">
           <Timeline experiences={experiences} />
-          <p className="font-semibold text-center max-md:text-sm text-lg mt-14 md:mt-24">
+          <p className="font-semibold text-center max-md:text-sm text-lg mt-12 md:mt-20">
             More informations can be found on my &nbsp;
             <a
               href="https://www.linkedin.com/in/danielliman/"
@@ -25,6 +28,6 @@ export default function ExperienceContent() {
           </p>
         </div>
       </div>
-    </div>
+    </ScrollReveal>
   );
 }

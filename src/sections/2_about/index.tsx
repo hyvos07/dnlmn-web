@@ -7,6 +7,7 @@ import ProfileImageCarousel from "./components/ProfileImageCarousel";
 import { Smartphone, PanelsTopLeft, HardDrive, GraduationCap, Telescope, Layers, Gamepad2, Joystick, Database, MessageCircleQuestion } from 'lucide-react';
 import TechSlider from "./components/Slider";
 import techStackData from '../../json/tech.json';
+import ScrollReveal, { RevealItem } from '@/components/ScrollReveal';
 
 const profileImages = [
   "/images/self/1.jpg",
@@ -17,10 +18,12 @@ export default function AboutContent() {
   const _sliderItems = techStackData;
 
   return (
-    <div id="about" className="mt-6 py-16 flex flex-col gap-6">
+    <ScrollReveal id="about" className="mt-6 py-16 flex flex-col gap-6">
       <div className="flex flex-col text-center gap-4">
-        <h2 className="text-2xl lg:text-3xl font-semibold max-lg:mb-4 mb-8">About Me</h2>
-        <div className="flex justify-center lg:items-stretch md:items-center gap-8 max-lg:flex-col lg:mb-6">
+        <RevealItem delay={0}>
+          <h2 className="text-2xl lg:text-3xl font-semibold max-lg:mb-4 mb-8">About Me</h2>
+        </RevealItem>
+        <RevealItem contentClassName="flex justify-center lg:items-stretch md:items-center gap-8 max-lg:flex-col" className="lg:mb-6">
           <ProfileImageCarousel images={profileImages} alt="self images" />
           <div className="flex flex-col justify-between gap-4 w-full lg:w-[360px]">
             <AboutBox icon={<MessageCircleQuestion size={20} />} title="Who's Daniel?">
@@ -32,58 +35,62 @@ export default function AboutContent() {
             <AboutBox icon={<GraduationCap size={20} />} title='Education'><UnivButton /></AboutBox>
             <ProjectButton />
           </div>
-        </div>
+        </RevealItem>
         <div className="flex flex-col gap-8">
-          <AboutBox icon={<Telescope size={20} />} title='Interest'>
-            <div className="grid grid-cols-2 max-lg:grid-cols-1 lg:gap-0 gap-8 px-3 pb-2 max-md:mt-2">
-              <div className="flex flex-col gap-8">
-                <InterestItem
-                  icon={<HardDrive size={28} />}
-                  title="Backend Development"
-                  desc={"Django, SpringBoot, Node.js"}
-                />
-                <InterestItem
-                  icon={<Smartphone size={28} />}
-                  title="Mobile Development"
-                  desc={"Flutter, Dart, Android Studio"}
-                />
-                <InterestItem
-                  icon={<PanelsTopLeft size={28} />}
-                  title={"Web Development"}
-                  desc={"Next.js, Astro, React"}
-                />
+          <RevealItem>
+            <AboutBox icon={<Telescope size={20} />} title='Interest'>
+              <div className="grid grid-cols-2 max-lg:grid-cols-1 lg:gap-0 gap-8 px-3 pb-2 max-md:mt-2">
+                <div className="flex flex-col gap-8">
+                  <InterestItem
+                    icon={<HardDrive size={28} />}
+                    title="Backend Development"
+                    desc={"Django, SpringBoot, Node.js"}
+                  />
+                  <InterestItem
+                    icon={<Smartphone size={28} />}
+                    title="Mobile Development"
+                    desc={"Flutter, Dart, Android Studio"}
+                  />
+                  <InterestItem
+                    icon={<PanelsTopLeft size={28} />}
+                    title={"Web Development"}
+                    desc={"Next.js, Astro, React"}
+                  />
+                </div>
+                <div className="flex flex-col gap-8">
+                  <InterestItem
+                    icon={<Database size={28} />}
+                    title="Database"
+                    desc={"PostgreSQL, OracleDB, MongoDB"}
+                  />
+                  <InterestItem
+                    icon={<Joystick size={28} />}
+                    title={"Game Development"}
+                    desc={"Unity Engine, Godot"}
+                  />
+                  <InterestItem
+                    icon={<Gamepad2 size={28} />}
+                    title="Gaming"
+                    desc={"Genshin Impact, Rhythm Game, CS2"}
+                  />
+                </div>
               </div>
-              <div className="flex flex-col gap-8">
-                <InterestItem
-                  icon={<Database size={28} />}
-                  title="Database"
-                  desc={"PostgreSQL, OracleDB, MongoDB"}
-                />
-                <InterestItem
-                  icon={<Joystick size={28} />}
-                  title={"Game Development"}
-                  desc={"Unity Engine, Godot"}
-                />
-                <InterestItem
-                  icon={<Gamepad2 size={28} />}
-                  title="Gaming"
-                  desc={"Genshin Impact, Rhythm Game, CS2"}
-                />
+            </AboutBox>
+          </RevealItem>
+          <RevealItem>
+            <AboutBox icon={<Layers size={20} />} title='Tech Stack'>
+              <div className="flex flex-col gap-6 items-center justify-center mt-1 mb-3">
+                <div className="relative w-full min-w-0 overflow-hidden py-2 px-6 sm:px-8">
+                  <TechSlider items={_sliderItems} />
+                  <div className="absolute left-4 sm:left-6 top-0 bottom-0 w-12 bg-gradient-to-r from-[#04060f] to-transparent z-10"></div>
+                  <div className="absolute right-4 sm:right-6 top-0 bottom-0 w-12 bg-gradient-to-l from-[#04060f] to-transparent z-10"></div>
+                </div>
+                <p className="text-sm text-center"> ... and many more! </p>
               </div>
-            </div>
-          </AboutBox>
-          <AboutBox icon={<Layers size={20} />} title='Tech Stack'>
-            <div className="flex flex-col gap-6 items-center justify-center mt-1 mb-3">
-              <div className="relative w-full min-w-0 overflow-hidden py-2 px-6 sm:px-8">
-                <TechSlider items={_sliderItems} />
-                <div className="absolute left-4 sm:left-6 top-0 bottom-0 w-12 bg-gradient-to-r from-[#04060f] to-transparent z-10"></div>
-                <div className="absolute right-4 sm:right-6 top-0 bottom-0 w-12 bg-gradient-to-l from-[#04060f] to-transparent z-10"></div>
-              </div>
-              <p className="text-sm text-center"> ... and many more! </p>
-            </div>
-          </AboutBox>
+            </AboutBox>
+          </RevealItem>
         </div>
       </div>
-    </div>
+    </ScrollReveal>
   );
 }
