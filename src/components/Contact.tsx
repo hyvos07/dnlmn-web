@@ -1,6 +1,7 @@
 'use client';
 import { useState, useRef } from 'react';
 import { Copy } from 'lucide-react';
+import { GitHubIcon, LinkedInIcon } from './icons/SocialIcons';
 import Toast from './Toast';
 import Image from "next/image";
 import OpenToProject from '@/sections/1_home/components/OpenToProject';
@@ -70,11 +71,11 @@ export default function Contact() {
 
   return (
     <ScrollReveal id="cp" className="flex flex-col w-full max-w-[1440px] mx-auto justify-center items-center p-12 my-16">
-      <RevealItem className="w-full">
+      <RevealItem className="w-full max-w-6xl">
         <div className="flex max-lg:flex-col min-w-[325px] lg:min-w-[850px] gap-12 w-full px-12 p-10 pb-12 rounded-xl bg-[#131313]">
           <div className="flex flex-col lg:w-3/5 w-full">
-            <div className="flex max-sm:flex-col max-sm:gap-5 w-full justify-between items-center mb-8">
-              <h2 className="text-2xl md:text-3xl font-semibold text-white">Contact Me!</h2>
+            <div className="flex flex-wrap gap-5 max-sm:flex-col w-full justify-between items-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-semibold text-white max-sm:text-center">Let&apos;s build together!</h2>
               <OpenToProject />
             </div>
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
@@ -156,6 +157,27 @@ export default function Contact() {
                   {copyMessage}
                 </div>
               </div>
+            </div>
+            <p className="mb-4 text-center text-xs text-zinc-400">Wanna get to know me first? 👀</p>
+            <div className="flex flex-wrap justify-center gap-2">
+              <a
+                href="https://www.linkedin.com/in/danielliman/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-zinc-600 px-3 py-2 text-xs font-medium text-zinc-200 hover:bg-white hover:text-black hover:border-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#54b4e2]"
+              >
+                <LinkedInIcon width={14} height={14} aria-hidden="true" />
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/hyvos07"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-zinc-600 px-3 py-2 text-xs font-medium text-zinc-200 hover:bg-white hover:text-black hover:border-white transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#54b4e2]"
+              >
+                <GitHubIcon width={14} height={14} aria-hidden="true" />
+                GitHub
+              </a>
             </div>
           </div>
         </div>

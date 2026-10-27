@@ -1,47 +1,37 @@
 import { FileText, Mail } from "lucide-react";
+import { GitHubIcon, InstagramIcon, LinkedInIcon, XIcon } from '@/components/icons/SocialIcons';
+import { socialLinks } from '@/lib/social';
 
 export default function Social() {
   return (
     <ul className="flex flex-wrap gap-3 sm:gap-6 text-zinc-200 mt-1.5">
       <li className="p-1">
-        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href="https://github.com/hyvos07" target="_blank" aria-label="Github">
-          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-github stroke-current sm:w-7 sm:h-7">
-            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-            <path d="M9 18c-4.51 2-5-2-7-2" />
-          </svg>
+        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href={socialLinks.github} target="_blank" aria-label="Github">
+          <GitHubIcon width={26} height={26} className="stroke-current sm:w-7 sm:h-7" aria-hidden="true" />
           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             Github
           </div>
         </a>
       </li>
       <li className="p-1">
-        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href="https://linkedin.com/in/danielliman" target="_blank" aria-label="LinkedIn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin stroke-current sm:w-7 sm:h-7">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-            <rect width="4" height="12" x="2" y="9" />
-            <circle cx="4" cy="4" r="2" />
-          </svg>
+        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href={socialLinks.linkedin} target="_blank" aria-label="LinkedIn">
+          <LinkedInIcon width={26} height={26} className="stroke-current sm:w-7 sm:h-7" aria-hidden="true" />
           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             LinkedIn
           </div>
         </a>
       </li>
       <li className="p-1">
-        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href="https://x.com/hyvos_" target="_blank" aria-label="Twitter/X">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 256 256" stroke="currentColor" className="lucide lucide-github stroke-current sm:w-[30px] sm:h-[30px]">
-            <g fill="currentColor">
-              <path d="M208 216h-48L48 40h48Z" opacity=".2" />
-              <path d="m214.75 211.71l-62.6-98.38l61.77-67.95a8 8 0 0 0-11.84-10.76l-58.84 64.72l-40.49-63.63A8 8 0 0 0 96 32H48a8 8 0 0 0-6.75 12.3l62.6 98.37l-61.77 68a8 8 0 1 0 11.84 10.76l58.84-64.72l40.49 63.63A8 8 0 0 0 160 224h48a8 8 0 0 0 6.75-12.29M164.39 208L62.57 48h29l101.86 160Z" />
-            </g>
-          </svg>
+        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href={socialLinks.x} target="_blank" aria-label="Twitter/X">
+          <XIcon width={28} height={28} className="stroke-current sm:w-[30px] sm:h-[30px]" aria-hidden="true" />
           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             Twitter/X
           </div>
         </a>
       </li>
       <li className="p-1">
-        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href="https://instagram.com/daniel.liman07" target="_blank" aria-label="Instagram">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram sm:w-7 sm:h-7"><rect width="20" height="20" x="2" y="2" rx="5" ry="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37m1.5-4.87h.01" /></svg>
+        <a className="group rounded-lg text-zinc-300 hover:text-zinc-100 duration-300 relative" href={socialLinks.instagram} target="_blank" aria-label="Instagram">
+          <InstagramIcon width={24} height={24} className="sm:w-7 sm:h-7" aria-hidden="true" />
           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-zinc-800 text-xs px-2 py-1 rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
             Instagram
           </div>
