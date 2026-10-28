@@ -1,0 +1,32 @@
+.background {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+}
+
+.background::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 720px 680px at 4% 22%, rgb(84 180 226 / 0.22), transparent 72%),
+    radial-gradient(ellipse 760px 720px at 96% 78%, rgb(92 104 178 / 0.24), transparent 72%);
+  background-size: 100% 2200px;
+  background-repeat: repeat-y;
+  mask-image: linear-gradient(to bottom, transparent, #000 160px, #000 calc(100% - 200px), transparent);
+}
+
+@media (max-width: 767px) {
+  .background::before {
+    background-image:
+      radial-gradient(ellipse 360px 500px at 0% 22%, rgb(84 180 226 / 0.16), transparent 72%),
+      radial-gradient(ellipse 380px 560px at 100% 78%, rgb(92 104 178 / 0.18), transparent 72%);
+    background-size: 100% 1800px;
+  }
+}

@@ -50,7 +50,7 @@ export default function ProfileImageCarousel({
     // lets its stretched height count as "definite" for descendants below.
     // `min-h` is just a defensive floor in case this is ever used outside
     // a stretching flex parent.
-    <div className="relative w-80 lg:w-[360px] max-lg:hidden min-h-[320px] overflow-hidden rounded-xl">
+    <div className="relative w-80 lg:w-[360px] max-lg:hidden min-h-[320px] overflow-hidden rounded-xl bg-[var(--background)]">
       <div ref={emblaRef} className="absolute inset-0 overflow-hidden">
         <div className="flex h-full touch-pan-y">
           {images.map((image, index) => (

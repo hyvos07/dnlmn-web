@@ -11,6 +11,7 @@
   background: #54b4e2;
   transform: scaleY(var(--progress, 0));
   transform-origin: top;
+  will-change: transform;
 }
 
 .marker {

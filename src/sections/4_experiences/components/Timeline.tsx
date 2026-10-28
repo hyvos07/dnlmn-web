@@ -4,6 +4,8 @@ import { useEffect, useRef } from 'react';
 import ExperienceItem from './ExperienceItem';
 import styles from './Timeline.module.css';
 
+const SMOOTHING_MS = 100;
+
 export default function Timeline({ experiences }: { experiences: Experience[] }) {
   const timelineRef = useRef<HTMLDivElement>(null);
 
@@ -14,60 +16,121 @@ export default function Timeline({ experiences }: { experiences: Experience[] })
     const rows = Array.from(timeline.querySelectorAll<HTMLElement>('[data-experience-row]'));
     const connectors = Array.from(timeline.querySelectorAll<HTMLElement>('[data-connector]'));
     const track = timeline.querySelector<HTMLElement>('[data-track]');
-    let frame: number | null = null;
+    if (rows.length === 0) return;
 
-    const update = () => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let rowBounds: { top: number; center: number }[] = [];
+    const connectorStates = connectors.map((element) => ({ element, top: 0, bottom: 0, value: 0 }));
+    let frame: number | null = null;
+    let lastTime: number | null = null;
+    let needsMeasurement = true;
+    let displayedPoint = 0;
+
+    const progress = (point: number, start: number, end: number) =>
+      end > start ? Math.min(1, Math.max(0, (point - start) / (end - start))) : 0;
+
+    const measure = () => {
+      const scrollY = window.scrollY;
+      const timelineTop = timeline.getBoundingClientRect().top + scrollY;
+      rowBounds = rows.map((row) => {
+        const bounds = row.getBoundingClientRect();
+        return { top: bounds.top + scrollY, center: bounds.top + scrollY + bounds.height / 2 };
+      });
+      connectorStates.forEach((connector) => {
+        const bounds = connector.element.getBoundingClientRect();
+        connector.top = bounds.top + scrollY;
+        connector.bottom = bounds.bottom + scrollY;
+      });
+
+      if (track && rowBounds.length > 1) {
+        const start = rowBounds[0].center;
+        const end = rowBounds[rowBounds.length - 1].center;
+        track.style.top = `${start - timelineTop}px`;
+        track.style.height = `${end - start}px`;
+      }
+    };
+
+    const update = (time: number) => {
       frame = null;
-      const bounds = rows.map((row) => row.getBoundingClientRect());
-      const progressPoint = window.innerHeight * 0.75;
-      const revealPoint = window.innerHeight * 0.85;
-      const progress = (start: number, end: number) =>
-        end > start ? Math.min(1, Math.max(0, (progressPoint - start) / (end - start))) : 0;
+      const measured = needsMeasurement;
+      if (measured) {
+        measure();
+        needsMeasurement = false;
+      }
+
+      const progressPoint = window.scrollY + window.innerHeight * 0.75;
+      const revealPoint = window.scrollY + window.innerHeight * 0.85;
+      const start = rowBounds[0].center;
+      const end = rowBounds[rowBounds.length - 1].center;
+      // Clamp offscreen travel so scrolling elsewhere does not keep this animation running.
+      const targetPoint = Math.min(end + 1, Math.max(start - 1, progressPoint));
+      const elapsed = lastTime === null ? 1000 / 60 : Math.min(64, time - lastTime);
+      const blend = 1 - Math.exp(-elapsed / SMOOTHING_MS);
+      const snap = measured || reducedMotion.matches;
+
+      displayedPoint = snap ? targetPoint : displayedPoint + (targetPoint - displayedPoint) * blend;
+      if (Math.abs(targetPoint - displayedPoint) < 0.25) displayedPoint = targetPoint;
+      let animating = displayedPoint !== targetPoint;
 
       rows.forEach((row, index) => {
-        const center = bounds[index].top + bounds[index].height / 2;
-        row.dataset.reached = String(center <= progressPoint);
+        const reached = String(rowBounds[index].center <= displayedPoint);
+        if (row.dataset.reached !== reached) row.dataset.reached = reached;
 
         // Reveal once, using the stationary row so the animation cannot affect its trigger.
-        if (bounds[index].top <= revealPoint) {
+        if (row.dataset.visible !== 'true' && rowBounds[index].top <= revealPoint) {
           row.dataset.visible = 'true';
         }
       });
 
-      if (track && bounds.length > 1) {
-        const start = bounds[0].top + bounds[0].height / 2;
-        const last = bounds[bounds.length - 1];
-        const end = last.top + last.height / 2;
-        track.style.top = `${start - timeline.getBoundingClientRect().top}px`;
-        track.style.height = `${end - start}px`;
-        track.style.setProperty('--progress', String(progress(start, end)));
+      if (track) {
+        track.style.setProperty('--progress', String(progress(displayedPoint, start, end)));
       }
 
-      connectors.forEach((connector) => {
-        const { top, bottom } = connector.getBoundingClientRect();
-        connector.style.setProperty('--progress', String(progress(top, bottom)));
+      connectorStates.forEach((connector) => {
+        const target = progress(progressPoint, connector.top, connector.bottom);
+        // Smooth each short mobile connector too, even when one wheel step crosses it entirely.
+        connector.value = snap ? target : connector.value + (target - connector.value) * blend;
+        if (Math.abs(target - connector.value) < 0.001) connector.value = target;
+        if (connector.value !== target) animating = true;
+        connector.element.style.setProperty('--progress', String(connector.value));
       });
 
       // Keep the server-rendered content visible until scroll behavior is ready.
       timeline.dataset.animated = 'true';
+
+      if (animating) {
+        lastTime = time;
+        frame = window.requestAnimationFrame(update);
+      } else {
+        lastTime = null;
+      }
     };
 
     const scheduleUpdate = () => {
       if (frame === null) frame = window.requestAnimationFrame(update);
     };
 
-    update();
-    const resizeObserver = new ResizeObserver(scheduleUpdate);
+    const invalidateMeasurements = () => {
+      needsMeasurement = true;
+      scheduleUpdate();
+    };
+
+    update(performance.now());
+    const resizeObserver = new ResizeObserver(invalidateMeasurements);
     resizeObserver.observe(timeline);
     rows.forEach((row) => resizeObserver.observe(row));
+    // Content loading above the timeline can move it without changing its own height.
+    resizeObserver.observe(document.body);
     window.addEventListener('scroll', scheduleUpdate, { passive: true });
-    window.addEventListener('resize', scheduleUpdate);
+    window.addEventListener('resize', invalidateMeasurements);
+    reducedMotion.addEventListener('change', scheduleUpdate);
 
     return () => {
       if (frame !== null) window.cancelAnimationFrame(frame);
       resizeObserver.disconnect();
       window.removeEventListener('scroll', scheduleUpdate);
-      window.removeEventListener('resize', scheduleUpdate);
+      window.removeEventListener('resize', invalidateMeasurements);
+      reducedMotion.removeEventListener('change', scheduleUpdate);
       delete timeline.dataset.animated;
     };
   }, [experiences]);

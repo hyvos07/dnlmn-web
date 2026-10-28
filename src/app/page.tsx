@@ -10,6 +10,7 @@ import ExperienceContent from "@/sections/4_experiences";
 import BlogSection from "@/components/blog/BlogSection";
 import { getLatestPosts } from "@/lib/blog";
 import { profileJsonLd } from "@/lib/site";
+import backgroundStyles from '@/styles/ContentBackground.module.css';
 
 export const metadata: Metadata = {
   alternates: { canonical: '/' },
@@ -28,13 +29,15 @@ export default function HomePage() {
       <NavBar />
       <main className="flex flex-col justify-center items-center">
         <HomeContent />
-        <div className="flex flex-col justify-center items-center px-12 mx-auto lg:px-44">
-          <AboutContent />
-          <ProjectContent />
-          <ExperienceContent />
-          <BlogSection posts={latestPosts} />
+        <div className={backgroundStyles.background}>
+          <div className="flex flex-col justify-center items-center px-12 mx-auto lg:px-44">
+            <AboutContent />
+            <ProjectContent />
+            <ExperienceContent />
+            <BlogSection posts={latestPosts} />
+          </div>
+          <Contact />
         </div>
-        <Contact />
       </main>
       <Footer />
     </div>

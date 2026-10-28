@@ -22,7 +22,7 @@ export default function BlogCard({ post, variant }: BlogCardProps) {
   const isPreview = variant === 'preview';
 
   return (
-    // The whole card is wrapped in a `group` div so all children can respond to hover
+    // Each article is a linked row with a shared hover state.
     <Link
       href={`/blog/${post.slug}`}
       className="group border-b border-zinc-800 py-8 first:pt-0 last:border-b-0 block"

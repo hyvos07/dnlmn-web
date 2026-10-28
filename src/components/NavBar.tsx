@@ -30,32 +30,31 @@ export default function NavBar() {
   const isHomePage = pathname === '/';
   const isBlogRoute = pathname.startsWith('/blog');
 
-  const handleScrollEvent = () => {
+  useEffect(() => {
     if (!isHomePage) return;
-    const scrollPosition = window.scrollY + window.innerHeight / 2;
-    for (const item of navItems) {
-      const section = document.getElementById(item.to);
-      if (section) {
-        const { offsetTop, offsetHeight } = section;
-        if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-          setActive(item.to);
-          break;
+
+    const handleScrollEvent = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+      for (const item of navItems) {
+        const section = document.getElementById(item.to);
+        if (section) {
+          const { top, height } = section.getBoundingClientRect();
+          const sectionTop = top + window.scrollY;
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + height) {
+            setActive(item.to);
+            break;
+          }
         }
       }
-    }
-  };
+    };
 
-  // Update current section
-  useEffect(() => {
-    if (isBlogRoute) {
-      setActive('blog');
-    } else if (isHomePage) {
-      handleScrollEvent();
-      window.addEventListener('scroll', handleScrollEvent);
-      return () => window.removeEventListener('scroll', handleScrollEvent);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isHomePage, isBlogRoute]);
+    const frame = window.requestAnimationFrame(handleScrollEvent);
+    window.addEventListener('scroll', handleScrollEvent, { passive: true });
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', handleScrollEvent);
+    };
+  }, [isHomePage]);
 
   const handleNavClick = (item: NavItem) => {
     if (item.to === 'blog') {
@@ -75,7 +74,7 @@ export default function NavBar() {
   };
 
   const getIconColor = (item: NavItem): string => {
-    if (item.to === 'blog' && isBlogRoute) return '#54b4e2';
+    if (isBlogRoute) return item.to === 'blog' ? '#54b4e2' : 'white';
     if (active === item.to) return '#54b4e2';
     return 'white';
   };

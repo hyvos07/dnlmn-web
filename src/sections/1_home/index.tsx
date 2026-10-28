@@ -4,7 +4,7 @@ import HeroBackground from "./components/HeroBackground";
 
 export default function HomeContent() {
   return (
-    <div id="home" className="isolate mb-8 min-h-[calc(100vh+60px)] max-lg:py-16 sm:max-lg:py-20 flex lg:flex-row flex-col-reverse gap-8 lg:gap-10 items-center justify-center lg:justify-between w-screen max-w-none relative overflow-hidden">
+    <div id="home" className="isolate bg-[var(--background)] mb-8 min-h-[calc(100vh+60px)] max-lg:py-16 sm:max-lg:py-20 flex lg:flex-row flex-col-reverse gap-8 lg:gap-10 items-center justify-center lg:justify-between w-screen max-w-none relative overflow-hidden">
       <HeroBackground />
       <div className="relative z-10 flex w-full min-w-0 flex-col gap-5 lg:gap-7 justify-center items-start px-12 sm:px-16 md:px-24 lg:px-44 -mt-[60px]">
         <Greetings />

@@ -23,8 +23,8 @@ export default function BlogPage() {
 
   return (
     <>
-    <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)] font-[family-name:var(--font-plus-jakarta-sans)]">
-      <div className="max-w-4xl mx-auto px-6 md:px-12 py-12 md:py-20">
+    <div className="min-h-screen text-[var(--foreground)] font-[family-name:var(--font-plus-jakarta-sans)]">
+      <div className="max-w-4xl mx-auto bg-[var(--background)] px-6 md:px-12 py-12 md:py-20">
         {/* Back link */}
         <Link
           href="/"
