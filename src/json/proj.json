@@ -204,6 +204,32 @@
     },
     {
         "id": 6,
+        "title": "Dissonance",
+        "description": "My Individual Game Jam entry for Game Development course in University. It features a rhythm-based gameplay where players must avoid traps that synchronize with the music beat.",
+        "type": "Desktop App",
+        "technologies": [
+            {
+                "icon": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Godot_icon.svg",
+                "title": "Godot",
+                "link": ""
+            }
+        ],
+        "imageUrl": "/videos/projects/dissonance.h264.mp4",
+        "videoSources": [
+            {
+                "src": "/videos/projects/dissonance.av1.mp4",
+                "type": "video/mp4; codecs=\"av01.0.04M.08\""
+            },
+            {
+                "src": "/videos/projects/dissonance.h264.mp4",
+                "type": "video/mp4; codecs=\"avc1\""
+            }
+        ],
+        "demoUrl": "https://hyvos.itch.io/dissonance",
+        "githubUrl": "https://github.com/hyvos07/dissonance"
+    },
+    {
+        "id": 7,
         "title": "Debt Circle",
         "description": "A personal project for splitting bill with friends, while keeping your debt on track. Coming soon!",
         "type": "Project",
@@ -216,11 +242,6 @@
             {
                 "icon": "/tech/golang.svg",
                 "title": "Golang",
-                "link": ""
-            },
-            {
-                "icon": "/tech/django.svg",
-                "title": "Django",
                 "link": ""
             }
         ],
